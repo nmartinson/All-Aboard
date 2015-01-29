@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate
+class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     let data = [["Go to TCBs","Nick Martinson"]]
     
@@ -19,17 +19,17 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return data.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("newsFeedCell") as NewsFeedTableViewCell
         

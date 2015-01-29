@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B04BCEF1A7AFC2100494335 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B04BCEC1A7AFC0000494335 /* Alamofire.framework */; };
+		2B04BCF31A7AFC3000494335 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2B04BCEC1A7AFC0000494335 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E61A79700E00DE0E57 /* AppDelegate.swift */; };
 		2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */; };
 		2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */; };
@@ -22,6 +24,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2B04BCEB1A7AFC0000494335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B04BCDE1A7AFBFA00494335 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = Alamofire;
+		};
+		2B04BCED1A7AFC0000494335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B04BCDE1A7AFBFA00494335 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = AlamofireTests;
+		};
+		2B04BCF11A7AFC2100494335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B04BCDE1A7AFBFA00494335 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = Alamofire;
+		};
 		2BE791FA1A79700E00DE0E57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2BE791D91A79700E00DE0E57 /* Project object */;
@@ -31,7 +54,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2BEC04A91A7AEFD9003E77DD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2B04BCF31A7AFC3000494335 /* Alamofire.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2B04BCDE1A7AFBFA00494335 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "All Aboard/Alamofire/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		2BE791E11A79700E00DE0E57 /* All Aboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Aboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE791E51A79700E00DE0E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE791E61A79700E00DE0E57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */,
+				2B04BCEF1A7AFC2100494335 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,9 +109,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B04BCE71A7AFC0000494335 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B04BCEC1A7AFC0000494335 /* Alamofire.framework */,
+				2B04BCEE1A7AFC0000494335 /* AlamofireTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2BE791D81A79700E00DE0E57 = {
 			isa = PBXGroup;
 			children = (
+				2B04BCDE1A7AFBFA00494335 /* Alamofire.xcodeproj */,
 				2BE791E31A79700E00DE0E57 /* All Aboard */,
 				2BE791FC1A79700E00DE0E57 /* All AboardTests */,
 				2BE791E21A79700E00DE0E57 /* Products */,
@@ -169,10 +217,12 @@
 				2BE791DD1A79700E00DE0E57 /* Sources */,
 				2BE791DE1A79700E00DE0E57 /* Frameworks */,
 				2BE791DF1A79700E00DE0E57 /* Resources */,
+				2BEC04A91A7AEFD9003E77DD /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2B04BCF21A7AFC2100494335 /* PBXTargetDependency */,
 			);
 			name = "All Aboard";
 			productName = "All Aboard";
@@ -226,6 +276,12 @@
 			mainGroup = 2BE791D81A79700E00DE0E57;
 			productRefGroup = 2BE791E21A79700E00DE0E57 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2B04BCE71A7AFC0000494335 /* Products */;
+					ProjectRef = 2B04BCDE1A7AFBFA00494335 /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				2BE791E01A79700E00DE0E57 /* All Aboard */,
@@ -233,6 +289,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2B04BCEC1A7AFC0000494335 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 2B04BCEB1A7AFC0000494335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2B04BCEE1A7AFC0000494335 /* AlamofireTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AlamofireTests.xctest;
+			remoteRef = 2B04BCED1A7AFC0000494335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2BE791DF1A79700E00DE0E57 /* Resources */ = {
@@ -280,6 +353,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2B04BCF21A7AFC2100494335 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			targetProxy = 2B04BCF11A7AFC2100494335 /* PBXContainerItemProxy */;
+		};
 		2BE791FB1A79700E00DE0E57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2BE791E01A79700E00DE0E57 /* All Aboard */;
@@ -391,6 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/All",
@@ -411,6 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/All",
