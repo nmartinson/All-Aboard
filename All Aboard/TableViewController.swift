@@ -11,6 +11,7 @@ import UIKit
 
 class TableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate
 {
+    let data = [["Go to TCBs","Nick Martinson"]]
     
     override func viewWillAppear(animated: Bool)
     {
@@ -25,11 +26,21 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 0
+        return data.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("newsFeedCell") as NewsFeedTableViewCell
+        
+        cell.eventTitle.text = data[0][0]
+        cell.postedBy.text = "Posted by: \(data[0][1])"
+//        cell.imageView?.image = UIImage(named: "testImage")
+        return cell
+    }
+    
+    @IBAction func revealButtonPressed(sender: AnyObject)
+    {
+        revealViewController().revealToggle(sender)
     }
 }

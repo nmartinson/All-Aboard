@@ -17,7 +17,8 @@
 		2BE792141A79822500DE0E57 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE792131A79822500DE0E57 /* SWRevealViewController.m */; };
 		2BE792191A79832800DE0E57 /* RearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE792181A79832800DE0E57 /* RearViewController.swift */; };
 		2BE7921B1A7985D100DE0E57 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7921A1A7985D100DE0E57 /* TableViewController.swift */; };
-		2BEC04571A79880A003E77DD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEC04561A79880A003E77DD /* FacebookSDK.framework */; };
+		2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */; };
+		2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +48,8 @@
 		2BE792131A79822500DE0E57 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		2BE792181A79832800DE0E57 /* RearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RearViewController.swift; sourceTree = "<group>"; };
 		2BE7921A1A7985D100DE0E57 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		2BEC04561A79880A003E77DD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
+		2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BEC04571A79880A003E77DD /* FacebookSDK.framework in Frameworks */,
+				2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +97,7 @@
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
 				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
+				2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */,
 				2BE7921A1A7985D100DE0E57 /* TableViewController.swift */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
@@ -133,7 +136,7 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2BEC04561A79880A003E77DD /* FacebookSDK.framework */,
+				2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */,
 				2BE792111A79822500DE0E57 /* SWRevealViewController */,
 			);
 			name = Frameworks;
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */,
 				2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */,
 				2BE7921B1A7985D100DE0E57 /* TableViewController.swift in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
@@ -392,6 +396,7 @@
 					"$(PROJECT_DIR)/All",
 					Aboard,
 					/Users/nickmartinson/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "All Aboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -411,6 +416,7 @@
 					"$(PROJECT_DIR)/All",
 					Aboard,
 					/Users/nickmartinson/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "All Aboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

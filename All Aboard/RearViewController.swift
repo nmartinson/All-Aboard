@@ -36,21 +36,21 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
     ******************************************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
-        tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.textColor = UIColor.lightGrayColor()
-        tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.blackColor()
-        switch(indexPath.row)
-        {
-        case 1:
-            var i = 0
-        case 2:
-            var i = 0
-        case 3:
-            var i = 9
-        default:
-            break
-        }
+//        tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
+//        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+//        tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.textColor = UIColor.lightGrayColor()
+//        tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.blackColor()
+//        switch(indexPath.row)
+//        {
+//        case 1:
+//            var i = 0
+//        case 2:
+//            var i = 0
+//        case 3:
+//            var i = 9
+//        default:
+//            break
+//        }
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
