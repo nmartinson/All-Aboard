@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController, FBLoginViewDelegate {
 
     @IBOutlet weak var FBLoginButton: FBLoginView!
+    let url = "http://hackwar.mybluemix.net/Login?username="
     
     override func viewDidLoad()
     {
@@ -46,6 +48,13 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         performSegueWithIdentifier("loggedIn", sender: self)
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    @IBAction func loginButtonPressed(sender: AnyObject)
+    {
+        println("Standard Login button")
+    }
     
 
 }

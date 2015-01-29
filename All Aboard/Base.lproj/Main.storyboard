@@ -94,7 +94,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Username:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9N-gh-hc3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9N-gh-hc3">
                                 <rect key="frame" x="173" y="238" width="84" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -118,7 +118,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3AG-Io-Hki">
-                                <rect key="frame" x="247" y="344" width="107" height="30"/>
+                                <rect key="frame" x="178" y="342" width="107" height="30"/>
                                 <state key="normal" title="Create Account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -145,6 +145,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="M22-pz-TXq"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbo-Vb-i7S">
+                                <rect key="frame" x="380" y="342" width="38" height="30"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ztG-lh-CG6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -152,13 +161,15 @@
                             <constraint firstItem="C6y-fa-D7w" firstAttribute="top" secondItem="45B-NQ-TXj" secondAttribute="bottom" constant="20" id="3gc-yk-FJO"/>
                             <constraint firstAttribute="centerY" secondItem="a9N-gh-hc3" secondAttribute="centerY" id="5Uy-FR-Tf1"/>
                             <constraint firstAttribute="centerY" secondItem="OFZ-nC-Wgo" secondAttribute="centerY" id="8pW-hE-6W1"/>
-                            <constraint firstItem="6Uq-eV-2HM" firstAttribute="top" secondItem="3AG-Io-Hki" secondAttribute="bottom" constant="26" id="C0K-pP-Oiv"/>
+                            <constraint firstItem="6Uq-eV-2HM" firstAttribute="top" secondItem="3AG-Io-Hki" secondAttribute="bottom" constant="28" id="C0K-pP-Oiv"/>
                             <constraint firstAttribute="centerX" secondItem="OFZ-nC-Wgo" secondAttribute="centerX" constant="85.5" id="Hqf-LB-x2B"/>
                             <constraint firstAttribute="centerX" secondItem="C6y-fa-D7w" secondAttribute="centerX" id="Hz6-vM-4yg"/>
                             <constraint firstAttribute="centerX" secondItem="a9N-gh-hc3" secondAttribute="centerX" id="O8a-jX-i83"/>
+                            <constraint firstItem="bbo-Vb-i7S" firstAttribute="baseline" secondItem="3AG-Io-Hki" secondAttribute="baseline" id="P9g-zR-Gz9"/>
                             <constraint firstAttribute="centerX" secondItem="zK8-fV-tqo" secondAttribute="centerX" id="SLz-38-IRI"/>
                             <constraint firstAttribute="centerX" secondItem="a9N-gh-hc3" secondAttribute="centerX" constant="85.25" id="VU7-RJ-b1O"/>
-                            <constraint firstAttribute="centerX" secondItem="3AG-Io-Hki" secondAttribute="centerX" id="e2e-hO-KXa"/>
+                            <constraint firstAttribute="centerX" secondItem="3AG-Io-Hki" secondAttribute="centerX" constant="68.5" id="e2e-hO-KXa"/>
+                            <constraint firstItem="bbo-Vb-i7S" firstAttribute="leading" secondItem="3AG-Io-Hki" secondAttribute="trailing" constant="95" id="ewR-qX-2WT"/>
                             <constraint firstAttribute="centerX" secondItem="6Uq-eV-2HM" secondAttribute="centerX" id="feX-20-OSa"/>
                             <constraint firstAttribute="centerX" secondItem="OFZ-nC-Wgo" secondAttribute="centerX" id="hvk-AC-ZIq"/>
                             <constraint firstItem="45B-NQ-TXj" firstAttribute="top" secondItem="zK8-fV-tqo" secondAttribute="bottom" constant="197" id="iMg-RQ-bes"/>
@@ -166,7 +177,7 @@
                             <constraint firstItem="OFZ-nC-Wgo" firstAttribute="top" secondItem="a9N-gh-hc3" secondAttribute="bottom" constant="30.5" id="mqD-CI-h72"/>
                             <constraint firstItem="C6y-fa-D7w" firstAttribute="leading" secondItem="OFZ-nC-Wgo" secondAttribute="trailing" constant="20" id="qYh-Qt-wzI"/>
                             <constraint firstItem="45B-NQ-TXj" firstAttribute="leading" secondItem="a9N-gh-hc3" secondAttribute="trailing" constant="18.5" id="qzd-yE-Nju"/>
-                            <constraint firstItem="3AG-Io-Hki" firstAttribute="top" secondItem="C6y-fa-D7w" secondAttribute="bottom" constant="30" id="xaN-wb-00a"/>
+                            <constraint firstItem="3AG-Io-Hki" firstAttribute="top" secondItem="C6y-fa-D7w" secondAttribute="bottom" constant="28" id="xaN-wb-00a"/>
                             <constraint firstAttribute="centerX" secondItem="45B-NQ-TXj" secondAttribute="centerX" id="y5Y-Q0-QBp"/>
                         </constraints>
                         <variation key="default">
