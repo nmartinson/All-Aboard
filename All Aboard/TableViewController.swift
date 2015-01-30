@@ -12,10 +12,12 @@ import UIKit
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     let data = [["Go to TCBs","Nick Martinson"]]
+    @IBOutlet weak var navBar: UINavigationItem!
     
     override func viewWillAppear(animated: Bool)
     {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        navBar.title = "The Station"
     }
     
     
