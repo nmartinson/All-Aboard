@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -303,6 +303,89 @@
             </objects>
             <point key="canvasLocation" x="654" y="806"/>
         </scene>
+        <!--Create Event-->
+        <scene sceneID="tbI-eJ-jSz">
+            <objects>
+                <viewController id="fee-Fg-hc7" customClass="CreateEventViewController" customModule="All_Aboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h4y-j1-Ryw"/>
+                        <viewControllerLayoutGuide type="bottom" id="bbz-s2-Ypb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Htl-uC-IlD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KqF-tJ-jO1">
+                                <rect key="frame" x="52" y="58" width="494" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IbC-wK-5XI">
+                                <rect key="frame" x="52" y="145" width="494" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhi-go-UAB">
+                                <rect key="frame" x="277" y="35" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5D-i6-BgF">
+                                <rect key="frame" x="267" y="116" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CgV-pT-adm">
+                                <rect key="frame" x="0.0" y="232" width="600" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="2wD-6U-gwK"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="444352308.94659001">
+                                    <!--2015-01-30 23:11:48 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heg-p7-tvG">
+                                <rect key="frame" x="0.0" y="442" width="600" height="101"/>
+                                <state key="normal" title="Add Friends">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onAddFriendsPress:" destination="fee-Fg-hc7" eventType="touchUpInside" id="RbA-mf-x3o"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IbC-wK-5XI" firstAttribute="trailing" secondItem="KqF-tJ-jO1" secondAttribute="trailing" id="0a8-wp-weI"/>
+                            <constraint firstItem="CgV-pT-adm" firstAttribute="top" secondItem="Htl-uC-IlD" secondAttribute="top" constant="232" id="3pE-vj-bf6"/>
+                            <constraint firstItem="CgV-pT-adm" firstAttribute="centerX" secondItem="heg-p7-tvG" secondAttribute="centerX" id="4XK-SV-f1I"/>
+                            <constraint firstAttribute="trailing" secondItem="CgV-pT-adm" secondAttribute="trailing" id="4qN-gu-HmB"/>
+                            <constraint firstItem="CgV-pT-adm" firstAttribute="top" secondItem="IbC-wK-5XI" secondAttribute="bottom" constant="57" id="9Z5-21-YIK"/>
+                            <constraint firstItem="heg-p7-tvG" firstAttribute="top" secondItem="CgV-pT-adm" secondAttribute="bottom" constant="71" id="CDg-I2-aSt"/>
+                            <constraint firstItem="CgV-pT-adm" firstAttribute="centerX" secondItem="v5D-i6-BgF" secondAttribute="centerX" id="DDC-UD-ect"/>
+                            <constraint firstItem="CgV-pT-adm" firstAttribute="leading" secondItem="Htl-uC-IlD" secondAttribute="leading" id="GPb-vh-Tk6"/>
+                            <constraint firstItem="CgV-pT-adm" firstAttribute="centerX" secondItem="uhi-go-UAB" secondAttribute="centerX" id="IHM-LB-RIS"/>
+                            <constraint firstItem="IbC-wK-5XI" firstAttribute="leading" secondItem="Htl-uC-IlD" secondAttribute="leadingMargin" constant="36" id="Tkz-2S-MbR"/>
+                            <constraint firstItem="IbC-wK-5XI" firstAttribute="top" secondItem="v5D-i6-BgF" secondAttribute="bottom" constant="8" symbolic="YES" id="YRu-zF-onn"/>
+                            <constraint firstItem="IbC-wK-5XI" firstAttribute="leading" secondItem="KqF-tJ-jO1" secondAttribute="leading" id="mxW-nE-Ypq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IbC-wK-5XI" secondAttribute="trailing" constant="38" id="utS-AC-mXr"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Create Event" id="3y0-uT-cmp"/>
+                    <connections>
+                        <outlet property="eventDate" destination="CgV-pT-adm" id="iTo-Rm-VtW"/>
+                        <outlet property="eventNameTextField" destination="KqF-tJ-jO1" id="uEB-Ih-FRs"/>
+                        <outlet property="eventlocationTextField" destination="IbC-wK-5XI" id="ONu-sS-HUA"/>
+                        <outlet property="loc" destination="v5D-i6-BgF" id="VU3-j9-60P"/>
+                        <outlet property="tf" destination="uhi-go-UAB" id="6xv-fR-ALz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sva-rm-S5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-158" y="1592"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gl0-ew-v1q">
             <objects>
@@ -315,6 +398,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="iIe-q0-mAy" kind="relationship" relationship="viewControllers" id="gqx-fj-UU4"/>
+                        <segue destination="fee-Fg-hc7" kind="relationship" relationship="viewControllers" id="gjQ-vX-VwV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdb-j1-Uek" userLabel="First Responder" sceneMemberID="firstResponder"/>
