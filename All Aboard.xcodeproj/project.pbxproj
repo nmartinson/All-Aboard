@@ -21,6 +21,8 @@
 		2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */; };
 		3C97C0FF1A7B002B006243A9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C97C0F81A7AFF68006243A9 /* Alamofire.framework */; };
 		3C97C1031A7B0041006243A9 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C97C0F81A7AFF68006243A9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C97C1141A7C534C006243A9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1131A7C534C006243A9 /* Event.swift */; };
+		3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = SOURCE_ROOT; };
 		3C97C0F01A7AFF68006243A9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../../Alamofire/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		3C97C1131A7C534C006243A9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +153,10 @@
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
 				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
+				3C97C1131A7C534C006243A9 /* Event.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
 				2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */,
+				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
 				2BE7921A1A7985D100DE0E57 /* TableViewController.swift */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
@@ -362,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C97C1141A7C534C006243A9 /* Event.swift in Sources */,
 				2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */,
 				2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */,
 				2BE7921B1A7985D100DE0E57 /* TableViewController.swift in Sources */,
@@ -369,6 +376,7 @@
 				2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */,
 				2BE792141A79822500DE0E57 /* SWRevealViewController.m in Sources */,
 				2BE792191A79832800DE0E57 /* RearViewController.swift in Sources */,
+				3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
