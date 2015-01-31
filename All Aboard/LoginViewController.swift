@@ -12,12 +12,13 @@ import Alamofire
 class LoginViewController: UIViewController, FBLoginViewDelegate {
 
     @IBOutlet weak var FBLoginButton: FBLoginView!
-    let url = "http://hackwar.mybluemix.net/Login?username="
+    let url = "http://project-hangout.mybluemix.net/Login?username="
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        FBLoginButton.readPermissions = ["user_friends"]
     }
 
     override func didReceiveMemoryWarning()
@@ -40,6 +41,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     ******************************************************************************************/
     func loginViewShowingLoggedInUser(loginView: FBLoginView!)
     {
+        
+        
         var friendsRequest = FBRequest.requestForMyFriends()
         friendsRequest.startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             var resultDict = result as NSDictionary
@@ -54,7 +57,15 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     @IBAction func loginButtonPressed(sender: AnyObject)
     {
         println("Standard Login button")
+        var urlString = "\(url)nick&password=test"
+        Alamofire.request(.GET, urlString, parameters: nil).responseString { (_, response, string, _) -> Void in
+            println("response: \(string)")
+        }
+
     }
+    
+    
+    
     
 
 }
