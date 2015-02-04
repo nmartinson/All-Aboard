@@ -10,7 +10,11 @@ import UIKit
 import Alamofire
 
 class CreateEventViewController: UIViewController {
-    
+    var eventType = 0
+    @IBAction func eventTypeOption(sender: UISegmentedControl) {
+        eventType = sender.selectedSegmentIndex
+        
+    }
     @IBOutlet weak var loc: UILabel!
     @IBOutlet weak var tf: UILabel!
     @IBOutlet weak var eventNameTextField: UITextField!
