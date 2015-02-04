@@ -19,6 +19,7 @@
 		2BE7921B1A7985D100DE0E57 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7921A1A7985D100DE0E57 /* TableViewController.swift */; };
 		2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */; };
 		2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */; };
+		3C9705E41A8285CA00AE6E9F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9705E31A8285CA00AE6E9F /* ProfileViewController.swift */; };
 		3C97C0FF1A7B002B006243A9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C97C0F81A7AFF68006243A9 /* Alamofire.framework */; };
 		3C97C1031A7B0041006243A9 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C97C0F81A7AFF68006243A9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C97C1141A7C534C006243A9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1131A7C534C006243A9 /* Event.swift */; };
@@ -102,6 +103,7 @@
 		2BE7921A1A7985D100DE0E57 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = SOURCE_ROOT; };
+		3C9705E31A8285CA00AE6E9F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3C97C0F01A7AFF68006243A9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../../Alamofire/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		3C97C1131A7C534C006243A9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
 				3C97C1131A7C534C006243A9 /* Event.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
+				3C9705E31A8285CA00AE6E9F /* ProfileViewController.swift */,
 				2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */,
 				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
 				2BE7921A1A7985D100DE0E57 /* TableViewController.swift */,
@@ -370,6 +373,7 @@
 			files = (
 				3C97C1141A7C534C006243A9 /* Event.swift in Sources */,
 				2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */,
+				3C9705E41A8285CA00AE6E9F /* ProfileViewController.swift in Sources */,
 				2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */,
 				2BE7921B1A7985D100DE0E57 /* TableViewController.swift in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
