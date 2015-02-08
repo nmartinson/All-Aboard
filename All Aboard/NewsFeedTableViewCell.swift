@@ -15,6 +15,10 @@ class NewsFeedTableViewCell: UITableViewCell
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var postedBy: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var numberOfPeopleAttending: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
+    
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

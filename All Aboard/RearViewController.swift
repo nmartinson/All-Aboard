@@ -12,14 +12,23 @@ import UIKit
 class RearViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate, FBLoginViewDelegate
 {
     
-    let menuItems = ["All Aboard", "Login"]
+    var menuItems = ["All Aboard", "Login"]
 
+    override func viewDidLoad() {
+        println("loaded")
+        let loginState = LoginCheck().loggedInState()
+        if loginState
+        {
+            menuItems[1] = "standardLogOut"
+        }
+    }
     
     /******************************************************************************************
     *
     ******************************************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
+        println("cell")
         var item = menuItems[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(item) as UITableViewCell
         return cell
@@ -40,20 +49,21 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
 //        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
 //        tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.textColor = UIColor.lightGrayColor()
 //        tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.blackColor()
-//        switch(indexPath.row)
-//        {
-//        case 1:
-//            var i = 0
-//        case 2:
-//            var i = 0
-//        case 3:
-//            var i = 9
-//        default:
-//            break
-//        }
+        let identifier = tableView.cellForRowAtIndexPath(indexPath)?.reuseIdentifier!
+        if identifier == "standardLogOut"
+        {
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+            LoginCheck().loggedIn(false)
+            
+            presentViewController(viewController, animated: true) { () -> Void in }
+
+        }
+
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
+    {
         println("deselected")
     }
     /******************************************************************************************
@@ -69,23 +79,13 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
     ******************************************************************************************/
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!)
     {
-//        var viewController = LoginViewController()
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
-        
-        presentViewController(viewController, animated: true) { () -> Void in }
-        
-    }
-    
-    /******************************************************************************************
-    *
-    ******************************************************************************************/
-    func loginViewShowingLoggedInUser(loginView: FBLoginView!)
-    {
-        var friendsRequest = FBRequest.requestForMyFriends()
-        friendsRequest.startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
-            var resultDict = result as NSDictionary
-            println("Result dic: \(resultDict)")
+        println("logged out")
+        if !LoginCheck().loggedInState()
+        {
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+            
+            presentViewController(viewController, animated: true) { () -> Void in }
         }
     }
     

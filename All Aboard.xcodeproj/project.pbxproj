@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B04BCFB1A7C541400494335 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BCFA1A7C541400494335 /* SwiftyJSON.swift */; };
+		2B04BD091A80042000494335 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD021A80042000494335 /* RNCryptor.m */; };
+		2B04BD0A1A80042000494335 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD041A80042000494335 /* RNCryptorEngine.m */; };
+		2B04BD0B1A80042000494335 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD061A80042000494335 /* RNDecryptor.m */; };
+		2B04BD0C1A80042000494335 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD081A80042000494335 /* RNEncryptor.m */; };
+		2B04BD0E1A80048200494335 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD0D1A80048200494335 /* Encryption.swift */; };
+		2B04BD101A801FC700494335 /* NewUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD0F1A801FC700494335 /* NewUserController.swift */; };
+		2B04BD121A80228300494335 /* BackendConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD111A80228300494335 /* BackendConstants.swift */; };
+		2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE282C1A84282000594E24 /* NewsFeedCell.xib */; };
+		2BC7D80F1A87FCD600F21401 /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7D80E1A87FCD600F21401 /* LoginCheck.swift */; };
 		2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E61A79700E00DE0E57 /* AppDelegate.swift */; };
 		2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */; };
 		2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */; };
@@ -84,6 +94,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B04BCFA1A7C541400494335 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		2B04BCFF1A80042000494335 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		2B04BD001A80042000494335 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		2B04BD011A80042000494335 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		2B04BD021A80042000494335 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		2B04BD031A80042000494335 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		2B04BD041A80042000494335 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		2B04BD051A80042000494335 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		2B04BD061A80042000494335 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		2B04BD071A80042000494335 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		2B04BD081A80042000494335 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		2B04BD0D1A80048200494335 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
+		2B04BD0F1A801FC700494335 /* NewUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserController.swift; sourceTree = "<group>"; };
+		2B04BD111A80228300494335 /* BackendConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConstants.swift; sourceTree = "<group>"; };
+		2BBE282C1A84282000594E24 /* NewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
+		2BC7D80E1A87FCD600F21401 /* LoginCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
 		2BE791E11A79700E00DE0E57 /* All Aboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Aboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE791E51A79700E00DE0E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE791E61A79700E00DE0E57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +153,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B04BCFE1A80042000494335 /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				2B04BCFF1A80042000494335 /* RNCryptor+Private.h */,
+				2B04BD001A80042000494335 /* RNCryptor-Prefix.pch */,
+				2B04BD011A80042000494335 /* RNCryptor.h */,
+				2B04BD021A80042000494335 /* RNCryptor.m */,
+				2B04BD031A80042000494335 /* RNCryptorEngine.h */,
+				2B04BD041A80042000494335 /* RNCryptorEngine.m */,
+				2B04BD051A80042000494335 /* RNDecryptor.h */,
+				2B04BD061A80042000494335 /* RNDecryptor.m */,
+				2B04BD071A80042000494335 /* RNEncryptor.h */,
+				2B04BD081A80042000494335 /* RNEncryptor.m */,
+			);
+			path = RNCryptor;
+			sourceTree = "<group>";
+		};
 		2BE791D81A79700E00DE0E57 = {
 			isa = PBXGroup;
 			children = (
@@ -153,9 +196,15 @@
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
 				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
+				2BC7D80E1A87FCD600F21401 /* LoginCheck.swift */,
+				2B04BD111A80228300494335 /* BackendConstants.swift */,
+				2B04BD0D1A80048200494335 /* Encryption.swift */,
+				2B04BCFA1A7C541400494335 /* SwiftyJSON.swift */,
 				3C97C1131A7C534C006243A9 /* Event.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
+				2B04BD0F1A801FC700494335 /* NewUserController.swift */,
 				2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */,
+				2BBE282C1A84282000594E24 /* NewsFeedCell.xib */,
 				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
 				2BE7921A1A7985D100DE0E57 /* TableViewController.swift */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
@@ -195,6 +244,7 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B04BCFE1A80042000494335 /* RNCryptor */,
 				2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */,
 				2BE792111A79822500DE0E57 /* SWRevealViewController */,
 			);
@@ -350,6 +400,7 @@
 			files = (
 				2BE791EF1A79700E00DE0E57 /* Main.storyboard in Resources */,
 				2BE791F41A79700E00DE0E57 /* LaunchScreen.xib in Resources */,
+				2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */,
 				2BE791F11A79700E00DE0E57 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,15 +419,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BC7D80F1A87FCD600F21401 /* LoginCheck.swift in Sources */,
+				2B04BD0C1A80042000494335 /* RNEncryptor.m in Sources */,
 				3C97C1141A7C534C006243A9 /* Event.swift in Sources */,
 				2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */,
+				2B04BD0E1A80048200494335 /* Encryption.swift in Sources */,
+				2B04BD121A80228300494335 /* BackendConstants.swift in Sources */,
 				2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */,
+				2B04BCFB1A7C541400494335 /* SwiftyJSON.swift in Sources */,
 				2BE7921B1A7985D100DE0E57 /* TableViewController.swift in Sources */,
+				2B04BD0B1A80042000494335 /* RNDecryptor.m in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
 				2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */,
 				2BE792141A79822500DE0E57 /* SWRevealViewController.m in Sources */,
 				2BE792191A79832800DE0E57 /* RearViewController.swift in Sources */,
+				2B04BD0A1A80042000494335 /* RNCryptorEngine.m in Sources */,
+				2B04BD091A80042000494335 /* RNCryptor.m in Sources */,
 				3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */,
+				2B04BD101A801FC700494335 /* NewUserController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

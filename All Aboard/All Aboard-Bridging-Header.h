@@ -4,3 +4,5 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "SWRevealViewController.h"
+#import "RNEncryptor.h"
+#import "RNDecryptor.h"
