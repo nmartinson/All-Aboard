@@ -20,15 +20,24 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var eventNameTextField: UITextField!
     @IBOutlet weak var eventlocationTextField: UITextField!
     @IBOutlet weak var eventDate: UIDatePicker!
-    
+    /*
+    title, host, lat, lon, startTime, endTime
+
+    */
     @IBAction func onAddFriendsPress(sender: AnyObject) {
         var event = Event(name: eventNameTextField.text ,location: eventlocationTextField.text, date: eventDate.date)
         tf.text = event.EventName
         loc.text = event.EventLocation
-       // Alamofire.request(.POST,"url", parameters: ["location":eventlocationTextField.text, "name":eventNameTextField.text,"date":eventDate] ).responseString { (_, response, string,_) -> Void in
-       //     println("response:\(string)")
-       // }
+        
+        let date = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd-HH-mm"
+        let time = formatter.stringFromDate(date)
+        
+        Alamofire.request(.POST,"http://hangout.mybluemix.net/NewEvent", parameters: ["title":eventNameTextField.text, "host":69,"lat":41.667,"lon":91.533,"startTime":1000000,"endTime":1000000] ).responseString { (_, response, string,_) -> Void in
+            println("response:\(string)")
+        }
     }
     
-    
+ 
 }
