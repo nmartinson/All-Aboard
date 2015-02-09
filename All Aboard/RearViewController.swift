@@ -16,7 +16,7 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         println("loaded")
-        let loginState = LoginCheck().loggedInState()
+        let loginState = UserPreferences().loggedInState()
         if loginState
         {
             menuItems[1] = "standardLogOut"
@@ -54,7 +54,7 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
         {
             var storyboard = UIStoryboard(name: "Main", bundle: nil)
             var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
-            LoginCheck().loggedIn(false)
+            UserPreferences().loggedIn(false)
             
             presentViewController(viewController, animated: true) { () -> Void in }
 
@@ -80,7 +80,7 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!)
     {
         println("logged out")
-        if !LoginCheck().loggedInState()
+        if !UserPreferences().loggedInState()
         {
             var storyboard = UIStoryboard(name: "Main", bundle: nil)
             var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController

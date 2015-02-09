@@ -32,7 +32,7 @@ extension Alamofire.Request
 }
 
 
-class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     let data = [["Go to TCBs","Nick Martinson"],["Go to Short's","EEPUP"]]
     @IBOutlet weak var navBar: UINavigationItem!
@@ -46,7 +46,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        
+        performSegueWithIdentifier("eventSegue", sender: self)
     }
     
 
@@ -62,20 +62,12 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("newsFeedCell") as NewsFeedTableViewCell
-//        
-//        cell.eventTitle.text = data[0][0]
-//        cell.postedBy.text = "Posted by: \(data[0][1])"
-//        cell.imageView?.image = UIImage(named: "testImage")
-        
-        
-        var cell = tableView.dequeueReusableCellWithIdentifier("newsCell") as? NewsFeedTableViewCell
+        var cell:NewsFeedTableViewCell? //= tableView.dequeueReusableCellWithIdentifier("newsCell") as? NewsFeedTableViewCell
         if cell == nil
         {
             tableView.registerNib(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: "newsCell")
             cell = tableView.dequeueReusableCellWithIdentifier("newsCell") as? NewsFeedTableViewCell
         }
-//        cell?.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 300)
         
         return cell!
     }
@@ -90,12 +82,18 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.postedBy.text = data[indexPath.section][1]
         cell.eventImage.image = UIImage(named: "testImage")
         cell.locationLabel.text = "Seaman Center"
-        cell.profilePicture.image = UIImage(named: "testImage")
+        cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.width/2
+        cell.profilePicture.layer.borderWidth = 2
+        cell.profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.profilePicture.clipsToBounds = true
+        let eepupID = "10153524130878066"
+        var imageStr = "http://graph.facebook.com/\(eepupID)/picture?type=large"
+        getLabelImage(imageStr, newImage: cell.profilePicture)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        return 300
+        return 200
     }
     
     

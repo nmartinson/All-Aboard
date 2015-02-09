@@ -33,11 +33,11 @@ class NewUserController: UIViewController
             activityIndicator.startAnimating()
             Alamofire.request(.POST, BackendConstants.newUserURL, parameters: ["username": usernameField.text, "password": passwordField.text]).responseString { (_, response, string, _) -> Void in
                 println("response: \(string)")
-                if string! == "1100\n" // creation successful
+                if string! == "1100" // creation successful
                 {
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in })
                 }
-                else if string! == "1101\n" // account already exists
+                else if string! == "1101" // account already exists
                 {
                     self.errorField.text = "Username already exists"
                 }

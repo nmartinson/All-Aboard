@@ -15,8 +15,9 @@
 		2B04BD0E1A80048200494335 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD0D1A80048200494335 /* Encryption.swift */; };
 		2B04BD101A801FC700494335 /* NewUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD0F1A801FC700494335 /* NewUserController.swift */; };
 		2B04BD121A80228300494335 /* BackendConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD111A80228300494335 /* BackendConstants.swift */; };
+		2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B79B90D1A88231B00544E78 /* ViewEventController.swift */; };
 		2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE282C1A84282000594E24 /* NewsFeedCell.xib */; };
-		2BC7D80F1A87FCD600F21401 /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7D80E1A87FCD600F21401 /* LoginCheck.swift */; };
+		2BC7D80F1A87FCD600F21401 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */; };
 		2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E61A79700E00DE0E57 /* AppDelegate.swift */; };
 		2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */; };
 		2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */; };
@@ -26,7 +27,7 @@
 		2BE792001A79700E00DE0E57 /* All_AboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791FF1A79700E00DE0E57 /* All_AboardTests.swift */; };
 		2BE792141A79822500DE0E57 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE792131A79822500DE0E57 /* SWRevealViewController.m */; };
 		2BE792191A79832800DE0E57 /* RearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE792181A79832800DE0E57 /* RearViewController.swift */; };
-		2BE7921B1A7985D100DE0E57 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7921A1A7985D100DE0E57 /* TableViewController.swift */; };
+		2BE7921B1A7985D100DE0E57 /* NewsFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7921A1A7985D100DE0E57 /* NewsFeedController.swift */; };
 		2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */; };
 		2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */; };
 		3C9705E41A8285CA00AE6E9F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9705E31A8285CA00AE6E9F /* ProfileViewController.swift */; };
@@ -109,8 +110,9 @@
 		2B04BD0D1A80048200494335 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		2B04BD0F1A801FC700494335 /* NewUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserController.swift; sourceTree = "<group>"; };
 		2B04BD111A80228300494335 /* BackendConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConstants.swift; sourceTree = "<group>"; };
+		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
 		2BBE282C1A84282000594E24 /* NewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
-		2BC7D80E1A87FCD600F21401 /* LoginCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
+		2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		2BE791E11A79700E00DE0E57 /* All Aboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Aboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE791E51A79700E00DE0E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE791E61A79700E00DE0E57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +128,7 @@
 		2BE792121A79822500DE0E57 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		2BE792131A79822500DE0E57 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		2BE792181A79832800DE0E57 /* RearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RearViewController.swift; sourceTree = "<group>"; };
-		2BE7921A1A7985D100DE0E57 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		2BE7921A1A7985D100DE0E57 /* NewsFeedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedController.swift; sourceTree = "<group>"; };
 		2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = SOURCE_ROOT; };
 		3C9705E31A8285CA00AE6E9F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -198,17 +200,19 @@
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
 				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
-				2BC7D80E1A87FCD600F21401 /* LoginCheck.swift */,
+				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
 				2B04BD111A80228300494335 /* BackendConstants.swift */,
 				2B04BD0D1A80048200494335 /* Encryption.swift */,
+				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
 				2B04BCFA1A7C541400494335 /* SwiftyJSON.swift */,
 				3C97C1131A7C534C006243A9 /* Event.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
+				3C9705E31A8285CA00AE6E9F /* ProfileViewController.swift */,
 				2B04BD0F1A801FC700494335 /* NewUserController.swift */,
 				2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */,
 				2BBE282C1A84282000594E24 /* NewsFeedCell.xib */,
 				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
-				2BE7921A1A7985D100DE0E57 /* TableViewController.swift */,
+				2BE7921A1A7985D100DE0E57 /* NewsFeedController.swift */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
 				2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */,
@@ -421,15 +425,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BC7D80F1A87FCD600F21401 /* LoginCheck.swift in Sources */,
+				2BC7D80F1A87FCD600F21401 /* UserPreferences.swift in Sources */,
 				2B04BD0C1A80042000494335 /* RNEncryptor.m in Sources */,
 				3C97C1141A7C534C006243A9 /* Event.swift in Sources */,
 				2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */,
 				2B04BD0E1A80048200494335 /* Encryption.swift in Sources */,
 				2B04BD121A80228300494335 /* BackendConstants.swift in Sources */,
+				3C9705E41A8285CA00AE6E9F /* ProfileViewController.swift in Sources */,
 				2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */,
 				2B04BCFB1A7C541400494335 /* SwiftyJSON.swift in Sources */,
-				2BE7921B1A7985D100DE0E57 /* TableViewController.swift in Sources */,
+				2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */,
+				2BE7921B1A7985D100DE0E57 /* NewsFeedController.swift in Sources */,
 				2B04BD0B1A80042000494335 /* RNDecryptor.m in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
 				2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */,

@@ -8,19 +8,30 @@
 
 import Foundation
 
-class LoginCheck
+class UserPreferences
 {
+    let defaults = NSUserDefaults.standardUserDefaults()
     func loggedIn(state: Bool)
     {
-        let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(state, forKey: "loggedIn")
     }
     
     func loggedInState() -> Bool
     {
-        let defaults = NSUserDefaults.standardUserDefaults()
         let state = defaults.boolForKey("loggedIn")
      
         return state
     }
+    
+    func setGUID(guid: String)
+    {
+        defaults.setObject(guid, forKey: "GUID")
+    }
+    
+    func getGUID() -> String
+    {
+        let id = defaults.objectForKey("GUID") as String
+        return id
+    }
+    
 }
