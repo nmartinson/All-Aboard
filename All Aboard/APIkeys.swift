@@ -10,6 +10,6 @@ import Foundation
 
 enum APIkeys
 {
-    static let googleMapsKey = "rV6FzDeEH9F4SwPKD0EDqm0780"
+    static let googleMapsKey = "AIzaSyDVeNeW-rV6FzDeEH9F4SwPKD0EDqm0780"
     static let googlePlacesKey = "AIzaSyDIxx7h1YKUt6sk49WteZccWOCJI-yRZZs"
 }
