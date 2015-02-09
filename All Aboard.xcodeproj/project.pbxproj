@@ -43,9 +43,9 @@
 		2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */; };
 		2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */; };
 		2BF988D21A895ED300F9E327 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF988D11A895ED300F9E327 /* Security.framework */; };
-		2BF988D51A89603B00F9E327 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF988D41A89603B00F9E327 /* GoogleMaps.framework */; };
-		2BF988D71A89605700F9E327 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BF988D61A89605700F9E327 /* GoogleMaps.bundle */; };
 		2BF988DB1A8960B900F9E327 /* APIkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF988DA1A8960B900F9E327 /* APIkeys.swift */; };
+		2BF988DF1A8961D200F9E327 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF988DE1A8961D200F9E327 /* GoogleMaps.framework */; };
+		2BF988E11A8961E000F9E327 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BF988E01A8961E000F9E327 /* GoogleMaps.bundle */; };
 		3C97C0FF1A7B002B006243A9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C97C0F81A7AFF68006243A9 /* Alamofire.framework */; };
 		3C97C1031A7B0041006243A9 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C97C0F81A7AFF68006243A9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C97C1141A7C534C006243A9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1131A7C534C006243A9 /* Event.swift */; };
@@ -159,9 +159,9 @@
 		2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		2BEC048F1A7AEAB2003E77DD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = SOURCE_ROOT; };
 		2BF988D11A895ED300F9E327 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		2BF988D41A89603B00F9E327 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		2BF988D61A89605700F9E327 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		2BF988DA1A8960B900F9E327 /* APIkeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIkeys.swift; sourceTree = "<group>"; };
+		2BF988DE1A8961D200F9E327 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		2BF988E01A8961E000F9E327 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		3C97C0F01A7AFF68006243A9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../../Alamofire/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		3C97C1131A7C534C006243A9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 				2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */,
 				2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */,
 				2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */,
-				2BF988D51A89603B00F9E327 /* GoogleMaps.framework in Frameworks */,
+				2BF988DF1A8961D200F9E327 /* GoogleMaps.framework in Frameworks */,
 				3C97C0FF1A7B002B006243A9 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,9 +294,9 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BF988E01A8961E000F9E327 /* GoogleMaps.bundle */,
+				2BF988DE1A8961D200F9E327 /* GoogleMaps.framework */,
 				2BF988D11A895ED300F9E327 /* Security.framework */,
-				2BF988D61A89605700F9E327 /* GoogleMaps.bundle */,
-				2BF988D41A89603B00F9E327 /* GoogleMaps.framework */,
 				2B79B92E1A883C3400544E78 /* SystemConfiguration.framework */,
 				2B79B92C1A883C2700544E78 /* QuartzCore.framework */,
 				2B79B92A1A883C1000544E78 /* OpenGLES.framework */,
@@ -467,7 +467,7 @@
 				2BE791F41A79700E00DE0E57 /* LaunchScreen.xib in Resources */,
 				2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */,
 				2BE791F11A79700E00DE0E57 /* Images.xcassets in Resources */,
-				2BF988D71A89605700F9E327 /* GoogleMaps.bundle in Resources */,
+				2BF988E11A8961E000F9E327 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
