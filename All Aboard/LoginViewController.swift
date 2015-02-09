@@ -56,7 +56,10 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     ******************************************************************************************/
     func loginViewShowingLoggedInUser(loginView: FBLoginView!)
     {
-        println("logged in")
+//        FBRequest.requestForMe().startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
+//                println("Result: \(result)")
+//        }
+        
         var friendsRequest = FBRequest.requestForMyFriends()
         friendsRequest.startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             var resultDict = result as NSDictionary
@@ -68,7 +71,11 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
                 let lastName = data[i]["last_name"].stringValue
                 let user_id = data[i]["id"].stringValue
                 println("name \(firstName) \(lastName), id \(user_id)")
-
+                
+                // Sent the userID to the backend
+//                Alamofire.request(.POST, BackendConstants.loginURL, parameters: ["username": user_id, "password": ""]).responseString {(_,response, responseCode,_) -> Void in
+//                    
+//                }
             }
         }
         performSegueWithIdentifier("loggedIn", sender: self)
@@ -87,7 +94,6 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     ******************************************************************************************/
     @IBAction func loginButtonPressed(sender: AnyObject)
     {
-        println("standard login")
         let username = usernameField.text
         let password = passwordField.text
         if username == "" || password == ""
