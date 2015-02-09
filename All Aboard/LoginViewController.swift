@@ -29,7 +29,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     override func viewDidAppear(animated: Bool)
     {
         // If a user didn't log out previously, they will automatically be logged in
-        if LoginCheck().loggedInState()
+        println("logged in state: \(UserPreferences().loggedInState())")
+        if UserPreferences().loggedInState()
         {
             performSegueWithIdentifier("loggedIn", sender: self)
         }
@@ -55,6 +56,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     ******************************************************************************************/
     func loginViewShowingLoggedInUser(loginView: FBLoginView!)
     {
+        println("logged in")
         var friendsRequest = FBRequest.requestForMyFriends()
         friendsRequest.startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             var resultDict = result as NSDictionary
@@ -68,7 +70,6 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
                 println("name \(firstName) \(lastName), id \(user_id)")
 
             }
-//            println("Result dic: \(data)")
         }
         performSegueWithIdentifier("loggedIn", sender: self)
     }
@@ -86,6 +87,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     ******************************************************************************************/
     @IBAction func loginButtonPressed(sender: AnyObject)
     {
+        println("standard login")
         let username = usernameField.text
         let password = passwordField.text
         if username == "" || password == ""
@@ -97,16 +99,27 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
             activityIndicator.startAnimating()
 
             Alamofire.request(.POST, BackendConstants.loginURL, parameters: ["username": username, "password": password]).responseString { (_, response, responseCode, _) -> Void in
-                if responseCode! == "1000\n" // successful login
+                var responseArray = Array(responseCode!)
+                
+                let code:String = "\(responseArray[0])\(responseArray[1])\(responseArray[2])\(responseArray[3])"
+                
+                var GUID:String = ""
+                for(var i = 5; i < responseArray.count; i++)
                 {
-                    LoginCheck().loggedIn(true)
+                    GUID = "\(GUID)" + String(responseArray[i])
+                }
+                
+                if code == "1000" // successful login
+                {
+                    UserPreferences().setGUID(GUID)
+                    UserPreferences().loggedIn(true)
                     self.performSegueWithIdentifier("loggedIn", sender: self)
                 }
-                else if responseCode! == "1001\n" // username doesnt exist
+                else if code == "1001" // username doesnt exist
                 {
                     self.errorField.text = "Username doesn't exist"
                 }
-                else if responseCode! == "1002\n" // invalid password
+                else if code == "1002" // invalid password
                 {
                     self.errorField.text = "Invalid password"
                 }
