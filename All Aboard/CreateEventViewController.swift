@@ -28,14 +28,14 @@ class CreateEventViewController: UIViewController {
         var event = Event(name: eventNameTextField.text ,location: eventlocationTextField.text, date: eventDate.date)
         tf.text = event.EventName
         loc.text = event.EventLocation
-        
+        let hostId = UserPreferences().getGUID()
         let date = NSDate()
        // let formatter = NSDateFormatter()
        // formatter.dateFormat = "yyyy-MM-dd-HH-mm"
        // let time = formatter.stringFromDate(date)
         let timestamp = (date.timeIntervalSince1970) * 1000
         let timestampInMs = Int(timestamp)
-        Alamofire.request(.POST,"http://hangout.mybluemix.net/NewEvent", parameters: ["title":eventNameTextField.text, "host":69,"lat":41.667,"lon":91.533,"startTime":timestampInMs,"endTime":timestampInMs] ).responseString { (_, response, string,_) -> Void in
+        Alamofire.request(.POST,"http://hangout.mybluemix.net/NewEvent", parameters: ["title":eventNameTextField.text, "host":hostId,"lat":41.667,"lon":91.533,"startTime":timestampInMs,"endTime":timestampInMs] ).responseString { (_, response, string,_) -> Void in
             println("response:\(string)")
         }
     }
