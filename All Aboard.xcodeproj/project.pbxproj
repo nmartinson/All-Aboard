@@ -47,6 +47,8 @@
 		2BF988E41A8973EF00F9E327 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */; };
 		2BF988F61A89786C00F9E327 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF988F31A89785F00F9E327 /* Alamofire.framework */; };
 		2BF988F71A89786C00F9E327 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2BF988F31A89785F00F9E327 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BF989071A898A3300F9E327 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF989061A898A3300F9E327 /* GoogleMaps.framework */; };
+		2BF9890A1A898A3F00F9E327 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BF989091A898A3F00F9E327 /* GoogleMaps.bundle */; };
 		3C97C1141A7C534C006243A9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1131A7C534C006243A9 /* Event.swift */; };
 		3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */; };
 /* End PBXBuildFile section */
@@ -147,6 +149,8 @@
 		2BF988DA1A8960B900F9E327 /* APIkeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIkeys.swift; sourceTree = "<group>"; };
 		2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2BF988ED1A89785F00F9E327 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../Libraries/Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
+		2BF989061A898A3300F9E327 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		2BF989091A898A3F00F9E327 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		3C97C1131A7C534C006243A9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +174,7 @@
 				2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */,
 				2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */,
 				2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */,
+				2BF989071A898A3300F9E327 /* GoogleMaps.framework in Frameworks */,
 				2BF988F61A89786C00F9E327 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +283,8 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BF989091A898A3F00F9E327 /* GoogleMaps.bundle */,
+				2BF989061A898A3300F9E327 /* GoogleMaps.framework */,
 				2BF988D11A895ED300F9E327 /* Security.framework */,
 				2B79B92E1A883C3400544E78 /* SystemConfiguration.framework */,
 				2B79B92C1A883C2700544E78 /* QuartzCore.framework */,
@@ -434,6 +441,7 @@
 				2BE791F41A79700E00DE0E57 /* LaunchScreen.xib in Resources */,
 				2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */,
 				2BE791F11A79700E00DE0E57 /* Images.xcassets in Resources */,
+				2BF9890A1A898A3F00F9E327 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +624,8 @@
 					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
 				);
 				INFOPLIST_FILE = "All Aboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -639,6 +649,8 @@
 					Aboard,
 					/Users/nickmartinson/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/All",
+					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
 					"$(PROJECT_DIR)/All",
