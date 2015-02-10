@@ -103,35 +103,51 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
         else
         {
             activityIndicator.startAnimating()
-
-            Alamofire.request(.POST, BackendConstants.loginURL, parameters: ["username": username, "password": password]).responseString { (_, response, responseCode, _) -> Void in
-                var responseArray = Array(responseCode!)
-                
-                let code:String = "\(responseArray[0])\(responseArray[1])\(responseArray[2])\(responseArray[3])"
-                
-                var GUID:String = ""
-                for(var i = 5; i < responseArray.count; i++)
+            let params = ["username": username, "password": password]
+            BluemixCommunication().loginRequest(params){
+                (results: Dictionary<String,AnyObject>?) in
+                self.activityIndicator.stopAnimating()
+                if results!["success"] as Bool == true
                 {
-                    GUID = "\(GUID)" + String(responseArray[i])
-                }
-                
-                if code == "1000" // successful login
-                {
-                    UserPreferences().setGUID(GUID)
-                    UserPreferences().loggedIn(true)
                     self.performSegueWithIdentifier("loggedIn", sender: self)
                 }
-                else if code == "1001" // username doesnt exist
+                else if results!["success"] as Bool == false
                 {
-                    self.errorField.text = "Username doesn't exist"
+                    self.errorField.text = results!["error"] as? String
                 }
-                else if code == "1002" // invalid password
-                {
-                    self.errorField.text = "Invalid password"
-                }
-                self.activityIndicator.stopAnimating()
             }
         }
+        
+            
+            
+//            Alamofire.request(.POST, BackendConstants.loginURL, parameters: ["username": username, "password": password]).responseString { (_, response, responseCode, _) -> Void in
+//                var responseArray = Array(responseCode!)
+//                
+//                let code:String = "\(responseArray[0])\(responseArray[1])\(responseArray[2])\(responseArray[3])"
+//                
+//                var GUID:String = ""
+//                for(var i = 5; i < responseArray.count; i++)
+//                {
+//                    GUID = "\(GUID)" + String(responseArray[i])
+//                }
+//                
+//                if code == "1000" // successful login
+//                {
+//                    UserPreferences().setGUID(GUID)
+//                    UserPreferences().loggedIn(true)
+//                    self.performSegueWithIdentifier("loggedIn", sender: self)
+//                }
+//                else if code == "1001" // username doesnt exist
+//                {
+//                    self.errorField.text = "Username doesn't exist"
+//                }
+//                else if code == "1002" // invalid password
+//                {
+//                    self.errorField.text = "Invalid password"
+//                }
+//                self.activityIndicator.stopAnimating()
+//            }
+//        }
 
     }
     
@@ -142,6 +158,15 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
         }
     }
     
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        textField.resignFirstResponder()
+        return true;
+    }
 
 }
 

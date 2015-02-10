@@ -49,6 +49,7 @@
 		2BF988F71A89786C00F9E327 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2BF988F31A89785F00F9E327 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2BF989071A898A3300F9E327 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF989061A898A3300F9E327 /* GoogleMaps.framework */; };
 		2BF9890A1A898A3F00F9E327 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BF989091A898A3F00F9E327 /* GoogleMaps.bundle */; };
+		2BF9890C1A898A8C00F9E327 /* BluemixCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9890B1A898A8C00F9E327 /* BluemixCommunication.swift */; };
 		3C97C1141A7C534C006243A9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1131A7C534C006243A9 /* Event.swift */; };
 		3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */; };
 /* End PBXBuildFile section */
@@ -151,6 +152,7 @@
 		2BF988ED1A89785F00F9E327 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../Libraries/Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		2BF989061A898A3300F9E327 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2BF989091A898A3F00F9E327 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		2BF9890B1A898A8C00F9E327 /* BluemixCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluemixCommunication.swift; sourceTree = "<group>"; };
 		3C97C1131A7C534C006243A9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +236,7 @@
 				2BF988DA1A8960B900F9E327 /* APIkeys.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
 				2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */,
+				2BF9890B1A898A8C00F9E327 /* BluemixCommunication.swift */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
 				2B04BD111A80228300494335 /* BackendConstants.swift */,
 				2B04BD0D1A80048200494335 /* Encryption.swift */,
@@ -476,6 +479,7 @@
 				2BE792141A79822500DE0E57 /* SWRevealViewController.m in Sources */,
 				2BE792191A79832800DE0E57 /* RearViewController.swift in Sources */,
 				2B04BD0A1A80042000494335 /* RNCryptorEngine.m in Sources */,
+				2BF9890C1A898A8C00F9E327 /* BluemixCommunication.swift in Sources */,
 				2B04BD091A80042000494335 /* RNCryptor.m in Sources */,
 				2BF988E41A8973EF00F9E327 /* ProfileViewController.swift in Sources */,
 				3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */,
