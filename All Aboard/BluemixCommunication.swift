@@ -44,4 +44,18 @@ class BluemixCommunication
             completion(result: details)
         }
     }
+    
+    func getEvent(eventID: String, completion:(result: Dictionary<String,AnyObject>?) -> Void)
+    {
+        var details:Dictionary<String,AnyObject>?
+        details = ["error": "", "success": false]
+        let route = BackendConstants.eventInfo + "123"
+        Alamofire.request(.GET, route, parameters: nil).responseJSON { (_, response, rawJSON, _) -> Void in
+            var json = JSON(rawJSON!)
+            let eventName = json["eventName"].stringValue
+            let eventHost = json["host"].stringValue
+            
+            completion(result: details)
+        }
+    }
 }
