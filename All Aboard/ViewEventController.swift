@@ -53,7 +53,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         if let location = locations.first as? CLLocation{
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
-//            fetchNearbyPlaces(location.coordinate)
+            //            fetchNearbyPlaces(location.coordinate)
         }
     }
     

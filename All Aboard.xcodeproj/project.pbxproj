@@ -16,6 +16,7 @@
 		2B04BD101A801FC700494335 /* NewUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD0F1A801FC700494335 /* NewUserController.swift */; };
 		2B04BD121A80228300494335 /* BackendConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD111A80228300494335 /* BackendConstants.swift */; };
 		2B148B4C1A8C4794000E385F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */; };
+		2B148B5F1A8C4E6F000E385F /* BluemixCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */; };
 		2B3A3D8F1A8C43DC000AC892 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */; };
 		2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B79B90D1A88231B00544E78 /* ViewEventController.swift */; };
 		2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B9181A883BB900544E78 /* AVFoundation.framework */; };
@@ -112,6 +113,7 @@
 		2B04BD0D1A80048200494335 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		2B04BD0F1A801FC700494335 /* NewUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserController.swift; sourceTree = "<group>"; };
 		2B04BD111A80228300494335 /* BackendConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConstants.swift; sourceTree = "<group>"; };
+		2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluemixCommunication.swift; sourceTree = "<group>"; };
 		2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
 				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
 				2BF988DA1A8960B900F9E327 /* APIkeys.swift */,
+				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
 				2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
@@ -476,6 +479,7 @@
 				2BE792141A79822500DE0E57 /* SWRevealViewController.m in Sources */,
 				2BE792191A79832800DE0E57 /* RearViewController.swift in Sources */,
 				2B04BD0A1A80042000494335 /* RNCryptorEngine.m in Sources */,
+				2B148B5F1A8C4E6F000E385F /* BluemixCommunication.swift in Sources */,
 				2B04BD091A80042000494335 /* RNCryptor.m in Sources */,
 				2BF988E41A8973EF00F9E327 /* ProfileViewController.swift in Sources */,
 				3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */,
