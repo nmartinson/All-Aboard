@@ -15,7 +15,6 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
     var menuItems = ["All Aboard", "Login"]
 
     override func viewDidLoad() {
-        println("loaded")
         let loginState = UserPreferences().loggedInState()
         if loginState
         {
@@ -28,7 +27,6 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
     ******************************************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        println("cell")
         var item = menuItems[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(item) as UITableViewCell
         return cell

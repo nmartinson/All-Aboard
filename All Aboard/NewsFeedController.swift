@@ -34,19 +34,41 @@ extension Alamofire.Request
 
 class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
-    let data = [["Go to TCBs","Nick Martinson"],["Go to Short's","EEPUP"]]
+    let data = [["Go to TCBs!","Nick Martinson", "10203626718697502","billiards"],["Go to Short's","Ian Brauer", "10153524130878066","burger"]]
     @IBOutlet weak var navBar: UINavigationItem!
+    
+    // Properties to send to Event Controller
+    var imageOfSelectedCell: UIImage?
+    var hostedByName = ""
+    var eventLocation = ""
     
     override func viewWillAppear(animated: Bool)
     {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         navBar.title = "The Station"
+//        BluemixCommunication().getRecentEvents(10)
+        BluemixCommunication().parseStuff()
+        
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        let controller = segue.destinationViewController as ViewEventController
+        controller.hostedByPic = imageOfSelectedCell
+        controller.hostedByText = hostedByName
+        controller.locationText = eventLocation
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as NewsFeedTableViewCell
+        imageOfSelectedCell = cell.profilePicture.image
+        hostedByName = cell.postedBy.text!
+        eventLocation = cell.locationLabel.text!
+        
         performSegueWithIdentifier("eventSegue", sender: self)
+        cell.selected = false
+        cell.highlighted = false
     }
     
 
@@ -80,14 +102,14 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, willDisplayCell cell: NewsFeedTableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
         cell.postedBy.text = data[indexPath.section][1]
-        cell.eventImage.image = UIImage(named: "testImage")
-        cell.locationLabel.text = "Seaman Center"
+        cell.eventImage.image = UIImage(named: data[indexPath.section][3])
+        cell.locationLabel.text = data[indexPath.section][0]
         cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.width/2
         cell.profilePicture.layer.borderWidth = 2
         cell.profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
         cell.profilePicture.clipsToBounds = true
-        let eepupID = "10153524130878066"
-        var imageStr = "http://graph.facebook.com/\(eepupID)/picture?type=large"
+        let id = data[indexPath.section][2]
+        var imageStr = "http://graph.facebook.com/\(id)/picture?type=large"
         getLabelImage(imageStr, newImage: cell.profilePicture)
     }
     

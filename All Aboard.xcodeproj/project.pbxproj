@@ -208,6 +208,16 @@
 			path = RNCryptor;
 			sourceTree = "<group>";
 		};
+		2BC9C40E1A928CCB0044D886 /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */,
+				2BBE282C1A84282000594E24 /* NewsFeedCell.xib */,
+				2BE7921A1A7985D100DE0E57 /* NewsFeedController.swift */,
+			);
+			name = NewsFeed;
+			sourceTree = "<group>";
+		};
 		2BE791D81A79700E00DE0E57 = {
 			isa = PBXGroup;
 			children = (
@@ -242,15 +252,13 @@
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
 				2B04BD111A80228300494335 /* BackendConstants.swift */,
 				2B04BD0D1A80048200494335 /* Encryption.swift */,
-				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
 				2B04BCFA1A7C541400494335 /* SwiftyJSON.swift */,
+				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
 				3C97C1131A7C534C006243A9 /* Event.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
 				2B04BD0F1A801FC700494335 /* NewUserController.swift */,
-				2BEC04591A79A890003E77DD /* NewsFeedTableViewCell.swift */,
-				2BBE282C1A84282000594E24 /* NewsFeedCell.xib */,
+				2BC9C40E1A928CCB0044D886 /* NewsFeed */,
 				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
-				2BE7921A1A7985D100DE0E57 /* NewsFeedController.swift */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
 				2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */,

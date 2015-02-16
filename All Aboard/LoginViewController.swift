@@ -24,6 +24,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         FBLoginButton.readPermissions = ["user_friends"]
+        BluemixCommunication().getEvent("4de5b5cd-d2c2-48eb-8a52-ea813b8722d3", completion: { (result) -> Void in
+            println("result \(result)")
+        })
     }
     
     override func viewDidAppear(animated: Bool)
@@ -56,9 +59,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     ******************************************************************************************/
     func loginViewShowingLoggedInUser(loginView: FBLoginView!)
     {
-        //        FBRequest.requestForMe().startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
-        //                println("Result: \(result)")
-        //        }
+//        FBRequest.requestForMe().startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
+//                println("Result: \(result)")
+//        }
         
         var friendsRequest = FBRequest.requestForMyFriends()
         friendsRequest.startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
