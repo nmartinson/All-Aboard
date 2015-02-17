@@ -41,14 +41,20 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     var imageOfSelectedCell: UIImage?
     var hostedByName = ""
     var eventLocation = ""
+    var coordinates:CLLocationCoordinate2D?
+    var selectedCellIndex = 0
+    var events:[Event] = []
     
     override func viewWillAppear(animated: Bool)
     {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         navBar.title = "The Station"
-//        BluemixCommunication().getRecentEvents(10)
-        BluemixCommunication().parseStuff()
-        
+        BluemixCommunication().getRecentEvents(10)
+            {
+            (results: [Event]) in
+            self.events = results
+                println(self.events.count)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -57,6 +63,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         controller.hostedByPic = imageOfSelectedCell
         controller.hostedByText = hostedByName
         controller.locationText = eventLocation
+        controller.event = events[selectedCellIndex]
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
@@ -65,6 +72,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         imageOfSelectedCell = cell.profilePicture.image
         hostedByName = cell.postedBy.text!
         eventLocation = cell.locationLabel.text!
+        selectedCellIndex = indexPath.section
         
         performSegueWithIdentifier("eventSegue", sender: self)
         cell.selected = false

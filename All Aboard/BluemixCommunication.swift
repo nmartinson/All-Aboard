@@ -72,6 +72,7 @@ class BluemixCommunication: NSObject, NSXMLParserDelegate
             var json = JSON(rawJSON!)
             let eventName = json["eventName"].stringValue
             let eventHost = json["host"].stringValue
+        
             
             completion(result: details)
         }
@@ -81,13 +82,27 @@ class BluemixCommunication: NSObject, NSXMLParserDelegate
     /******************************************************************************************
     *
     ******************************************************************************************/
-    func getRecentEvents(count: Int)
+    func getRecentEvents(count: Int, completion:(result: [Event]) -> Void)
     {
         let url = BackendConstants.recentEvents + "\(count)"
         Alamofire.request(.GET, url, parameters: nil).responseJSON { (_, _, response, _) -> Void in
 
             let json = JSON(response!)
-            println("host \(json)")
+//            println(json)
+            var events:[Event] = []
+            for(var i = 0; i < json.count; i++)
+            {
+                let title = json[i]["title"].stringValue
+                let hostID = json[i]["hostId"].stringValue
+                let endTime = json[i]["endTime"].intValue
+                let long = CLLocationDegrees(json[i]["lon"].floatValue)
+                let lat = CLLocationDegrees(json[i]["lat"].floatValue)
+                let startTime = json[i]["startTime"].intValue
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate() )
+                events.append(event)
+            }
+            completion(result: events)
         }
     }
     

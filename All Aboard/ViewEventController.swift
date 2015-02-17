@@ -29,20 +29,22 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var hostedByText = ""
     
     var slideViewFrame:CGRect?
-    
+    var event:Event?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         navBarTitle?.title = locationText
         view.bringSubviewToFront(navBar)
-        
+        println("Lat: \(event!.EventCoordinates!.latitude), long: \(event!.EventCoordinates!.longitude)")
+
         // Configure map view
         mapView.delegate = self
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
         mapView.settings.compassButton = true
-        mapView.userInteractionEnabled = false
+        mapView.camera = GMSCameraPosition(target: event!.EventCoordinates!, zoom: 15, bearing: 0, viewingAngle: 0)
+
         // set event details
         profilePic.image = hostedByPic
         hostedByLabel.text = "\(hostedByLabel.text!) \(hostedByText)"
@@ -51,12 +53,12 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         
 
         // Check if we have permision to access user's location
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse
-        {
-            locationManager.startUpdatingLocation()
-            mapView.myLocationEnabled = true
-            mapView.settings.myLocationButton = true
-        }
+//        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse
+//        {
+//            locationManager.startUpdatingLocation()
+//            mapView.myLocationEnabled = true
+//            mapView.settings.myLocationButton = true
+//        }
     }
     
     override func viewWillAppear(animated: Bool)
@@ -122,11 +124,12 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     ******************************************************************************************/
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {
+        println("Changed Auth")
         if status == .AuthorizedWhenInUse
         {
-            locationManager.startUpdatingLocation()
-            mapView.myLocationEnabled = true
-            mapView.settings.myLocationButton = true
+//            locationManager.startUpdatingLocation()
+//            mapView.myLocationEnabled = true
+//            mapView.settings.myLocationButton = true
         }
     }
     
@@ -135,7 +138,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     ******************************************************************************************/
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
-        
+        println("did update location")
         if let location = locations.first as? CLLocation{
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
