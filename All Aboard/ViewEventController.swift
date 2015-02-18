@@ -12,7 +12,6 @@ import Alamofire
 
 class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate
 {
-    
     let locationManager  = CLLocationManager()
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var navBar: UINavigationBar!
@@ -31,18 +30,26 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var slideViewFrame:CGRect?
     var event:Event?
     
+    /******************************************************************************************
+    *   Configure map view and center at the event location
+    *   Set navbar title to the event title
+    *   Configure the details of the scrollview
+    ******************************************************************************************/
     override func viewDidLoad()
     {
         super.viewDidLoad()
         navBarTitle?.title = locationText
         view.bringSubviewToFront(navBar)
-        println("Lat: \(event!.EventCoordinates!.latitude), long: \(event!.EventCoordinates!.longitude)")
 
         // Configure map view
         mapView.delegate = self
         locationManager.delegate = self
-//        locationManager.requestWhenInUseAuthorization()
         mapView.settings.compassButton = true
+        
+        // REMOVE THIS ONCE WE STORE THE EVENT LOCATION
+        event?.EventCoordinates = CLLocationCoordinate2D(latitude: 41.659727, longitude: -91.536210)
+        
+        
         mapView.camera = GMSCameraPosition(target: event!.EventCoordinates!, zoom: 15, bearing: 0, viewingAngle: 0)
 
         // set event details
@@ -50,23 +57,19 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         hostedByLabel.text = "\(hostedByLabel.text!) \(hostedByText)"
 //        locationLabel.text = "\(locationLabel.text!) \(locationText)"
         timeLabel.text = "\(timeLabel.text!) Tonight at 8pm"
-        
-
-        // Check if we have permision to access user's location
-//        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse
-//        {
-//            locationManager.startUpdatingLocation()
-//            mapView.myLocationEnabled = true
-//            mapView.settings.myLocationButton = true
-//        }
     }
     
+    /******************************************************************************************
+    *   Set the position and size of the scrollview
+    ******************************************************************************************/
     override func viewWillAppear(animated: Bool)
     {
         slideView.frame = CGRectMake(0, UIScreen.mainScreen().bounds.height - 50, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
     }
     
-    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     @IBAction func handleTap(sender: UITapGestureRecognizer)
     {
 //                slideViewPosition = sender.view?.layer.positio
@@ -77,7 +80,9 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 //        println("TAP")
     }
     
-    
+    /******************************************************************************************
+    *   Used to allow scrolling of the view
+    ******************************************************************************************/
     @IBAction func handlePan(recognizer:UIPanGestureRecognizer)
     {
 
@@ -87,7 +92,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         recognizer.setTranslation(CGPointZero, inView: self.view)
         if recognizer.state == UIGestureRecognizerState.Changed
         {
-            println("CANCELED")
+//            println("CANCELED")
 //            slideViewFrame = slideView.frame
 //            recognizer.view?.layer.removeAllAnimations()
 //            if self.slideViewFrame != nil
@@ -113,38 +118,14 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                 animations: {recognizer.view!.center = finalPoint },
                 completion: nil)
             
-            println("ENDED")
+//            println("ENDED")
         }
 
     }
-
     
     /******************************************************************************************
-    *
+    *   Return to previous view
     ******************************************************************************************/
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus)
-    {
-        println("Changed Auth")
-        if status == .AuthorizedWhenInUse
-        {
-//            locationManager.startUpdatingLocation()
-//            mapView.myLocationEnabled = true
-//            mapView.settings.myLocationButton = true
-        }
-    }
-    
-    /******************************************************************************************
-    *
-    ******************************************************************************************/
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
-    {
-        println("did update location")
-        if let location = locations.first as? CLLocation{
-            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            locationManager.stopUpdatingLocation()
-        }
-    }
-    
     @IBAction func backButtonPressed(sender: AnyObject)
     {
         dismissViewControllerAnimated(true, completion: { () -> Void in })

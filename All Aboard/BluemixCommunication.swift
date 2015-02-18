@@ -8,21 +8,9 @@
 
 import Foundation
 import Alamofire
-//import UIKit
 
-class BluemixCommunication: NSObject, NSXMLParserDelegate
+class BluemixCommunication: NSObject
 {
-    var parser = NSXMLParser()
-    
-    
-    func parseStuff()
-    {
-//        let url = NSURL(string: BackendConstants.recentEvents)
-        let url = NSURL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")
-        parser = NSXMLParser(contentsOfURL: url)!
-        parser.delegate = self
-        parser.parse()
-    }
     
     /******************************************************************************************
     *
@@ -105,31 +93,5 @@ class BluemixCommunication: NSObject, NSXMLParserDelegate
             completion(result: events)
         }
     }
-    
-    
-    func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!)
-    {
-        println("elementName: \(elementName)")
-    }
-    
-    func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!)
-    {
-//        println()
-    }
-    
-    
-    func parser(parser: NSXMLParser!, foundCharacters string: String!)
-    {
-        println("characters: \(string)")
-    }
-    
-    func parser(parser: NSXMLParser!, parseErrorOccurred parseError: NSError!)
-    {
-        println(parseError)
-    }
-    
-    
-    
-    
     
 }

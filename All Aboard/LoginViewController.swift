@@ -19,20 +19,25 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     @IBOutlet weak var FBLoginButton: FBLoginView!
     let url = "http://project-hangout.mybluemix.net/"
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        FBLoginButton.readPermissions = ["user_friends"]
+
+        FBLoginButton.readPermissions = ["user_friends"]   // Asks the user to allow us to see their friends list
         BluemixCommunication().getEvent("4de5b5cd-d2c2-48eb-8a52-ea813b8722d3", completion: { (result) -> Void in
             println("result \(result)")
         })
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func viewDidAppear(animated: Bool)
     {
         // If a user didn't log out previously, they will automatically be logged in
-        println("logged in state: \(UserPreferences().loggedInState())")
         if UserPreferences().loggedInState()
         {
             performSegueWithIdentifier("loggedIn", sender: self)
@@ -85,6 +90,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     }
     
     
+    /******************************************************************************************
+    *   Takes the user to the create account view
+    ******************************************************************************************/
     @IBAction func createAccountButtonPressed(sender: AnyObject)
     {
         performSegueWithIdentifier("createAccountSegue", sender: self)
@@ -154,7 +162,11 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
         if segue.identifier == "createAccountSegue"
         {
             let controller = segue.destinationViewController as NewUserController
@@ -163,7 +175,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     
     
     /******************************************************************************************
-    *
+    *   Dismisses the keyboard when return is pressed
     ******************************************************************************************/
     func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
     {

@@ -114,8 +114,8 @@
 		2B04BD0F1A801FC700494335 /* NewUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserController.swift; sourceTree = "<group>"; };
 		2B04BD111A80228300494335 /* BackendConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConstants.swift; sourceTree = "<group>"; };
 		2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluemixCommunication.swift; sourceTree = "<group>"; };
-		2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
+		2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
 		2B79B9181A883BB900544E78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2B79B91A1A883BC100544E78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -218,11 +218,27 @@
 			name = NewsFeed;
 			sourceTree = "<group>";
 		};
+		2BC9C4121A9396E40044D886 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				2BF988DA1A8960B900F9E327 /* APIkeys.swift */,
+				2B04BD111A80228300494335 /* BackendConstants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		2BC9C4131A9396F80044D886 /* Login/NewUser */ = {
+			isa = PBXGroup;
+			children = (
+				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
+				2B04BD0F1A801FC700494335 /* NewUserController.swift */,
+			);
+			name = Login/NewUser;
+			sourceTree = "<group>";
+		};
 		2BE791D81A79700E00DE0E57 = {
 			isa = PBXGroup;
 			children = (
-				2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */,
-				2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */,
 				2BF988ED1A89785F00F9E327 /* Alamofire.xcodeproj */,
 				2BE791E31A79700E00DE0E57 /* All Aboard */,
 				2BE791FC1A79700E00DE0E57 /* All AboardTests */,
@@ -244,20 +260,17 @@
 			children = (
 				2BE7920C1A79710400DE0E57 /* Frameworks */,
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
-				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
-				2BF988DA1A8960B900F9E327 /* APIkeys.swift */,
+				2BC9C4121A9396E40044D886 /* Constants */,
+				2BC9C4131A9396F80044D886 /* Login/NewUser */,
+				2BC9C40E1A928CCB0044D886 /* NewsFeed */,
 				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
 				2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
-				2B04BD111A80228300494335 /* BackendConstants.swift */,
 				2B04BD0D1A80048200494335 /* Encryption.swift */,
-				2B04BCFA1A7C541400494335 /* SwiftyJSON.swift */,
 				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
 				3C97C1131A7C534C006243A9 /* Event.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
-				2B04BD0F1A801FC700494335 /* NewUserController.swift */,
-				2BC9C40E1A928CCB0044D886 /* NewsFeed */,
 				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
@@ -296,6 +309,9 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */,
+				2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */,
+				2B04BCFA1A7C541400494335 /* SwiftyJSON.swift */,
 				2BF988D11A895ED300F9E327 /* Security.framework */,
 				2B79B92E1A883C3400544E78 /* SystemConfiguration.framework */,
 				2B79B92C1A883C2700544E78 /* QuartzCore.framework */,

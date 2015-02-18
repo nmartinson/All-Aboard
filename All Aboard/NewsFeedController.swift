@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 import Alamofire
 
-
+/******************************************************************************************
+*
+******************************************************************************************/
 extension Alamofire.Request
 {
     class func imageResponseSerializer() -> Serializer{
@@ -45,18 +47,25 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     var selectedCellIndex = 0
     var events:[Event] = []
     
+    /******************************************************************************************
+    *   Configures the slide to reveal menu.
+    *   Sets the navbar title
+    *   Gets the recent events
+    ******************************************************************************************/
     override func viewWillAppear(animated: Bool)
     {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         navBar.title = "The Station"
         BluemixCommunication().getRecentEvents(10)
-            {
+        {
             (results: [Event]) in
             self.events = results
-                println(self.events.count)
         }
     }
     
+    /******************************************************************************************
+    *   This passes the previously retrieved event info to the next view controller
+    ******************************************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         let controller = segue.destinationViewController as ViewEventController
@@ -66,6 +75,11 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         controller.event = events[selectedCellIndex]
     }
     
+    
+    /******************************************************************************************
+    *   When a cell is selected, this method grabs the information contained in that cell so
+    *   that it can be passed to the next view and prevvent another network call to get the data.
+    ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as NewsFeedTableViewCell
@@ -79,20 +93,28 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.highlighted = false
     }
     
-
+    /******************************************************************************************
+    *   Set each section as having 1 row
+    ******************************************************************************************/
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 1
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return data.count
     }
 
+    /******************************************************************************************
+    *   Dequeues the custom reusable cell that will display in the tableview
+    ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell:NewsFeedTableViewCell? //= tableView.dequeueReusableCellWithIdentifier("newsCell") as? NewsFeedTableViewCell
+        var cell:NewsFeedTableViewCell?
         if cell == nil
         {
             tableView.registerNib(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: "newsCell")
@@ -102,11 +124,17 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell!
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
     {
         return 10
     }
     
+    /******************************************************************************************
+    *   Configures the cell that is about to be displayed
+    ******************************************************************************************/
     func tableView(tableView: UITableView, willDisplayCell cell: NewsFeedTableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
         cell.postedBy.text = data[indexPath.section][1]
@@ -121,18 +149,22 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         getLabelImage(imageStr, newImage: cell.profilePicture)
     }
     
+    /******************************************************************************************
+    *   Sets the height of the cell
+    ******************************************************************************************/
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         return 200
     }
     
     
+    /******************************************************************************************
+    *   Configure the swipe right for the hidden menu
+    ******************************************************************************************/
     @IBAction func revealButtonPressed(sender: AnyObject)
     {
         revealViewController().revealToggle(sender)
     }
-    
-    
     
     
     /******************************************************************************************
