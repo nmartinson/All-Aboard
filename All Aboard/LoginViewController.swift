@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CryptoSwift
 
 class LoginViewController: UIViewController, FBLoginViewDelegate
 {
@@ -98,7 +99,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     @IBAction func loginButtonPressed(sender: AnyObject)
     {
         let username = usernameField.text
-        let password = passwordField.text
+        let password = passwordField.text.sha1()
         if username == "" || password == ""
         {
             errorField.text = "Missing input"
