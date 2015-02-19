@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import CryptoSwift
 
 class NewUserController: UIViewController
 {
@@ -31,17 +32,19 @@ class NewUserController: UIViewController
         else
         {
             activityIndicator.startAnimating()
-            Alamofire.request(.POST, BackendConstants.newUserURL, parameters: ["username": usernameField.text, "password": passwordField.text]).responseString { (_, response, string, _) -> Void in
-                println("response: \(string)")
-                if string! == "1100" // creation successful
-                {
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+            if let hashedpass = passwordField.text.sha1() {
+                Alamofire.request(.POST, BackendConstants.newUserURL, parameters: ["username": usernameField.text, "password": hashedpass]).responseString { (_, response, string, _) -> Void in
+                    println("response: \(string)")
+                    if string! == "1100" // creation successful
+                    {
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+                    }
+                    else if string! == "1101" // account already exists
+                    {
+                        self.errorField.text = "Username already exists"
+                    }
+                    self.activityIndicator.stopAnimating()
                 }
-                else if string! == "1101" // account already exists
-                {
-                    self.errorField.text = "Username already exists"
-                }
-                self.activityIndicator.stopAnimating()
             }
         }
     }
