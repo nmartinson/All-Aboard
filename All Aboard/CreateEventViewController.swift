@@ -84,7 +84,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
         let timestamp = (date.timeIntervalSince1970) * 1000
         let timestampInMs = Int(timestamp)
         
-        Alamofire.request(.POST,"http://hangout.mybluemix.net/NewEvent", parameters: ["title":eventNameTextField.text, "host":hostId,"lat":41.667,"lon":91.533,"startTime":timestampInMs,"endTime":timestampInMs] ).responseString { (_, response, string,_) -> Void in
+        Alamofire.request(.POST,"http://hangout.mybluemix.net/NewEvent", parameters: ["action": "120", "title":eventNameTextField.text, "host":hostId,"lat":41.667,"lon":91.533,"startTime":timestampInMs,"endTime":timestampInMs] ).responseString { (_, response, string,_) -> Void in
             println("response:\(string)")
         }
     }
