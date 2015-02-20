@@ -38,6 +38,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
 {
     let data = [["Go to TCBs!","Nick Martinson", "10203626718697502","billiards"],["Go to Short's","Ian Brauer", "10153524130878066","burger"]]
     @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var tableView: UITableView!
     
     // Properties to send to Event Controller
     var imageOfSelectedCell: UIImage?
@@ -46,6 +47,9 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     var coordinates:CLLocationCoordinate2D?
     var selectedCellIndex = 0
     var events:[Event] = []
+    
+    
+    
     
     /******************************************************************************************
     *   Configures the slide to reveal menu.
@@ -60,18 +64,28 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             (results: [Event]) in
             self.events = results
+            self.tableView.reloadData()
         }
+        
+        BluemixCommunication().getUserInfoByID(UserPreferences().getGUID())
+        {
+            (user: Dictionary<String,AnyObject>?) in
+        }
+        
     }
+
     
     /******************************************************************************************
     *   This passes the previously retrieved event info to the next view controller
     ******************************************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        let controller = segue.destinationViewController as ViewEventController
-        controller.hostedByPic = imageOfSelectedCell
-        controller.hostedByText = hostedByName
-        controller.locationText = eventLocation
+        let navController = segue.destinationViewController as UINavigationController
+        let controller = navController.viewControllers.first as ViewEventController
+//        controller.hostedByPic = imageOfSelectedCell
+//        controller.hostedByText = hostedByName
+//        controller.locationText = eventLocation
+//        controller.event = events[selectedCellIndex]
         controller.event = events[selectedCellIndex]
     }
     
@@ -106,7 +120,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     ******************************************************************************************/
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return data.count
+        return events.count//data.count
     }
 
     /******************************************************************************************
@@ -137,14 +151,17 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     ******************************************************************************************/
     func tableView(tableView: UITableView, willDisplayCell cell: NewsFeedTableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        cell.postedBy.text = data[indexPath.section][1]
-        cell.eventImage.image = UIImage(named: data[indexPath.section][3])
-        cell.locationLabel.text = data[indexPath.section][0]
+        cell.postedBy.text = events[indexPath.section].EventHostID
+        cell.eventImage.image = UIImage(named: data[0][3])
+        cell.locationLabel.text = events[indexPath.section].EventLocation
+//        cell.postedBy.text = data[indexPath.section][1]
+//        cell.eventImage.image = UIImage(named: data[indexPath.section][3])
+//        cell.locationLabel.text = data[indexPath.section][0]
         cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.width/2
         cell.profilePicture.layer.borderWidth = 2
         cell.profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
         cell.profilePicture.clipsToBounds = true
-        let id = data[indexPath.section][2]
+        let id = data[0][2]
         var imageStr = "http://graph.facebook.com/\(id)/picture?type=large"
         getLabelImage(imageStr, newImage: cell.profilePicture)
     }

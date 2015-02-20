@@ -28,9 +28,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
         super.viewDidLoad()
 
         FBLoginButton.readPermissions = ["user_friends"]   // Asks the user to allow us to see their friends list
-        BluemixCommunication().getEvent("4de5b5cd-d2c2-48eb-8a52-ea813b8722d3", completion: { (result) -> Void in
-            println("result \(result)")
-        })
+//        BluemixCommunication().getEvent("94a30230-f715-4ac0-b261-7aad9dd04f33", completion: { (result) -> Void in
+//            println("result \(result)")
+//        })
     }
     
     /******************************************************************************************
@@ -115,12 +115,15 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
         else
         {
             activityIndicator.startAnimating()
-            let params = ["username": username, "password": password]
+            let params = ["username": username, "password": password, "action": "100"]
             BluemixCommunication().loginRequest(params){
                 (results: Dictionary<String,AnyObject>?) in
                 self.activityIndicator.stopAnimating()
                 if results!["success"] as Bool == true
                 {
+                    let name = results!["name"] as String
+                    println("NAME: \(name)")
+                    UserPreferences().setName(name)
                     self.performSegueWithIdentifier("loggedIn", sender: self)
                 }
                 else if results!["success"] as Bool == false

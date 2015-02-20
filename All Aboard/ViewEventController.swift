@@ -39,7 +39,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     {
         super.viewDidLoad()
         navBarTitle?.title = locationText
-        view.bringSubviewToFront(navBar)
+//        view.bringSubviewToFront(navBar)
 
         // Configure map view
         mapView.delegate = self
@@ -47,7 +47,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mapView.settings.compassButton = true
         
         // REMOVE THIS ONCE WE STORE THE EVENT LOCATION
-        event?.EventCoordinates = CLLocationCoordinate2D(latitude: 41.659727, longitude: -91.536210)
+//        event!.EventCoordinates = CLLocationCoordinate2D(latitude: 41.659727, longitude: -91.536210)
         
         
         mapView.camera = GMSCameraPosition(target: event!.EventCoordinates!, zoom: 15, bearing: 0, viewingAngle: 0)
@@ -129,6 +129,15 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     @IBAction func backButtonPressed(sender: AnyObject)
     {
         dismissViewControllerAnimated(true, completion: { () -> Void in })
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "toChat"
+        {
+            let controller = segue.destinationViewController as MessagesViewController
+            controller.chatRoomName = event!.EventID!
+        }
     }
     
 }

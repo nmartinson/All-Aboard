@@ -14,6 +14,7 @@ import CryptoSwift
 class NewUserController: UIViewController
 {
     @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var realName: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     @IBOutlet weak var errorField: UILabel!
@@ -33,7 +34,8 @@ class NewUserController: UIViewController
         {
             activityIndicator.startAnimating()
             if let hashedpass = passwordField.text.sha1() {
-                Alamofire.request(.POST, BackendConstants.newUserURL, parameters: ["username": usernameField.text, "password": hashedpass]).responseString { (_, response, string, _) -> Void in
+                let params = ["username": usernameField.text, "password": hashedpass, "action": "110", "name": realName.text]
+                Alamofire.request(.POST, BackendConstants.userURL, parameters: params).responseString { (_, response, string, _) -> Void in
                     println("response: \(string)")
                     if string! == "1100" // creation successful
                     {

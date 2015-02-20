@@ -18,23 +18,22 @@ class BluemixCommunication: NSObject
     func loginRequest(params: [String:String!], completion:(result: Dictionary<String,AnyObject>?) -> Void)
     {
         var details:Dictionary<String,AnyObject>?
-        details = ["error": "", "success": false]
-        Alamofire.request(.POST, BackendConstants.loginURL, parameters: params).responseString { (_, response, responseCode, _) -> Void in
+        details = ["error": "", "success": false, "name": ""]
+        Alamofire.request(.POST, BackendConstants.userURL, parameters: params).responseString { (_, response, responseCode, _) -> Void in
+            println(responseCode)
             var responseArray = Array(responseCode!)
-            
-            let code:String = "\(responseArray[0])\(responseArray[1])\(responseArray[2])\(responseArray[3])"
-            
-            var GUID:String = ""
-            for(var i = 5; i < responseArray.count; i++)
-            {
-                GUID = "\(GUID)" + String(responseArray[i])
-            }
-            
+
+            let stringArray = responseCode!.componentsSeparatedByString(",")
+            let code = stringArray[0]
+            let GUID = stringArray[1]
+            let name = stringArray[2]
+            println(stringArray)
             if code == "1000" // successful login
             {
                 UserPreferences().setGUID(GUID)
                 UserPreferences().loggedIn(true)
                 details!["success"] = true
+                details!["name"] = name
             }
             else if code == "1001" // username doesnt exist
             {
@@ -51,18 +50,26 @@ class BluemixCommunication: NSObject
     /******************************************************************************************
     *
     ******************************************************************************************/
-    func getEvent(eventID: String, completion:(result: Dictionary<String,AnyObject>?) -> Void)
+    func getEvent(eventID: String, completion:(result: Event) -> Void)
     {
         var details:Dictionary<String,AnyObject>?
         details = ["error": "", "success": false]
-        let route = BackendConstants.eventInfo + eventID
-        Alamofire.request(.GET, route, parameters: nil).responseJSON { (_, response, rawJSON, _) -> Void in
+        let params = ["action": "130", "eventId": eventID]
+        let route = BackendConstants.eventURL
+        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, response, rawJSON, _) -> Void in
             var json = JSON(rawJSON!)
-            let eventName = json["eventName"].stringValue
-            let eventHost = json["host"].stringValue
-        
             
-            completion(result: details)
+            let title = json[0]["title"].stringValue
+            let hostID = json[0]["hostId"].stringValue
+            let endTime = json[0]["endTime"].intValue
+            let id = json[0]["id"].stringValue
+            let long = CLLocationDegrees(json[0]["lon"].floatValue)
+            let lat = CLLocationDegrees(json[0]["lat"].floatValue)
+            let startTime = json[0]["startTime"].intValue
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate(), eventID: id)
+        
+            completion(result: event)
         }
     }
     
@@ -72,26 +79,54 @@ class BluemixCommunication: NSObject
     ******************************************************************************************/
     func getRecentEvents(count: Int, completion:(result: [Event]) -> Void)
     {
-        let url = BackendConstants.recentEvents + "\(count)"
-        Alamofire.request(.GET, url, parameters: nil).responseJSON { (_, _, response, _) -> Void in
-
+        let eventCount = String(count)
+        let params = ["action": "131", "count": eventCount]
+        let route = BackendConstants.eventURL
+        
+        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
             let json = JSON(response!)
-//            println(json)
+            println(json)
             var events:[Event] = []
             for(var i = 0; i < json.count; i++)
             {
                 let title = json[i]["title"].stringValue
                 let hostID = json[i]["hostId"].stringValue
                 let endTime = json[i]["endTime"].intValue
+                let id = json[i]["id"].stringValue
                 let long = CLLocationDegrees(json[i]["lon"].floatValue)
                 let lat = CLLocationDegrees(json[i]["lat"].floatValue)
                 let startTime = json[i]["startTime"].intValue
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate() )
+                let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate(), eventID: id)
                 events.append(event)
             }
+        
             completion(result: events)
         }
     }
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    func getUserInfoByID(userID: String, completion: (user: Dictionary<String,AnyObject>?) -> Void)
+    {
+        let params = ["action": "111", "userId": userID]
+        let route = BackendConstants.userURL
+        
+        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
+            var userInfo:Dictionary<String,AnyObject>?
+            userInfo = ["name": "", "username": "", "id": ""]
+            
+            let json = JSON(response!)
+            userInfo!["username"] = json["username"].stringValue
+            userInfo!["id"] = json["id"].stringValue
+            userInfo!["name"] = json["name"].stringValue
+            
+            completion(user: userInfo)
+        }
+    }
+    
+    
+    
     
 }

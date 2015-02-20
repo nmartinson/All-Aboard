@@ -47,4 +47,21 @@ class UserPreferences
         return id
     }
     
+    /******************************************************************************************
+    *   Sets the currents user's full name
+    ******************************************************************************************/
+    func setName(name: String)
+    {
+        defaults.setObject(name, forKey: "name")
+    }
+    
+    /******************************************************************************************
+    *   Returns the current user's full name
+    ******************************************************************************************/
+    func getName() -> String
+    {
+        let name = defaults.objectForKey("name") as String
+        return name
+    }
+    
 }
