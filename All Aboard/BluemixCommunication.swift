@@ -58,6 +58,7 @@ class BluemixCommunication: NSObject
         let route = BackendConstants.eventURL
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, response, rawJSON, _) -> Void in
             var json = JSON(rawJSON!)
+            println("GET EVENT \n \(json)")
             
             let title = json[0]["title"].stringValue
             let hostID = json[0]["hostId"].stringValue
@@ -85,19 +86,21 @@ class BluemixCommunication: NSObject
         
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
             let json = JSON(response!)
-            println(json)
+//            println("GET RECENT EVENTS\n \(json)")
             var events:[Event] = []
             for(var i = 0; i < json.count; i++)
             {
-                let title = json[i]["title"].stringValue
-                let hostID = json[i]["hostId"].stringValue
-                let endTime = json[i]["endTime"].intValue
-                let id = json[i]["id"].stringValue
-                let long = CLLocationDegrees(json[i]["lon"].floatValue)
-                let lat = CLLocationDegrees(json[i]["lat"].floatValue)
-                let startTime = json[i]["startTime"].intValue
+                let title = json[i]["event"]["title"].stringValue
+                let hostID = json[i]["event"]["hostId"].stringValue
+                let endTime = json[i]["event"]["endTime"].intValue
+                let id = json[i]["event"]["id"].stringValue
+                let long = CLLocationDegrees(json[i]["event"]["lon"].floatValue)
+                let lat = CLLocationDegrees(json[i]["event"]["lat"].floatValue)
+                let startTime = json[i]["event"]["startTime"].intValue
+                let userRealName = json[i]["user"]["name"].stringValue
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate(), eventID: id)
+                let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate(), eventID: id, hostName: userRealName)
+                
                 events.append(event)
             }
         
@@ -116,8 +119,9 @@ class BluemixCommunication: NSObject
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
             var userInfo:Dictionary<String,AnyObject>?
             userInfo = ["name": "", "username": "", "id": ""]
-            
+
             let json = JSON(response!)
+//            println("USER INFO\n \(json)")
             userInfo!["username"] = json["username"].stringValue
             userInfo!["id"] = json["id"].stringValue
             userInfo!["name"] = json["name"].stringValue
@@ -125,7 +129,6 @@ class BluemixCommunication: NSObject
             completion(user: userInfo)
         }
     }
-    
     
     
     

@@ -18,6 +18,7 @@ class Event {
     var EventCoordinates:CLLocationCoordinate2D?
     var EventHostID:NSString?
     var EventID:NSString?
+    var eventHostName:NSString?
     
     init(name:NSString, location:NSString, date:NSDate)
     {
@@ -37,5 +38,15 @@ class Event {
         EventDate = date
         EventID = eventID
     }
-    
+ 
+    init(name:NSString, location:NSString, coordinates:CLLocationCoordinate2D, hostID:NSString, date: NSDate, eventID: NSString, hostName: String)
+    {
+        EventName = name
+        EventLocation = location
+        EventHostID = hostID
+        EventCoordinates = coordinates
+        EventDate = date
+        EventID = eventID
+        eventHostName = hostName
+    }
 }

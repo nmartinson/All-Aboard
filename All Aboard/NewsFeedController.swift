@@ -47,9 +47,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     var coordinates:CLLocationCoordinate2D?
     var selectedCellIndex = 0
     var events:[Event] = []
-    
-    
-    
+
     
     /******************************************************************************************
     *   Configures the slide to reveal menu.
@@ -151,9 +149,9 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     ******************************************************************************************/
     func tableView(tableView: UITableView, willDisplayCell cell: NewsFeedTableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        cell.postedBy.text = events[indexPath.section].EventHostID
+        cell.postedBy.text = events[indexPath.section].eventHostName
         cell.eventImage.image = UIImage(named: data[0][3])
-        cell.locationLabel.text = events[indexPath.section].EventLocation
+        cell.locationLabel.text = events[indexPath.section].EventName
 //        cell.postedBy.text = data[indexPath.section][1]
 //        cell.eventImage.image = UIImage(named: data[indexPath.section][3])
 //        cell.locationLabel.text = data[indexPath.section][0]

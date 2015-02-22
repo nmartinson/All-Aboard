@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate {
+class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate
+{
     
     //the variable holding whether the event is a poll or regular event
     var eventType=0
@@ -25,6 +26,53 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     //the date picker object
     @IBOutlet weak var eventDate: UIDatePicker!
     
+    
+    var searchQuery:SPGooglePlacesAutocompleteQuery?
+    var searchResultPlace = []
+    
+    
+    override func viewDidLoad()
+    {
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return searchResultPlace.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("SPGooglePlacesAutocompleteCell") as UITableViewCell
+        cell.textLabel?.text = searchResultPlace[indexPath.row].name
+        
+        
+        return cell
+    }
+    
+
+    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool
+    {
+        handleSearchForSearchString(searchString)
+        return true
+    }
+    
+    func handleSearchForSearchString(searchString: String)
+    {
+        searchQuery?.location = CLLocationManager().location.coordinate
+        searchQuery?.input = searchString
+        searchQuery?.fetchPlaces({ (places, error) -> Void in
+            if (error != nil)
+            {
+                println("error")
+            }
+            else
+            {
+                self.searchResultPlace = places
+                self.searchDisplayController?.searchResultsTableView.reloadData()
+            }
+        })
+    }
     /***********************************************FUNCTIONS********************************************************/
     
     
