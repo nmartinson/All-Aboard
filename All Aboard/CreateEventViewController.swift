@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate
+class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate
 {
     
     //the variable holding whether the event is a poll or regular event
@@ -27,52 +27,50 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     @IBOutlet weak var eventDate: UIDatePicker!
     
     
-    var searchQuery:SPGooglePlacesAutocompleteQuery?
-    var searchResultPlace = []
-    
+    @IBOutlet weak var searchTableView: UITableView!
+    var places:[GooglePlace] = []
+    var googleSearch = GoogleSearch()
+    var searchString = ""
     
     override func viewDidLoad()
     {
-        
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return searchResultPlace.count
+        super.viewDidLoad()
+
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SPGooglePlacesAutocompleteCell") as UITableViewCell
-        cell.textLabel?.text = searchResultPlace[indexPath.row].name
+        var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as UITableViewCell
         
-        
+        cell.textLabel?.text = places[indexPath.row].name
         return cell
     }
     
-
-    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        handleSearchForSearchString(searchString)
+        if places.count == 0
+        {
+            tableView.hidden = true
+        }
+        else
+        {
+            tableView.hidden = false
+        }
+        return places.count
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
         return true
     }
     
-    func handleSearchForSearchString(searchString: String)
-    {
-        searchQuery?.location = CLLocationManager().location.coordinate
-        searchQuery?.input = searchString
-        searchQuery?.fetchPlaces({ (places, error) -> Void in
-            if (error != nil)
-            {
-                println("error")
-            }
-            else
-            {
-                self.searchResultPlace = places
-                self.searchDisplayController?.searchResultsTableView.reloadData()
-            }
-        })
-    }
+    
     /***********************************************FUNCTIONS********************************************************/
     
     
@@ -98,10 +96,26 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     *           input: the letters google should search with
     *           location: the devices location so the user gets places around them
     */
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-        Alamofire.request(.GET,"https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(APIkeys.googlePlacesKey)&input=\(eventlocationTextField.text!)&location=41.6667,91.5333", parameters: nil ).responseJSON { (_, response, string,_) -> Void in
-            println("response:\(string)")
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    {
+        if textField.isEqual(eventlocationTextField)
+        {
+            let searchString = textField.text.stringByReplacingOccurrencesOfString(" ", withString: "_")
+            println("Text:\(searchString)")
+
+            
+            if range.location == 0
+            {
+                searchTableView.hidden = true
+            }
+            else
+            {
+                googleSearch.fetchPlaces(searchString){
+                    (newPlaces: [GooglePlace]) in
+                    self.places = newPlaces
+                    self.searchTableView.reloadData()
+                }
+            }
         }
         return true
     }
@@ -135,12 +149,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         Alamofire.request(.POST,"http://hangout.mybluemix.net/NewEvent", parameters: ["action": "120", "title":eventNameTextField.text, "host":hostId,"lat":41.667,"lon":91.533,"startTime":timestampInMs,"endTime":timestampInMs] ).responseString { (_, response, string,_) -> Void in
             println("response:\(string)")
         }
-    }
-    
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
  
 }
