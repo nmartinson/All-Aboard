@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import Alamofire
+import MobileCoreServices
 
-class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate
+class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     let locationManager  = CLLocationManager()
     @IBOutlet weak var mapView: GMSMapView!
@@ -128,9 +129,30 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                 animations: {recognizer.view!.center = finalPoint },
                 completion: nil)
             
-//            println("ENDED")
         }
 
+    }
+    
+    
+    
+    @IBAction func cameraRollPressed(sender: AnyObject)
+    {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum)
+        {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePicker.mediaTypes = [kUTTypeImage as NSString]
+            imagePicker.allowsEditing = false
+            self.presentViewController(imagePicker, animated: true, completion: { () -> Void in
+                
+            })
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!)
+    {
+        
     }
     
     /******************************************************************************************

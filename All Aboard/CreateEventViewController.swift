@@ -32,6 +32,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     var googleSearch = GoogleSearch()
     var searchString = ""
     var selectedIndex = 0
+    var finishedGettingPlaceDetail = false
     
     override func viewDidLoad()
     {
@@ -69,11 +70,15 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         eventlocationTextField.text = places[indexPath.row].shortName
+        selectedIndex = indexPath.row
+        
         let placeID = places[indexPath.row].place_id!
         GoogleSearch().fetchPlaceDetails(placeID)
         {
             (place: GooglePlaceDetail) in
             self.places[indexPath.row].coordinate = place.coordinates
+            println(place.coordinates?.longitude)
+            self.finishedGettingPlaceDetail = true
         }
         
         tableView.hidden = true
@@ -154,18 +159,16 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     *           endTime: the time the event will end
     */
     @IBAction func onAddFriendsPress(sender: AnyObject) {
-        
-        println(eventType)
 
         let hostId = UserPreferences().getGUID()
         
         let date = eventDate.date
         let timestamp = (date.timeIntervalSince1970) * 1000
         let timestampInMs = Int(timestamp)
+        while( finishedGettingPlaceDetail == false){}
         let long = "\(places[selectedIndex].coordinate!.longitude)"
         let lat = "\(places[selectedIndex].coordinate!.latitude)"
         let params = ["action": "120", "title":eventNameTextField.text, "host":hostId, "lat":lat, "lon":long, "startTime":timestampInMs as NSObject, "endTime":timestampInMs]
-        println(params)
         Alamofire.request(.POST, BackendConstants.eventURL, parameters: params ).responseString { (_, response, string,_) -> Void in
             println("response:\(string)")
         }
