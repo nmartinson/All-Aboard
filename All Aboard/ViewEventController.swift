@@ -46,12 +46,22 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         locationManager.delegate = self
         mapView.settings.compassButton = true
         
-        // REMOVE THIS ONCE WE STORE THE EVENT LOCATION
-//        event!.EventCoordinates = CLLocationCoordinate2D(latitude: 41.659727, longitude: -91.536210)
+        // ask for current location
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse
+        {
+            locationManager.startUpdatingLocation()
+            mapView.myLocationEnabled = true
+            mapView.settings.myLocationButton = true
+        }
         
-        
+        println(event!.EventCoordinates?.latitude)
+        println(event?.EventCoordinates?.longitude)
         mapView.camera = GMSCameraPosition(target: event!.EventCoordinates!, zoom: 15, bearing: 0, viewingAngle: 0)
-
+        var marker = GMSMarker(position: event!.EventCoordinates!)
+        marker.title = "Here"
+        marker.map = mapView
+        
         // set event details
         profilePic.image = hostedByPic
         hostedByLabel.text = "\(hostedByLabel.text!) \(hostedByText)"

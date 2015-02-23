@@ -97,6 +97,7 @@
 		2BC9C4CC1A9587DD0044D886 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9C4CA1A9587DD0044D886 /* Message.swift */; };
 		2BE604021A9ABEFB004685C0 /* GoogleSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604011A9ABEFB004685C0 /* GoogleSearch.swift */; };
 		2BE604041A9AC37B004685C0 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604031A9AC37B004685C0 /* GooglePlace.swift */; };
+		2BE604071A9B83DF004685C0 /* GooglePlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604061A9B83DF004685C0 /* GooglePlaceDetail.swift */; };
 		2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E61A79700E00DE0E57 /* AppDelegate.swift */; };
 		2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */; };
 		2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */; };
@@ -325,6 +326,7 @@
 		2BC9C4CA1A9587DD0044D886 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2BE604011A9ABEFB004685C0 /* GoogleSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSearch.swift; sourceTree = "<group>"; };
 		2BE604031A9AC37B004685C0 /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
+		2BE604061A9B83DF004685C0 /* GooglePlaceDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceDetail.swift; sourceTree = "<group>"; };
 		2BE791E11A79700E00DE0E57 /* All Aboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Aboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE791E51A79700E00DE0E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE791E61A79700E00DE0E57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 			children = (
 				2BE604011A9ABEFB004685C0 /* GoogleSearch.swift */,
 				2BE604031A9AC37B004685C0 /* GooglePlace.swift */,
+				2BE604061A9B83DF004685C0 /* GooglePlaceDetail.swift */,
 			);
 			name = GoogleSearchAutocomplete;
 			sourceTree = "<group>";
@@ -1019,6 +1022,7 @@
 				2B148B5F1A8C4E6F000E385F /* BluemixCommunication.swift in Sources */,
 				2BC9C4AB1A956EB00044D886 /* JSQMessagesViewController.m in Sources */,
 				2BC9C4B61A956EB00044D886 /* JSQMessagesCollectionViewCell.m in Sources */,
+				2BE604071A9B83DF004685C0 /* GooglePlaceDetail.swift in Sources */,
 				2BC1C5F71A9A6733000F14DA /* AddFriendsViewController.swift in Sources */,
 				2B04BD091A80042000494335 /* RNCryptor.m in Sources */,
 				2BC9C4C81A956EBA0044D886 /* JSQSystemSoundPlayer.m in Sources */,

@@ -44,5 +44,17 @@ class GoogleSearch:NSObject
         }
     }
     
+    func fetchPlaceDetails(placeID:String, completion:(place: GooglePlaceDetail) -> Void)
+    {
+        var url = "https://maps.googleapis.com/maps/api/place/details/json?key=\(APIkeys.googlePlacesKey)&placeid=\(placeID)"
+        Alamofire.request(.GET, url, parameters: nil ).responseJSON { (_, response, rawJSON,_) -> Void in
+            
+            let data = JSON(rawJSON!)
+            var placeDetail = GooglePlaceDetail().placeDetailFromJSON(data)
+            completion(place: placeDetail)
+        }
+
+    }
     
+
 }

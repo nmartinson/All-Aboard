@@ -31,11 +31,18 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     var places:[GooglePlace] = []
     var googleSearch = GoogleSearch()
     var searchString = ""
+    var selectedIndex = 0
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        clearView()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -61,7 +68,15 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        eventlocationTextField.text = places[indexPath.row].shortName
+        let placeID = places[indexPath.row].place_id!
+        GoogleSearch().fetchPlaceDetails(placeID)
+        {
+            (place: GooglePlaceDetail) in
+            self.places[indexPath.row].coordinate = place.coordinates
+        }
         
+        tableView.hidden = true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -70,7 +85,13 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         return true
     }
     
-    
+    func clearView()
+    {
+        searchString = ""
+        eventNameTextField.text = ""
+        eventlocationTextField.text = ""
+        places = []
+    }
     /***********************************************FUNCTIONS********************************************************/
     
     
@@ -136,19 +157,20 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         
         println(eventType)
 
-//        var event = Event(name: eventNameTextField.text ,location: eventlocationTextField.text, date: eventDate.date)
-//        tf.text = event.EventName
-//        loc.text = event.EventLocation
-
         let hostId = UserPreferences().getGUID()
         
         let date = eventDate.date
         let timestamp = (date.timeIntervalSince1970) * 1000
         let timestampInMs = Int(timestamp)
-        
-        Alamofire.request(.POST,"http://hangout.mybluemix.net/NewEvent", parameters: ["action": "120", "title":eventNameTextField.text, "host":hostId,"lat":41.667,"lon":91.533,"startTime":timestampInMs,"endTime":timestampInMs] ).responseString { (_, response, string,_) -> Void in
+        let long = "\(places[selectedIndex].coordinate!.longitude)"
+        let lat = "\(places[selectedIndex].coordinate!.latitude)"
+        let params = ["action": "120", "title":eventNameTextField.text, "host":hostId, "lat":lat, "lon":long, "startTime":timestampInMs as NSObject, "endTime":timestampInMs]
+        println(params)
+        Alamofire.request(.POST, BackendConstants.eventURL, parameters: params ).responseString { (_, response, string,_) -> Void in
             println("response:\(string)")
         }
+        
+
     }
  
 }

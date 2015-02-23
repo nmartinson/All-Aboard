@@ -12,19 +12,25 @@ import UIKit
 class GooglePlace:NSObject
 {
     var name:String?
-    var reference:String?
+    var place_id:String?
     var identifier:String?
+    var shortName:String?
+    var streetName:String?
+    var coordinate:CLLocationCoordinate2D?
     
     
     func placeFromJSON(rawJSON: JSON) -> [GooglePlace]
     {
+        println(rawJSON)
         var places:[GooglePlace] = []
-        for(var i = 0; i < rawJSON.count; i++)
+        for(var i = 0; i < rawJSON["predictions"].count; i++)
         {
             var place = GooglePlace()
             place.identifier = rawJSON["predictions"][i]["id"].stringValue
             place.name = rawJSON["predictions"][i]["description"].stringValue
-            place.reference = rawJSON["predictions"][i]["reference"].stringValue
+            place.place_id = rawJSON["predictions"][i]["place_id"].stringValue
+            place.shortName = rawJSON["predictions"][i]["terms"][0]["value"].stringValue
+            place.streetName = rawJSON["predictions"][i]["terms"][1]["value"].stringValue
             places.append(place)
         }
         return places

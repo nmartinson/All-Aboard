@@ -67,4 +67,8 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
 //        }
     }
     
+    @IBAction func backButtonPressed(sender: AnyObject)
+    {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
