@@ -12,13 +12,11 @@
 		2B04BD0A1A80042000494335 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD041A80042000494335 /* RNCryptorEngine.m */; };
 		2B04BD0B1A80042000494335 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD061A80042000494335 /* RNDecryptor.m */; };
 		2B04BD0C1A80042000494335 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD081A80042000494335 /* RNEncryptor.m */; };
-		2B04BD0E1A80048200494335 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD0D1A80048200494335 /* Encryption.swift */; };
 		2B04BD101A801FC700494335 /* NewUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD0F1A801FC700494335 /* NewUserController.swift */; };
 		2B04BD121A80228300494335 /* BackendConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD111A80228300494335 /* BackendConstants.swift */; };
 		2B148B4C1A8C4794000E385F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */; };
 		2B148B5F1A8C4E6F000E385F /* BluemixCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */; };
 		2B3A3D8F1A8C43DC000AC892 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */; };
-		2B4A3D931A9AA29D00A1F283 /* sample_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A3D921A9AA29D00A1F283 /* sample_data.json */; };
 		2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B79B90D1A88231B00544E78 /* ViewEventController.swift */; };
 		2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B9181A883BB900544E78 /* AVFoundation.framework */; };
 		2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B91A1A883BC100544E78 /* CoreData.framework */; };
@@ -213,13 +211,11 @@
 		2B04BD061A80042000494335 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
 		2B04BD071A80042000494335 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
 		2B04BD081A80042000494335 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
-		2B04BD0D1A80048200494335 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		2B04BD0F1A801FC700494335 /* NewUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserController.swift; sourceTree = "<group>"; };
 		2B04BD111A80228300494335 /* BackendConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConstants.swift; sourceTree = "<group>"; };
 		2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluemixCommunication.swift; sourceTree = "<group>"; };
 		2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
 		2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		2B4A3D921A9AA29D00A1F283 /* sample_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_data.json; sourceTree = "<group>"; };
 		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
 		2B79B9181A883BB900544E78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2B79B91A1A883BC100544E78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -235,8 +231,8 @@
 		2B79B92E1A883C3400544E78 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2BBE282C1A84282000594E24 /* NewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
 		2BC1C5F01A97FD6E000F14DA /* SwiftAddressBookWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookWrapper.swift; sourceTree = "<group>"; };
-		2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
-		2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFriendsViewController.swift; path = "All Aboard/AddFriendsViewController.swift"; sourceTree = "<group>"; };
+		2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactTableViewCell.swift; path = "All Aboard/ContactTableViewCell.swift"; sourceTree = "<group>"; };
 		2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		2BC9C4271A956C050044D886 /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = ../Libraries/CryptoSwift/CryptoSwift.xcodeproj; sourceTree = "<group>"; };
 		2BC9C4321A956CCB0044D886 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -663,6 +659,8 @@
 		2BE791E31A79700E00DE0E57 /* All Aboard */ = {
 			isa = PBXGroup;
 			children = (
+				3C562EA11A9BB5C000CCD97B /* Events */,
+				3C562E9E1A9BB51D00CCD97B /* Friendslist */,
 				2BE7920C1A79710400DE0E57 /* Frameworks */,
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
 				2BC9C4121A9396E40044D886 /* Constants */,
@@ -670,18 +668,11 @@
 				2BC9C40E1A928CCB0044D886 /* NewsFeed */,
 				2BC9C4CD1A9587EC0044D886 /* Chat */,
 				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
-				2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */,
-				2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
-				2B4A3D921A9AA29D00A1F283 /* sample_data.json */,
 				2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */,
 				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
-				2B04BD0D1A80048200494335 /* Encryption.swift */,
-				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
-				3C97C1131A7C534C006243A9 /* Event.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
-				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
 				2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */,
@@ -783,6 +774,26 @@
 				3C3D37E51A9515410012D989 /* CryptoSwiftTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3C562E9E1A9BB51D00CCD97B /* Friendslist */ = {
+			isa = PBXGroup;
+			children = (
+				2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */,
+				2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */,
+			);
+			name = Friendslist;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		3C562EA11A9BB5C000CCD97B /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
+				3C97C1131A7C534C006243A9 /* Event.swift */,
+				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
+			);
+			name = Events;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -937,7 +948,6 @@
 				2BC9C49D1A956EB00044D886 /* bubble_tailless.png in Resources */,
 				2BC9C49F1A956EB00044D886 /* camera.png in Resources */,
 				2BC9C4BF1A956EB00044D886 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
-				2B4A3D931A9AA29D00A1F283 /* sample_data.json in Resources */,
 				2BC9C4951A956EB00044D886 /* bubble_min.png in Resources */,
 				2BE791EF1A79700E00DE0E57 /* Main.storyboard in Resources */,
 				2BC9C4961A956EB00044D886 /* bubble_min@2x.png in Resources */,
@@ -987,7 +997,6 @@
 				2BC9C4CC1A9587DD0044D886 /* Message.swift in Sources */,
 				2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */,
 				2BC1C5F11A97FD6E000F14DA /* SwiftAddressBookWrapper.swift in Sources */,
-				2B04BD0E1A80048200494335 /* Encryption.swift in Sources */,
 				2BC9C4AF1A956EB00044D886 /* JSQMessagesTimestampFormatter.m in Sources */,
 				2B04BD121A80228300494335 /* BackendConstants.swift in Sources */,
 				2BC9C4A91A956EB00044D886 /* UIView+JSQMessages.m in Sources */,
