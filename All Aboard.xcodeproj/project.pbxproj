@@ -18,7 +18,6 @@
 		2B148B4C1A8C4794000E385F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */; };
 		2B148B5F1A8C4E6F000E385F /* BluemixCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */; };
 		2B3A3D8F1A8C43DC000AC892 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */; };
-		2B4A3D931A9AA29D00A1F283 /* sample_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A3D921A9AA29D00A1F283 /* sample_data.json */; };
 		2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B79B90D1A88231B00544E78 /* ViewEventController.swift */; };
 		2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B9181A883BB900544E78 /* AVFoundation.framework */; };
 		2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B91A1A883BC100544E78 /* CoreData.framework */; };
@@ -98,6 +97,7 @@
 		2BE604021A9ABEFB004685C0 /* GoogleSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604011A9ABEFB004685C0 /* GoogleSearch.swift */; };
 		2BE604041A9AC37B004685C0 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604031A9AC37B004685C0 /* GooglePlace.swift */; };
 		2BE604071A9B83DF004685C0 /* GooglePlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604061A9B83DF004685C0 /* GooglePlaceDetail.swift */; };
+		2BE604101A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */; };
 		2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E61A79700E00DE0E57 /* AppDelegate.swift */; };
 		2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */; };
 		2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */; };
@@ -219,7 +219,6 @@
 		2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluemixCommunication.swift; sourceTree = "<group>"; };
 		2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
 		2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		2B4A3D921A9AA29D00A1F283 /* sample_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_data.json; sourceTree = "<group>"; };
 		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
 		2B79B9181A883BB900544E78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2B79B91A1A883BC100544E78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -327,6 +326,7 @@
 		2BE604011A9ABEFB004685C0 /* GoogleSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSearch.swift; sourceTree = "<group>"; };
 		2BE604031A9AC37B004685C0 /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
 		2BE604061A9B83DF004685C0 /* GooglePlaceDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceDetail.swift; sourceTree = "<group>"; };
+		2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BE791E11A79700E00DE0E57 /* All Aboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Aboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE791E51A79700E00DE0E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE791E61A79700E00DE0E57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -640,6 +640,15 @@
 			name = GoogleSearchAutocomplete;
 			sourceTree = "<group>";
 		};
+		2BE604171A9F7799004685C0 /* EventDetails */ = {
+			isa = PBXGroup;
+			children = (
+				2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */,
+				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
+			);
+			name = EventDetails;
+			sourceTree = "<group>";
+		};
 		2BE791D81A79700E00DE0E57 = {
 			isa = PBXGroup;
 			children = (
@@ -669,16 +678,15 @@
 				2BC9C4131A9396F80044D886 /* Login/NewUser */,
 				2BC9C40E1A928CCB0044D886 /* NewsFeed */,
 				2BC9C4CD1A9587EC0044D886 /* Chat */,
+				2BE604171A9F7799004685C0 /* EventDetails */,
 				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
 				2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */,
 				2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
-				2B4A3D921A9AA29D00A1F283 /* sample_data.json */,
 				2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */,
 				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
 				2B04BD0D1A80048200494335 /* Encryption.swift */,
-				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
 				3C97C1131A7C534C006243A9 /* Event.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
 				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
@@ -937,7 +945,6 @@
 				2BC9C49D1A956EB00044D886 /* bubble_tailless.png in Resources */,
 				2BC9C49F1A956EB00044D886 /* camera.png in Resources */,
 				2BC9C4BF1A956EB00044D886 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
-				2B4A3D931A9AA29D00A1F283 /* sample_data.json in Resources */,
 				2BC9C4951A956EB00044D886 /* bubble_min.png in Resources */,
 				2BE791EF1A79700E00DE0E57 /* Main.storyboard in Resources */,
 				2BC9C4961A956EB00044D886 /* bubble_min@2x.png in Resources */,
@@ -1006,6 +1013,7 @@
 				2BC9C4B91A956EB00044D886 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				2BC9C4AD1A956EB00044D886 /* JSQMessagesAvatarFactory.m in Sources */,
 				2BC9C4B11A956EB00044D886 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
+				2BE604101A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				2BC9C4B31A956EB00044D886 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
 				2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */,

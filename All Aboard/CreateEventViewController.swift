@@ -31,21 +31,28 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     var places:[GooglePlace] = []
     var googleSearch = GoogleSearch()
     var searchString = ""
-    var selectedIndex = 0
-    var finishedGettingPlaceDetail = false
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-
-    }
+    var selectedIndex = 0   // index of selected segment
+    var finishedGettingPlaceDetail = false  // used to block from creating event until place info has been received
     
     
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        searchTableView.layer.cornerRadius = 5
         clearView()
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(true)
+        clearView()
+    }
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as UITableViewCell
@@ -54,6 +61,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         return cell
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if places.count == 0
@@ -67,6 +77,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         return places.count
     }
 
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         eventlocationTextField.text = places[indexPath.row].shortName
@@ -84,18 +97,26 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         tableView.hidden = true
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
     
+    /******************************************************************************************
+    *   Reset the entire view back to inital with no values
+    ******************************************************************************************/
     func clearView()
     {
         searchString = ""
         eventNameTextField.text = ""
         eventlocationTextField.text = ""
         places = []
+        searchTableView.hidden = true
+        searchTableView.reloadData()
     }
     /***********************************************FUNCTIONS********************************************************/
     
