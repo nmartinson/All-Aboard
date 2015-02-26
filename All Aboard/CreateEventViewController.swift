@@ -118,6 +118,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         searchTableView.hidden = true
         searchTableView.reloadData()
     }
+    
+    
+    
+    
     /***********************************************FUNCTIONS********************************************************/
     
     
@@ -181,18 +185,18 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     */
     @IBAction func onAddFriendsPress(sender: AnyObject)
     {
-        let hostId = UserPreferences().getGUID()
-        let date = eventDate.date
-        let timestamp = (date.timeIntervalSince1970) * 1000
-        let timestampInMs = Int(timestamp)
-        
-        while( finishedGettingPlaceDetail == false){}
-        
-        let long = "\(places[selectedIndex].coordinate!.longitude)"
-        let lat = "\(places[selectedIndex].coordinate!.latitude)"
-        
-        let params = ["action": ACTIONCODES.NEW_EVENT, "title":eventNameTextField.text, "host":hostId, "lat":lat, "lon":long, "startTime":timestampInMs as NSObject, "endTime":timestampInMs]
-        
+//        let hostId = UserPreferences().getGUID()
+//        let date = eventDate.date
+//        let timestamp = (date.timeIntervalSince1970) * 1000
+//        let timestampInMs = Int(timestamp)
+//        
+//        while( finishedGettingPlaceDetail == false){}
+//        
+//        let long = "\(places[selectedIndex].coordinate!.longitude)"
+//        let lat = "\(places[selectedIndex].coordinate!.latitude)"
+//        
+//        let params = ["action": ACTIONCODES.NEW_EVENT, "title":eventNameTextField.text, "host":hostId, "lat":lat, "lon":long, "startTime":timestampInMs as NSObject, "endTime":timestampInMs]
+//        
     }
  
 }
