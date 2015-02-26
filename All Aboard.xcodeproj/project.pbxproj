@@ -121,7 +121,7 @@
 		3C562EA81A9BBCB200CCD97B /* ViewFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C562EA71A9BBCB200CCD97B /* ViewFriendsViewController.swift */; };
 		3C562EAE1A9BCE6700CCD97B /* SearchFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C562EAD1A9BCE6700CCD97B /* SearchFriendsViewController.swift */; };
 		3C562EB01A9BD4C600CCD97B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C562EAF1A9BD4C600CCD97B /* User.swift */; };
-		3C97C1141A7C534C006243A9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1131A7C534C006243A9 /* Event.swift */; };
+		3C6FA85F1A9FE17100BCD602 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FA85E1A9FE17100BCD602 /* Event.swift */; };
 		3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -358,7 +358,7 @@
 		3C562EA71A9BBCB200CCD97B /* ViewFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFriendsViewController.swift; sourceTree = "<group>"; };
 		3C562EAD1A9BCE6700CCD97B /* SearchFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewController.swift; sourceTree = "<group>"; };
 		3C562EAF1A9BD4C600CCD97B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3C97C1131A7C534C006243A9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3C6FA85E1A9FE17100BCD602 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -807,6 +807,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */,
+				3C6FA85E1A9FE17100BCD602 /* Event.swift */,
 				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
 				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
 			);
@@ -1007,7 +1008,6 @@
 				2BC9C4A61A956EB00044D886 /* NSString+JSQMessages.m in Sources */,
 				2BC1C5F91A9A6ABF000F14DA /* ContactTableViewCell.swift in Sources */,
 				2BF988DB1A8960B900F9E327 /* APIkeys.swift in Sources */,
-				3C97C1141A7C534C006243A9 /* Event.swift in Sources */,
 				2BE604041A9AC37B004685C0 /* GooglePlace.swift in Sources */,
 				2BC9C4C01A956EB00044D886 /* JSQMessagesToolbarContentView.m in Sources */,
 				3C562EB01A9BD4C600CCD97B /* User.swift in Sources */,
@@ -1055,6 +1055,7 @@
 				2BC9C4B61A956EB00044D886 /* JSQMessagesCollectionViewCell.m in Sources */,
 				2BE604071A9B83DF004685C0 /* GooglePlaceDetail.swift in Sources */,
 				3C562EA81A9BBCB200CCD97B /* ViewFriendsViewController.swift in Sources */,
+				3C6FA85F1A9FE17100BCD602 /* Event.swift in Sources */,
 				2BC1C5F71A9A6733000F14DA /* AddFriendsViewController.swift in Sources */,
 				2B04BD091A80042000494335 /* RNCryptor.m in Sources */,
 				2BC9C4C81A956EBA0044D886 /* JSQSystemSoundPlayer.m in Sources */,

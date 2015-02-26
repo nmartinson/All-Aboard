@@ -140,18 +140,18 @@ class BluemixCommunication: NSObject
         
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
             let json = JSON(response!)
-            println(json)
+           // println(json)
             var userInfo:Dictionary<String,AnyObject>?
             userInfo = ["name": "", "username": "", "id": ""]
             //            println("GET RECENT EVENTS\n \(json)")
             var friends:[Dictionary<String,AnyObject>?] = []
             for(var i = 0; i < json.count; i++)
             {
-                userInfo!["username"] = json[i]["user"]["username"].stringValue
-                userInfo!["id"] = json[i]["user"]["id"].stringValue
-                userInfo!["name"] = json[i]["user"]["name"].stringValue
-                
-                friends.append(userInfo)
+                userInfo!["username"] = json[i]["username"].stringValue
+                userInfo!["id"] = json[i]["id"].stringValue
+                userInfo!["name"] = json[i]["name"].stringValue
+                friends.append(userInfo!)
+             //   println(userInfo!)
             }
             
             completion(result: friends)

@@ -20,6 +20,7 @@ class ViewFriendsViewController: UIViewController {
         {
             (results: [Dictionary<String,AnyObject>?]) in
             self.friendsL = results
+            self.friendsTableView.reloadData()
         }
         
         println(self.friendsL)
@@ -28,7 +29,7 @@ class ViewFriendsViewController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         //creating cell for table view.
-        let cell = self.friendsTableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = self.friendsTableView.dequeueReusableCellWithIdentifier("friendCell") as UITableViewCell
         
         var friend:Dictionary<String,AnyObject>
         
@@ -36,7 +37,9 @@ class ViewFriendsViewController: UIViewController {
         friend = self.friendsL[indexPath.row]!
         
         //adds label to the cell
-        cell.textLabel?.text = friend["username"]?.value
+        println(friend["username"]!)
+        cell.textLabel?.text = friend["username"] as? String
+//        cell.textLabel!.text! = friend["username"]
         
         return cell
     }
