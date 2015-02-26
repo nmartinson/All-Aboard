@@ -28,18 +28,18 @@ class BluemixCommunication: NSObject
             let GUID = stringArray[1]
             let name = stringArray[2]
             println(stringArray)
-            if code == "1000" // successful login
+            if code == RETURNCODES.LOGIN_SUCCESS // "1000" // successful login
             {
                 UserPreferences().setGUID(GUID)
                 UserPreferences().loggedIn(true)
                 details!["success"] = true
                 details!["name"] = name
             }
-            else if code == "1001" // username doesnt exist
+            else if code == RETURNCODES.GET_USER_DOES_NOT_EXIST  //  "1001" // username doesnt exist
             {
                 details!["error"] = "Username doesn't exist"
             }
-            else if code == "1002" // invalid password
+            else if code == RETURNCODES.LOGIN_INCORRECT_PASSWORD //"1002" // invalid password
             {
                 details!["error"] = "Invalid password"
             }
@@ -54,7 +54,7 @@ class BluemixCommunication: NSObject
     {
         var details:Dictionary<String,AnyObject>?
         details = ["error": "", "success": false]
-        let params = ["action": "130", "eventId": eventID]
+        let params = ["action": ACTIONCODES.GET_EVENT_INFO, "eventId": eventID]
         let route = BackendConstants.eventURL
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, response, rawJSON, _) -> Void in
             var json = JSON(rawJSON!)
@@ -81,30 +81,33 @@ class BluemixCommunication: NSObject
     func getRecentEvents(count: Int, completion:(result: [Event]) -> Void)
     {
         let eventCount = String(count)
-        let params = ["action": "131", "count": eventCount]
+        let params = ["action": ACTIONCODES.GET_RECENT_EVENTS, "count": eventCount]
         let route = BackendConstants.eventURL
         
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
-            let json = JSON(response!)
-//            println("GET RECENT EVENTS\n \(json)")
-            var events:[Event] = []
-            for(var i = 0; i < json.count; i++)
+            if response != nil
             {
-                let title = json[i]["event"]["title"].stringValue
-                let hostID = json[i]["event"]["hostId"].stringValue
-                let endTime = json[i]["event"]["endTime"].intValue
-                let id = json[i]["event"]["id"].stringValue
-                let long = CLLocationDegrees(json[i]["event"]["lon"].floatValue)
-                let lat = CLLocationDegrees(json[i]["event"]["lat"].floatValue)
-                let startTime = json[i]["event"]["startTime"].intValue
-                let userRealName = json[i]["user"]["name"].stringValue
-                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate(), eventID: id, hostName: userRealName)
-                
-                events.append(event)
+                let json = JSON(response!)
+    //            println("GET RECENT EVENTS\n \(json)")
+                var events:[Event] = []
+                for(var i = 0; i < json.count; i++)
+                {
+                    let title = json[i]["event"]["title"].stringValue
+                    let hostID = json[i]["event"]["hostId"].stringValue
+                    let endTime = json[i]["event"]["endTime"].intValue
+                    let id = json[i]["event"]["id"].stringValue
+                    let long = CLLocationDegrees(json[i]["event"]["lon"].floatValue)
+                    let lat = CLLocationDegrees(json[i]["event"]["lat"].floatValue)
+                    let startTime = json[i]["event"]["startTime"].intValue
+                    let userRealName = json[i]["user"]["name"].stringValue
+                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate(), eventID: id, hostName: userRealName)
+                    
+                    events.append(event)
+                }
+    
+                completion(result: events)
             }
-        
-            completion(result: events)
         }
     }
     
@@ -113,7 +116,7 @@ class BluemixCommunication: NSObject
     ******************************************************************************************/
     func getUserInfoByID(userID: String, completion: (user: Dictionary<String,AnyObject>?) -> Void)
     {
-        let params = ["action": "111", "userId": userID]
+        let params = ["action": ACTIONCODES.GET_USER_INFO, "userId": userID]
         let route = BackendConstants.userURL
         
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
@@ -131,6 +134,19 @@ class BluemixCommunication: NSObject
     }
     
     
+    func createEvent(params: Dictionary<String,AnyObject>)
+    {
+        
+        Alamofire.request(.POST, BackendConstants.eventURL, parameters: params ).responseString { (_, response, string,_) -> Void in
+            println("response:\(string)")
+        }
+    }
+
+
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func sendImage(image: UIImage)
     {
 //        var imageData = UIImagePNGRepresentation(image)
@@ -144,7 +160,9 @@ class BluemixCommunication: NSObject
         
     }
     
-    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func getImage(completion: (image: UIImage?) -> Void)
     {
         

@@ -179,22 +179,20 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     *           startTime: the time the event is going to start/ when people should meet
     *           endTime: the time the event will end
     */
-    @IBAction func onAddFriendsPress(sender: AnyObject) {
-
+    @IBAction func onAddFriendsPress(sender: AnyObject)
+    {
         let hostId = UserPreferences().getGUID()
-        
         let date = eventDate.date
         let timestamp = (date.timeIntervalSince1970) * 1000
         let timestampInMs = Int(timestamp)
+        
         while( finishedGettingPlaceDetail == false){}
+        
         let long = "\(places[selectedIndex].coordinate!.longitude)"
         let lat = "\(places[selectedIndex].coordinate!.latitude)"
-        let params = ["action": "120", "title":eventNameTextField.text, "host":hostId, "lat":lat, "lon":long, "startTime":timestampInMs as NSObject, "endTime":timestampInMs]
-        Alamofire.request(.POST, BackendConstants.eventURL, parameters: params ).responseString { (_, response, string,_) -> Void in
-            println("response:\(string)")
-        }
         
-
+        let params = ["action": ACTIONCODES.NEW_EVENT, "title":eventNameTextField.text, "host":hostId, "lat":lat, "lon":long, "startTime":timestampInMs as NSObject, "endTime":timestampInMs]
+        
     }
  
 }
