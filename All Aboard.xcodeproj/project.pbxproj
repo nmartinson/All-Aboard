@@ -99,6 +99,7 @@
 		2BE604101A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */; };
 		2BE604241A9FD3AB004685C0 /* ActionCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604231A9FD3AB004685C0 /* ActionCodes.swift */; };
 		2BE6042A1A9FD726004685C0 /* ReturnCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604291A9FD726004685C0 /* ReturnCodes.swift */; };
+		2BE604321A9FE5F8004685C0 /* InviteFriendsToEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604311A9FE5F8004685C0 /* InviteFriendsToEventController.swift */; };
 		2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E61A79700E00DE0E57 /* AppDelegate.swift */; };
 		2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */; };
 		2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */; };
@@ -329,6 +330,7 @@
 		2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BE604231A9FD3AB004685C0 /* ActionCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCodes.swift; sourceTree = "<group>"; };
 		2BE604291A9FD726004685C0 /* ReturnCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnCodes.swift; sourceTree = "<group>"; };
+		2BE604311A9FE5F8004685C0 /* InviteFriendsToEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsToEventController.swift; sourceTree = "<group>"; };
 		2BE791E11A79700E00DE0E57 /* All Aboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Aboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE791E51A79700E00DE0E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE791E61A79700E00DE0E57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
 				3C97C1131A7C534C006243A9 /* Event.swift */,
+				2BE604311A9FE5F8004685C0 /* InviteFriendsToEventController.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
@@ -1011,6 +1014,7 @@
 				2BC9C4A91A956EB00044D886 /* UIView+JSQMessages.m in Sources */,
 				2BC9C4BD1A956EB00044D886 /* JSQMessagesLabel.m in Sources */,
 				2BC9C4AA1A956EB00044D886 /* JSQMessagesKeyboardController.m in Sources */,
+				2BE604321A9FE5F8004685C0 /* InviteFriendsToEventController.swift in Sources */,
 				2BC9C4BB1A956EB00044D886 /* JSQMessagesComposerTextView.m in Sources */,
 				2BC9C4CB1A9587DD0044D886 /* MessagesViewController.swift in Sources */,
 				2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */,

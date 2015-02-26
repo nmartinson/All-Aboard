@@ -185,6 +185,12 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     */
     @IBAction func onAddFriendsPress(sender: AnyObject)
     {
+        BluemixCommunication().getUserFriendListByID(UserPreferences().getGUID())
+        {
+            (friends: Dictionary<String,AnyObject>?) in
+            
+        
+        }
 //        let hostId = UserPreferences().getGUID()
 //        let date = eventDate.date
 //        let timestamp = (date.timeIntervalSince1970) * 1000

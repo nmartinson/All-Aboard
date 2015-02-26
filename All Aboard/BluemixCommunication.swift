@@ -122,16 +122,41 @@ class BluemixCommunication: NSObject
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
             var userInfo:Dictionary<String,AnyObject>?
             userInfo = ["name": "", "username": "", "id": ""]
-
+            if response != nil
+            {
+                let json = JSON(response!)
+    //            println("USER INFO\n \(json)")
+                userInfo!["username"] = json["username"].stringValue
+                userInfo!["id"] = json["id"].stringValue
+                userInfo!["name"] = json["name"].stringValue
+                
+                completion(user: userInfo)
+            }
+        }
+    }
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    func getUserFriendListByID(userID: String, completion: (user: Dictionary<String,AnyObject>?) -> Void)
+    {
+        let params = ["action": ACTIONCODES.GET_USER_FRIEND_LIST, "userId": userID]
+        let route = BackendConstants.userURL
+        
+        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
+            var userInfo:Dictionary<String,AnyObject>?
+//            userInfo = ["name": "", "username": "", "id": ""]
+            
             let json = JSON(response!)
-//            println("USER INFO\n \(json)")
-            userInfo!["username"] = json["username"].stringValue
-            userInfo!["id"] = json["id"].stringValue
-            userInfo!["name"] = json["name"].stringValue
+                        println("USER INFO\n \(json)")
+//            userInfo!["username"] = json["username"].stringValue
+//            userInfo!["id"] = json["id"].stringValue
+//            userInfo!["name"] = json["name"].stringValue
             
             completion(user: userInfo)
         }
     }
+    
     
     
     func createEvent(params: Dictionary<String,AnyObject>)
