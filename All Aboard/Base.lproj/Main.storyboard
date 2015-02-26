@@ -493,7 +493,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIz-Ox-Gfs">
-                                        <rect key="frame" x="8" y="138" width="102.5" height="20.5"/>
+                                        <rect key="frame" x="8" y="138" width="103" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -693,13 +693,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhi-go-UAB">
-                                <rect key="frame" x="238" y="145" width="125" height="20.5"/>
+                                <rect key="frame" x="238" y="145" width="125" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5D-i6-BgF">
-                                <rect key="frame" x="267" y="206" width="66.5" height="20.5"/>
+                                <rect key="frame" x="267" y="206" width="67" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -801,7 +801,6 @@
                                 <exclude reference="Gzz-S5-iNB"/>
                                 <exclude reference="h7y-65-m3g"/>
                                 <exclude reference="zuh-1s-EQa"/>
-                                <exclude reference="ymh-Fe-6WO"/>
                                 <exclude reference="4XK-SV-f1I"/>
                                 <exclude reference="4qN-gu-HmB"/>
                                 <exclude reference="BKA-35-EdD"/>
@@ -810,6 +809,7 @@
                                 <exclude reference="IHM-LB-RIS"/>
                                 <exclude reference="Jjt-Tx-Jbd"/>
                                 <exclude reference="cF8-SZ-BqQ"/>
+                                <exclude reference="ymh-Fe-6WO"/>
                                 <exclude reference="80Z-Ir-rUD"/>
                                 <exclude reference="aek-Y2-n2a"/>
                                 <exclude reference="mLH-SR-0yX"/>
