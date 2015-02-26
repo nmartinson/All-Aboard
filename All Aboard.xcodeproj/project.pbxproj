@@ -97,6 +97,8 @@
 		2BE604041A9AC37B004685C0 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604031A9AC37B004685C0 /* GooglePlace.swift */; };
 		2BE604071A9B83DF004685C0 /* GooglePlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604061A9B83DF004685C0 /* GooglePlaceDetail.swift */; };
 		2BE604101A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */; };
+		2BE604241A9FD3AB004685C0 /* ActionCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604231A9FD3AB004685C0 /* ActionCodes.swift */; };
+		2BE6042A1A9FD726004685C0 /* ReturnCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE604291A9FD726004685C0 /* ReturnCodes.swift */; };
 		2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E61A79700E00DE0E57 /* AppDelegate.swift */; };
 		2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */; };
 		2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */; };
@@ -328,6 +330,8 @@
 		2BE604031A9AC37B004685C0 /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
 		2BE604061A9B83DF004685C0 /* GooglePlaceDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceDetail.swift; sourceTree = "<group>"; };
 		2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BE604231A9FD3AB004685C0 /* ActionCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCodes.swift; sourceTree = "<group>"; };
+		2BE604291A9FD726004685C0 /* ReturnCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnCodes.swift; sourceTree = "<group>"; };
 		2BE791E11A79700E00DE0E57 /* All Aboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Aboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE791E51A79700E00DE0E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE791E61A79700E00DE0E57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -430,7 +434,9 @@
 			isa = PBXGroup;
 			children = (
 				2BF988DA1A8960B900F9E327 /* APIkeys.swift */,
+				2BE604291A9FD726004685C0 /* ReturnCodes.swift */,
 				2B04BD111A80228300494335 /* BackendConstants.swift */,
+				2BE604231A9FD3AB004685C0 /* ActionCodes.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -647,15 +653,6 @@
 			name = GoogleSearchAutocomplete;
 			sourceTree = "<group>";
 		};
-		2BE604171A9F7799004685C0 /* EventDetails */ = {
-			isa = PBXGroup;
-			children = (
-				2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */,
-				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
-			);
-			name = EventDetails;
-			sourceTree = "<group>";
-		};
 		2BE791D81A79700E00DE0E57 = {
 			isa = PBXGroup;
 			children = (
@@ -687,7 +684,6 @@
 				2BC9C4131A9396F80044D886 /* User */,
 				2BC9C40E1A928CCB0044D886 /* NewsFeed */,
 				2BC9C4CD1A9587EC0044D886 /* Chat */,
-				2BE604171A9F7799004685C0 /* EventDetails */,
 				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
 				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
@@ -810,9 +806,9 @@
 		3C562EA11A9BB5C000CCD97B /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
-				3C97C1131A7C534C006243A9 /* Event.swift */,
+				2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */,
 				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
+				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -1033,6 +1029,7 @@
 				2B04BCFB1A7C541400494335 /* SwiftyJSON.swift in Sources */,
 				2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */,
 				2BE7921B1A7985D100DE0E57 /* NewsFeedController.swift in Sources */,
+				2BE604241A9FD3AB004685C0 /* ActionCodes.swift in Sources */,
 				2BC9C4A81A956EB00044D886 /* UIImage+JSQMessages.m in Sources */,
 				2B04BD0B1A80042000494335 /* RNDecryptor.m in Sources */,
 				2BC9C4B91A956EB00044D886 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
@@ -1047,6 +1044,7 @@
 				2BC9C4C21A956EB00044D886 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				2BC9C4A71A956EB00044D886 /* UIColor+JSQMessages.m in Sources */,
 				2BE792191A79832800DE0E57 /* RearViewController.swift in Sources */,
+				2BE6042A1A9FD726004685C0 /* ReturnCodes.swift in Sources */,
 				2BC9C4BC1A956EB00044D886 /* JSQMessagesInputToolbar.m in Sources */,
 				2BC9C4B71A956EB00044D886 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				2BC9C4A51A956EB00044D886 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
