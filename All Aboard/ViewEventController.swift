@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import Alamofire
+import MobileCoreServices
 
-class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate
+class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate
 {
     let locationManager  = CLLocationManager()
     @IBOutlet weak var mapView: GMSMapView!
@@ -27,8 +28,14 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var hostedByPic:UIImage?
     var hostedByText = ""
     
+    @IBOutlet weak var photoGalleryCollectionView: UICollectionView!
+    var photoCollection:[UIImage] = []
+    var statusBarHidden = false
     var slideViewFrame:CGRect?
     var event:Event?
+    var imageView:UIImageView?
+    var imageScroll:UIScrollView = UIScrollView()
+    var blackView = UIView()
     
     /******************************************************************************************
     *   Configure map view and center at the event location
@@ -39,8 +46,21 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     {
         super.viewDidLoad()
         navBarTitle?.title = locationText
-//        view.bringSubviewToFront(navBar)
 
+        // Test image
+        photoCollection.append(UIImage(named: "testImage")!)
+        
+        imageScroll.delegate = self
+//        imageScroll.frame = self.view.frame
+        imageScroll.frame = UIScreen.mainScreen().bounds
+        blackView.frame = self.view.frame
+        blackView.backgroundColor = UIColor.blackColor()
+        blackView.alpha = 0
+        
+        var doubleTapGesture = UITapGestureRecognizer(target: self, action: "closeImage:")
+        doubleTapGesture.numberOfTapsRequired = 2
+        imageScroll.addGestureRecognizer(doubleTapGesture)
+        
         // Configure map view
         mapView.delegate = self
         locationManager.delegate = self
@@ -55,8 +75,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             mapView.settings.myLocationButton = true
         }
         
-        println(event!.EventCoordinates?.latitude)
-        println(event?.EventCoordinates?.longitude)
+
         mapView.camera = GMSCameraPosition(target: event!.EventCoordinates!, zoom: 15, bearing: 0, viewingAngle: 0)
         var marker = GMSMarker(position: event!.EventCoordinates!)
         marker.title = "Here"
@@ -67,6 +86,17 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         hostedByLabel.text = "\(hostedByLabel.text!) \(hostedByText)"
 //        locationLabel.text = "\(locationLabel.text!) \(locationText)"
         timeLabel.text = "\(timeLabel.text!) Tonight at 8pm"
+        
+        
+//        BluemixCommunication().getImage()
+//        {
+//            (image: UIImage?) in
+//            if image != nil
+//            {
+//                self.photoCollection.append(image!)
+//                self.photoGalleryCollectionView.reloadData()
+//            }
+//        }
     }
     
     /******************************************************************************************
@@ -75,19 +105,6 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     override func viewWillAppear(animated: Bool)
     {
         slideView.frame = CGRectMake(0, UIScreen.mainScreen().bounds.height - 50, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
-    }
-    
-    /******************************************************************************************
-    *
-    ******************************************************************************************/
-    @IBAction func handleTap(sender: UITapGestureRecognizer)
-    {
-//                slideViewPosition = sender.view?.layer.positio
-//        slideViewFrame = slideView.frame
-//        println("tap frame \(slideViewFrame)")
-//        sender.view!.layer.removeAllAnimations()
-//
-//        println("TAP")
     }
     
     /******************************************************************************************
@@ -128,9 +145,182 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                 animations: {recognizer.view!.center = finalPoint },
                 completion: nil)
             
-//            println("ENDED")
         }
 
+    }
+    
+    /******************************************************************************************
+    *   Open the camera roll
+    ******************************************************************************************/
+    @IBAction func cameraRollPressed(sender: AnyObject)
+    {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum)
+        {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePicker.mediaTypes = [kUTTypeImage as NSString]
+            imagePicker.allowsEditing = false
+            self.presentViewController(imagePicker, animated: true, completion: { () -> Void in
+                
+            })
+        }
+    }
+    
+    /******************************************************************************************
+    *   Save the picked image
+    ******************************************************************************************/
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!)
+    {
+        photoCollection.append(image)
+//        BluemixCommunication().sendImage(image)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        photoGalleryCollectionView.reloadData()
+    }
+    
+    /******************************************************************************************
+    *   When a cell is about to be displayed, the image gets set
+    ******************************************************************************************/
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as PhotoGalleryCollectionViewCell
+        cell.image.image = photoCollection[indexPath.item]
+
+        return cell
+    }
+    
+    /******************************************************************************************
+    *   Open the image to full screen with animation when selected
+    ******************************************************************************************/
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        let thumbnail = collectionView.cellForItemAtIndexPath(indexPath)?.contentView.subviews.last as UIImageView
+        imageView = UIImageView(image: photoCollection[indexPath.row])
+        imageView!.contentMode = thumbnail.contentMode
+        imageScroll.contentSize = imageView!.frame.size
+        
+        let scaleWidth = imageScroll.frame.size.width / imageScroll.contentSize.width
+        let scaleHeight = imageScroll.frame.size.height / imageScroll.contentSize.height
+        let minScale = min(scaleHeight, scaleWidth)
+        imageScroll.minimumZoomScale = minScale
+        imageScroll.maximumZoomScale = 1
+        imageScroll.zoomScale = minScale
+        imageScroll.frame = thumbnail.frame
+        imageScroll.addSubview(imageView!)
+        self.view.addSubview(self.blackView)
+        
+        // hide the status bar
+        self.statusBarHidden = true
+        self.prefersStatusBarHidden()
+
+        // open the image
+        UIView.transitionWithView(self.view, duration: 1,
+            options: UIViewAnimationOptions.AllowAnimatedContent,
+            animations: {
+                self.navigationController?.navigationBar.alpha = 0 // hide navbar
+                self.blackView.alpha = 1    // show black background
+                self.view.addSubview(self.imageScroll)
+                self.imageScroll.frame = self.view.frame
+                self.imageView!.center = self.imageScroll.center
+                self.imageScroll.contentSize = self.imageView!.frame.size},
+            completion: nil)
+    }
+    
+    
+    /******************************************************************************************
+    *   Closes the open image with a fading transition
+    ******************************************************************************************/
+    func closeImage(recognizer: UITapGestureRecognizer)
+    {
+        // show the status bar
+        statusBarHidden = false
+        self.prefersStatusBarHidden()
+
+        UIView.transitionWithView(self.view, duration: 0.5,
+            options: UIViewAnimationOptions.AllowAnimatedContent,
+            animations: {
+                self.navigationController?.navigationBar.alpha = 1
+                self.imageView?.alpha = 0
+                self.blackView.alpha = 0
+            },
+            completion: { Void in
+                self.blackView.removeFromSuperview()
+                self.imageScroll.removeFromSuperview()
+                self.imageView?.removeFromSuperview()
+        })
+    }
+    
+    /******************************************************************************************
+    *   Specifies that the status bar animation style should be fade
+    ******************************************************************************************/
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation
+    {
+        return UIStatusBarAnimation.Fade
+    }
+    
+    /******************************************************************************************
+    *   Hides and shows the status bar
+    ******************************************************************************************/
+    override func prefersStatusBarHidden() -> Bool
+    {
+        return statusBarHidden
+    }
+    
+    /******************************************************************************************
+    *   Return the imageview that should be zoomed
+    ******************************************************************************************/
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?
+    {
+        return imageView
+    }
+    
+    /******************************************************************************************
+    *   When the scrollview ends zooming the content size needs to be updated to the new size 
+    *   of the imageview, then the imageview needs to be centered.
+    ******************************************************************************************/
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat)
+    {
+        scrollView.contentSize = CGSizeMake(imageView!.image!.size.width*scale, imageView!.image!.size.height*scale)
+        centerScrollViewContents()
+    }
+
+    /******************************************************************************************
+    *   Centers the image when zooming
+    ******************************************************************************************/
+    func centerScrollViewContents()
+    {
+        let boundsSize = imageScroll.bounds.size
+        var contentsFrame = imageView!.frame
+        
+        if contentsFrame.size.width < boundsSize.width
+        {
+            contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0
+        }
+        else
+        {
+            contentsFrame.origin.x = 0.0
+        }
+        if contentsFrame.size.height < boundsSize.height
+        {
+            contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0
+        }
+        else
+        {
+            contentsFrame.origin.y = 0.0
+        }
+        
+        UIView.transitionWithView(self.view, duration: 0.5,
+            options: UIViewAnimationOptions.AllowAnimatedContent,
+            animations: { self.imageView!.frame = contentsFrame},
+            completion: nil)
+    }
+    
+    /******************************************************************************************
+    *   Tells the collection view how many images to display
+    ******************************************************************************************/
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return photoCollection.count
     }
     
     /******************************************************************************************
@@ -138,9 +328,12 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     ******************************************************************************************/
     @IBAction func backButtonPressed(sender: AnyObject)
     {
-        dismissViewControllerAnimated(true, completion: { () -> Void in })
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "toChat"

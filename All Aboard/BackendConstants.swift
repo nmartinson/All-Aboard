@@ -16,7 +16,7 @@ enum BackendConstants
 //    static let recentEvents = "http://hangout.mybluemix.net/GetMostRecentEvents?count="
     
     
-    
+    static let testURL = "http://hangout.mybluemix.net/Test"
     static let userURL = "http://hangout.mybluemix.net/User"
     static let eventURL = "http://hangout.mybluemix.net/Event"
 

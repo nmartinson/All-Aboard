@@ -177,8 +177,31 @@ class BluemixCommunication: NSObject
     **/
     
     
+    func sendImage(image: UIImage)
+    {
+//        var imageData = UIImagePNGRepresentation(image)
+        var imageData = UIImageJPEGRepresentation(image, 0.5)
+        let base64image = imageData.base64EncodedStringWithOptions(.allZeros)
+        let params = ["encodedImage": base64image]
+        
+        Alamofire.request(.POST, BackendConstants.testURL, parameters: params).responseString { (_, response, responseCode, _) -> Void in
+            println(responseCode)
+        }
+        
+    }
     
     
-    
+    func getImage(completion: (image: UIImage?) -> Void)
+    {
+        
+        Alamofire.request(.GET, BackendConstants.testURL, parameters: nil).responseString { (_, response, imageString, _) -> Void in
+            
+            let decodedData = NSData(base64EncodedString: imageString!, options: NSDataBase64DecodingOptions(rawValue: 0))
+            var decodedImage = UIImage(data: decodedData!)
+            completion(image: decodedImage)
+        }
+
+
+    }
     
 }

@@ -31,20 +31,28 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     var places:[GooglePlace] = []
     var googleSearch = GoogleSearch()
     var searchString = ""
-    var selectedIndex = 0
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-
-    }
+    var selectedIndex = 0   // index of selected segment
+    var finishedGettingPlaceDetail = false  // used to block from creating event until place info has been received
     
     
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        searchTableView.layer.cornerRadius = 5
         clearView()
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(true)
+        clearView()
+    }
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as UITableViewCell
@@ -53,6 +61,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         return cell
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if places.count == 0
@@ -66,31 +77,46 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         return places.count
     }
 
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         eventlocationTextField.text = places[indexPath.row].shortName
+        selectedIndex = indexPath.row
+        
         let placeID = places[indexPath.row].place_id!
         GoogleSearch().fetchPlaceDetails(placeID)
         {
             (place: GooglePlaceDetail) in
             self.places[indexPath.row].coordinate = place.coordinates
+            println(place.coordinates?.longitude)
+            self.finishedGettingPlaceDetail = true
         }
         
         tableView.hidden = true
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
     
+    /******************************************************************************************
+    *   Reset the entire view back to inital with no values
+    ******************************************************************************************/
     func clearView()
     {
         searchString = ""
         eventNameTextField.text = ""
         eventlocationTextField.text = ""
         places = []
+        searchTableView.hidden = true
+        searchTableView.reloadData()
     }
     /***********************************************FUNCTIONS********************************************************/
     
@@ -154,18 +180,16 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     *           endTime: the time the event will end
     */
     @IBAction func onAddFriendsPress(sender: AnyObject) {
-        
-        println(eventType)
 
         let hostId = UserPreferences().getGUID()
         
         let date = eventDate.date
         let timestamp = (date.timeIntervalSince1970) * 1000
         let timestampInMs = Int(timestamp)
+        while( finishedGettingPlaceDetail == false){}
         let long = "\(places[selectedIndex].coordinate!.longitude)"
         let lat = "\(places[selectedIndex].coordinate!.latitude)"
         let params = ["action": "120", "title":eventNameTextField.text, "host":hostId, "lat":lat, "lon":long, "startTime":timestampInMs as NSObject, "endTime":timestampInMs]
-        println(params)
         Alamofire.request(.POST, BackendConstants.eventURL, parameters: params ).responseString { (_, response, string,_) -> Void in
             println("response:\(string)")
         }
