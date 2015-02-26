@@ -115,7 +115,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
         else
         {
             activityIndicator.startAnimating()
-            let params = ["username": username, "password": password, "action": "100"]
+            let params = ["username": username, "password": password, "action": ACTIONCODES.USER_LOGIN]
             BluemixCommunication().loginRequest(params){
                 (results: Dictionary<String,AnyObject>?) in
                 self.activityIndicator.stopAnimating()
