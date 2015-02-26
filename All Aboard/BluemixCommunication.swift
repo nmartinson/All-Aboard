@@ -130,6 +130,52 @@ class BluemixCommunication: NSObject
         }
     }
     
+    func getFriendsList(userID:String, completion: (result: [Dictionary<String,AnyObject>?]) -> Void)
+    {
+        let params = ["action": "114","userId": userID]
+        let route = BackendConstants.userURL
+        
+        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
+            let json = JSON(response!)
+            println(json)
+            var userInfo:Dictionary<String,AnyObject>?
+            userInfo = ["name": "", "username": "", "id": ""]
+            //            println("GET RECENT EVENTS\n \(json)")
+            var friends:[Dictionary<String,AnyObject>?] = []
+            for(var i = 0; i < json.count; i++)
+            {
+                userInfo!["username"] = json[i]["user"]["username"].stringValue
+                userInfo!["id"] = json[i]["user"]["id"].stringValue
+                userInfo!["name"] = json[i]["user"]["name"].stringValue
+                
+                friends.append(userInfo)
+            }
+            
+            completion(result: friends)
+        }
+    }
+    
+    
+    
+    
+    /**
+
+    Friends List Notes: 
+        Add: 112
+                params: userId, friendId
+        
+        Remove: 113
+                params: userId, friendId
+    
+        Get friends list: 114
+                params: userId
+    
+        Searching by Username: 140
+                params: username
+
+
+    **/
+    
     
     
     

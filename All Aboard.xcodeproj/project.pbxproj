@@ -115,6 +115,9 @@
 		2BF988E41A8973EF00F9E327 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */; };
 		2BF988F61A89786C00F9E327 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF988F31A89785F00F9E327 /* Alamofire.framework */; };
 		2BF988F71A89786C00F9E327 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2BF988F31A89785F00F9E327 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C562EA81A9BBCB200CCD97B /* ViewFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C562EA71A9BBCB200CCD97B /* ViewFriendsViewController.swift */; };
+		3C562EAE1A9BCE6700CCD97B /* SearchFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C562EAD1A9BCE6700CCD97B /* SearchFriendsViewController.swift */; };
+		3C562EB01A9BD4C600CCD97B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C562EAF1A9BD4C600CCD97B /* User.swift */; };
 		3C97C1141A7C534C006243A9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1131A7C534C006243A9 /* Event.swift */; };
 		3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */; };
 /* End PBXBuildFile section */
@@ -346,6 +349,9 @@
 		2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2BF988ED1A89785F00F9E327 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../Libraries/Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		3C3D37DD1A9515410012D989 /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
+		3C562EA71A9BBCB200CCD97B /* ViewFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFriendsViewController.swift; sourceTree = "<group>"; };
+		3C562EAD1A9BCE6700CCD97B /* SearchFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewController.swift; sourceTree = "<group>"; };
+		3C562EAF1A9BD4C600CCD97B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3C97C1131A7C534C006243A9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -427,13 +433,16 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-		2BC9C4131A9396F80044D886 /* Login/NewUser */ = {
+		2BC9C4131A9396F80044D886 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
+				2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */,
 				2BE791EB1A79700E00DE0E57 /* LoginViewController.swift */,
+				3C562EAF1A9BD4C600CCD97B /* User.swift */,
 				2B04BD0F1A801FC700494335 /* NewUserController.swift */,
 			);
-			name = Login/NewUser;
+			name = User;
 			sourceTree = "<group>";
 		};
 		2BC9C4281A956C050044D886 /* Products */ = {
@@ -664,14 +673,12 @@
 				2BE7920C1A79710400DE0E57 /* Frameworks */,
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
 				2BC9C4121A9396E40044D886 /* Constants */,
-				2BC9C4131A9396F80044D886 /* Login/NewUser */,
+				2BC9C4131A9396F80044D886 /* User */,
 				2BC9C40E1A928CCB0044D886 /* NewsFeed */,
 				2BC9C4CD1A9587EC0044D886 /* Chat */,
 				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
-				2BF988E31A8973EF00F9E327 /* ProfileViewController.swift */,
 				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
-				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
@@ -781,6 +788,8 @@
 			children = (
 				2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */,
 				2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */,
+				3C562EA71A9BBCB200CCD97B /* ViewFriendsViewController.swift */,
+				3C562EAD1A9BCE6700CCD97B /* SearchFriendsViewController.swift */,
 			);
 			name = Friendslist;
 			path = ..;
@@ -993,6 +1002,7 @@
 				3C97C1141A7C534C006243A9 /* Event.swift in Sources */,
 				2BE604041A9AC37B004685C0 /* GooglePlace.swift in Sources */,
 				2BC9C4C01A956EB00044D886 /* JSQMessagesToolbarContentView.m in Sources */,
+				3C562EB01A9BD4C600CCD97B /* User.swift in Sources */,
 				2BC9C4AE1A956EB00044D886 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				2BC9C4CC1A9587DD0044D886 /* Message.swift in Sources */,
 				2BEC045A1A79A890003E77DD /* NewsFeedTableViewCell.swift in Sources */,
@@ -1000,6 +1010,7 @@
 				2BC9C4AF1A956EB00044D886 /* JSQMessagesTimestampFormatter.m in Sources */,
 				2B04BD121A80228300494335 /* BackendConstants.swift in Sources */,
 				2BC9C4A91A956EB00044D886 /* UIView+JSQMessages.m in Sources */,
+				3C562EAE1A9BCE6700CCD97B /* SearchFriendsViewController.swift in Sources */,
 				2BC9C4BD1A956EB00044D886 /* JSQMessagesLabel.m in Sources */,
 				2BC9C4AA1A956EB00044D886 /* JSQMessagesKeyboardController.m in Sources */,
 				2BC9C4BB1A956EB00044D886 /* JSQMessagesComposerTextView.m in Sources */,
@@ -1032,6 +1043,7 @@
 				2BC9C4AB1A956EB00044D886 /* JSQMessagesViewController.m in Sources */,
 				2BC9C4B61A956EB00044D886 /* JSQMessagesCollectionViewCell.m in Sources */,
 				2BE604071A9B83DF004685C0 /* GooglePlaceDetail.swift in Sources */,
+				3C562EA81A9BBCB200CCD97B /* ViewFriendsViewController.swift in Sources */,
 				2BC1C5F71A9A6733000F14DA /* AddFriendsViewController.swift in Sources */,
 				2B04BD091A80042000494335 /* RNCryptor.m in Sources */,
 				2BC9C4C81A956EBA0044D886 /* JSQSystemSoundPlayer.m in Sources */,

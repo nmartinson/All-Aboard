@@ -19,4 +19,5 @@ enum BackendConstants
     
     static let userURL = "http://hangout.mybluemix.net/User"
     static let eventURL = "http://hangout.mybluemix.net/Event"
+
 }

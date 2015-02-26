@@ -811,7 +811,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dvc-jb-B49">
-                                <rect key="frame" x="424" y="82" width="146" height="49"/>
+                                <rect key="frame" x="424" y="147" width="146" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="146" id="96C-51-O98"/>
                                     <constraint firstAttribute="height" constant="49" id="pab-jc-Tfr"/>
@@ -826,19 +826,32 @@
                                     <constraint firstAttribute="height" constant="209" id="NLm-sC-Szr"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbd-pL-f1c">
+                                <rect key="frame" x="424" y="89" width="146" height="41"/>
+                                <state key="normal" title="Friends List">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="G06-8U-nDw" kind="presentation" id="P73-Qw-OnR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="D2P-zZ-R4b" firstAttribute="top" secondItem="W2c-RW-GKl" secondAttribute="bottom" id="4Iz-x1-EEA"/>
+                            <constraint firstItem="wbd-pL-f1c" firstAttribute="leading" secondItem="Dvc-jb-B49" secondAttribute="leading" id="CFm-pe-To3"/>
                             <constraint firstItem="yvj-fq-uRp" firstAttribute="top" secondItem="NQP-dd-Fl6" secondAttribute="top" constant="28" id="LFb-nH-3A6"/>
                             <constraint firstItem="yvj-fq-uRp" firstAttribute="leading" secondItem="AU4-jn-rbY" secondAttribute="leading" id="M2T-qm-8ww"/>
                             <constraint firstItem="D2P-zZ-R4b" firstAttribute="leading" secondItem="Dvc-jb-B49" secondAttribute="leading" id="Mho-PY-GSR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D2P-zZ-R4b" secondAttribute="trailing" constant="14" id="VRR-SD-kK6"/>
-                            <constraint firstItem="Dvc-jb-B49" firstAttribute="top" secondItem="D2P-zZ-R4b" secondAttribute="bottom" constant="8" symbolic="YES" id="bZ6-8P-aNL"/>
+                            <constraint firstItem="wbd-pL-f1c" firstAttribute="top" secondItem="D2P-zZ-R4b" secondAttribute="bottom" constant="15" id="XP9-NZ-8Qw"/>
+                            <constraint firstItem="Dvc-jb-B49" firstAttribute="top" secondItem="D2P-zZ-R4b" secondAttribute="bottom" constant="73" id="bZ6-8P-aNL"/>
                             <constraint firstItem="AU4-jn-rbY" firstAttribute="top" secondItem="yvj-fq-uRp" secondAttribute="bottom" constant="14" id="e8h-uW-THe"/>
                             <constraint firstItem="D2P-zZ-R4b" firstAttribute="trailing" secondItem="Dvc-jb-B49" secondAttribute="trailing" id="fBE-Hp-2SJ"/>
+                            <constraint firstItem="wbd-pL-f1c" firstAttribute="trailing" secondItem="Dvc-jb-B49" secondAttribute="trailing" id="g8F-gm-qnY"/>
                             <constraint firstItem="AU4-jn-rbY" firstAttribute="bottom" secondItem="aZ4-lP-vqo" secondAttribute="top" id="knk-Jb-d76"/>
                             <constraint firstItem="yvj-fq-uRp" firstAttribute="leading" secondItem="NQP-dd-Fl6" secondAttribute="leadingMargin" id="upT-op-3Cd"/>
+                            <constraint firstItem="Dvc-jb-B49" firstAttribute="top" secondItem="wbd-pL-f1c" secondAttribute="bottom" constant="17" id="vCJ-HI-ml4"/>
                             <constraint firstItem="D2P-zZ-R4b" firstAttribute="leading" secondItem="yvj-fq-uRp" secondAttribute="trailing" constant="8" symbolic="YES" id="vKp-gA-Q78"/>
                         </constraints>
                     </view>
@@ -915,6 +928,11 @@
                                                 <action selector="backButtonPressed:" destination="kKA-dL-azt" id="bWa-hj-N2T"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Search By User Name" id="g1T-lm-eKf">
+                                            <connections>
+                                                <segue destination="HGt-ly-YbH" kind="presentation" id="m3q-P5-HTH"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -938,6 +956,84 @@
             </objects>
             <point key="canvasLocation" x="2082" y="850"/>
         </scene>
+        <!--Search Friends View Controller-->
+        <scene sceneID="Jjh-zq-Q3T">
+            <objects>
+                <viewController id="HGt-ly-YbH" customClass="SearchFriendsViewController" customModule="All_Aboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D4Q-6o-Wog"/>
+                        <viewControllerLayoutGuide type="bottom" id="itD-1u-14s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bYb-qK-WrD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HTg-oa-MKu">
+                                <rect key="frame" x="96" y="120" width="408" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ5-Uh-eYf">
+                                <rect key="frame" x="150" y="194" width="300" height="81"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="SearchButtonClicked:" destination="HGt-ly-YbH" eventType="touchUpInside" id="f4R-aF-n7a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuK-vM-ADt">
+                                <rect key="frame" x="277" y="506" width="30" height="30"/>
+                                <state key="normal" title="add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonClicked:" destination="HGt-ly-YbH" eventType="touchUpInside" id="xk2-XA-LJI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAh-XG-eHS">
+                                <rect key="frame" x="279" y="362" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBI-ZK-Zqv">
+                                <rect key="frame" x="279" y="410" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="idL" destination="pBI-ZK-Zqv" id="Xai-1f-EfH"/>
+                        <outlet property="searchTF" destination="HTg-oa-MKu" id="4O7-6C-LEM"/>
+                        <outlet property="usernameL" destination="fAh-XG-eHS" id="U2o-fs-m7f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZOI-vt-P7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2786" y="850"/>
+        </scene>
+        <!--View Friends View Controller-->
+        <scene sceneID="BDK-Qb-ct4">
+            <objects>
+                <viewController id="G06-8U-nDw" customClass="ViewFriendsViewController" customModule="All_Aboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fTt-eD-jXA"/>
+                        <viewControllerLayoutGuide type="bottom" id="dGz-zx-ZSb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0hw-Ye-uoz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lsY-RU-isP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111" y="1598"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gl0-ew-v1q">
             <objects>
@@ -956,7 +1052,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdb-j1-Uek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="509" y="838"/>
+            <point key="canvasLocation" x="509" y="850"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jZl-mR-OHr">
