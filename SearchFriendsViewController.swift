@@ -19,6 +19,9 @@ class SearchFriendsViewController: UIViewController {
     
     var searchedUser:User = User(id: "")
     
+    @IBAction func backButtonHit(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBAction func SearchButtonClicked(sender: AnyObject) {
         let hostId = UserPreferences().getGUID()
         println(hostId)
