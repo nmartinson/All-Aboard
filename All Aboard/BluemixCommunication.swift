@@ -138,26 +138,7 @@ class BluemixCommunication: NSObject
     /******************************************************************************************
     *
     ******************************************************************************************/
-    func getUserFriendListByID(userID: String, completion: (user: Dictionary<String,AnyObject>?) -> Void)
-    {
-        let params = ["action": ACTIONCODES.GET_USER_FRIEND_LIST, "userId": userID]
-        let route = BackendConstants.userURL
-        
-        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
-            var userInfo:Dictionary<String,AnyObject>?
-//            userInfo = ["name": "", "username": "", "id": ""]
-            
-            let json = JSON(response!)
-                        println("USER INFO\n \(json)")
-//            userInfo!["username"] = json["username"].stringValue
-//            userInfo!["id"] = json["id"].stringValue
-//            userInfo!["name"] = json["name"].stringValue
-            
-            completion(user: userInfo)
-        }
-    }
-    
-    func getFriendsList(userID:String, completion: (result: [Dictionary<String,AnyObject>?]) -> Void)
+    func getFriendsList(userID:String, completion: (result: [User]) -> Void)
     {
         let params = ["action": "114","userId": userID]
         let route = BackendConstants.userURL
@@ -168,17 +149,23 @@ class BluemixCommunication: NSObject
             var userInfo:Dictionary<String,AnyObject>?
             userInfo = ["name": "", "username": "", "id": ""]
             //            println("GET RECENT EVENTS\n \(json)")
+            var friendsArray:[User] = []
             var friends:[Dictionary<String,AnyObject>?] = []
             for(var i = 0; i < json.count; i++)
             {
                 userInfo!["username"] = json[i]["username"].stringValue
                 userInfo!["id"] = json[i]["id"].stringValue
                 userInfo!["name"] = json[i]["name"].stringValue
+                
+                let name = json[i]["username"].stringValue
+                let id = json[i]["id"].stringValue
+                let realName = json[i]["name"].stringValue
+                
+                friendsArray.append(User(name: name, id: id, real: realName))
                 friends.append(userInfo!)
-             //   println(userInfo!)
             }
             
-            completion(result: friends)
+            completion(result: friendsArray)
         }
     }
     

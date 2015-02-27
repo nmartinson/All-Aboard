@@ -13,19 +13,24 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
 {
     @IBOutlet weak var tableView: UITableView!
     
-    var people : [SwiftAddressBookPerson]? = []
-    var names : [String?]? = []
-    var numbers : [Array<String?>?]? = []
+    var people : [User] = []
+    
     
     override func viewDidLoad()
     {
-        
+        BluemixCommunication().getFriendsList(UserPreferences().getGUID())
+        {
+            (friends: [User]) in
+            self.people = friends
+            self.tableView.reloadData()
+            
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell = tableView.dequeueReusableCellWithIdentifier("contactCell") as ContactTableViewCell
-        cell.nameLabel.text = people![indexPath.row].compositeName
+        cell.nameLabel.text = people[indexPath.row].realname
         
         return cell
     }
@@ -35,7 +40,7 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return people!.count
+        return people.count
     }
     
     
