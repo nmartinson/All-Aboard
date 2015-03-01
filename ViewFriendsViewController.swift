@@ -13,6 +13,9 @@ class ViewFriendsViewController: UIViewController {
     
     @IBOutlet weak var friendsTableView: UITableView!
     
+    @IBAction func backButtonHit(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     var friendsL:[User] = []
 
     override func viewDidLoad() {

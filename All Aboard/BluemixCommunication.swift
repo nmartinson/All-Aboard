@@ -202,6 +202,20 @@ class BluemixCommunication: NSObject
 
 
     
+    
+    /******************************************************************************************
+    * Allows for placing an image in a dynamically created imageview
+    ******************************************************************************************/
+    func getLabelImage(imageStr: String, newImage: UIImageView, completion: (result: UIImage) -> Void)
+    {
+        Alamofire.request(.GET,imageStr).responseImage({ (request, _, image, error) -> Void in
+            if error == nil && image != nil{
+//                newImage.image = image
+                completion(result: image!)
+            }
+        })
+    }
+    
     /******************************************************************************************
     *
     ******************************************************************************************/

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 
-class SearchFriendsViewController: UIViewController {
+class SearchFriendsViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var idL: UILabel!
     
@@ -48,5 +48,10 @@ class SearchFriendsViewController: UIViewController {
         }
         
         
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

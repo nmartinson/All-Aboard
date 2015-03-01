@@ -19,9 +19,11 @@ class GoogleSearch:NSObject
         var url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(APIkeys.googlePlacesKey)"
     }
     
-    func fetchPlaces(searchString: String, completion:(places: [GooglePlace]) -> Void)
+    func fetchPlaces(searchString: String, coordinates: CLLocationCoordinate2D, completion:(places: [GooglePlace]) -> Void)
     {
-        let location = "41.6667,91.5333"
+        
+//        let location = "41.6667,91.5333"
+        let location = "\(coordinates.latitude),\(coordinates.longitude)"
         var url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(APIkeys.googlePlacesKey)&input=\(searchString)&location=\(location)"
         
         Alamofire.request(.GET, url, parameters: nil ).responseJSON { (_, response, rawJSON,_) -> Void in

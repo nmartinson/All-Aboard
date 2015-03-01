@@ -8,14 +8,47 @@
 
 import Foundation
 
+protocol checkBoxCellDelegate
+{
+    func didSelectCheckbox(userID: String)
+}
+
 class ContactTableViewCell: UITableViewCell
 {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addFriendButton: UIButton!
+    var userID = ""
+    var checkBoxSelected = false
+    var delegate:checkBoxCellDelegate?
+    @IBOutlet weak var userPicture: UIImageView!
+    
+    
+    override func awakeFromNib()
+    {
+        var imageStr = "http://graph.facebook.com/10203626718697502/picture?type=large"
+
+        BluemixCommunication().getLabelImage(imageStr, newImage: userPicture)
+        {
+            (image: UIImage) in
+            self.userPicture.image = image
+            self.userPicture.layer.cornerRadius = 23
+            self.userPicture.clipsToBounds = true
+        }
+    }
     
     @IBAction func addFriendButtonPressed(sender: AnyObject)
     {
+        delegate?.didSelectCheckbox(userID)
         
-        println(nameLabel.text!)
+        checkBoxSelected = !checkBoxSelected
+        if checkBoxSelected
+        {
+            addFriendButton.setImage(UIImage(named: "cb_dark_on.png"), forState: .Normal)
+        }
+        else
+        {
+            addFriendButton.setImage(UIImage(named: "cb_dark_off.png"), forState: .Normal)
+        }
     }
+    
 }

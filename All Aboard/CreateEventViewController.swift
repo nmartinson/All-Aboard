@@ -8,9 +8,10 @@
 
 import UIKit
 import Alamofire
+import MobileCoreServices
 
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate
+class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate
 {
     
     //the variable holding whether the event is a poll or regular event
@@ -26,7 +27,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     //the date picker object
     @IBOutlet weak var eventDate: UIDatePicker!
     
-    
+    let locationManager = CLLocationManager()
+    var location:CLLocationCoordinate2D?
     @IBOutlet weak var searchTableView: UITableView!
     var places:[GooglePlace] = []
     var googleSearch = GoogleSearch()
@@ -43,12 +45,22 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         super.viewDidAppear(true)
         searchTableView.layer.cornerRadius = 5
         clearView()
+        locationManager.delegate = self
+        
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse
+        {
+            locationManager.startUpdatingLocation()
+            location = locationManager.location.coordinate
+        }
     }
+    
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
         clearView()
     }
+
     
     /******************************************************************************************
     *
@@ -120,6 +132,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     }
     
     
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "inviteFreinds"
@@ -167,7 +181,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
             }
             else
             {
-                googleSearch.fetchPlaces(searchString){
+                
+                googleSearch.fetchPlaces(searchString, coordinates: location!){
                     (newPlaces: [GooglePlace]) in
                     self.places = newPlaces
                     self.searchTableView.reloadData()
