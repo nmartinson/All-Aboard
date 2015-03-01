@@ -664,8 +664,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UcC-9l-obg">
-                                <rect key="frame" x="52" y="396" width="494" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UcC-9l-obg">
+                                <rect key="frame" x="52" y="477" width="494" height="29"/>
                                 <segments>
                                     <segment title="Event"/>
                                     <segment title="Poll"/>
@@ -703,28 +703,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5D-i6-BgF">
-                                <rect key="frame" x="267" y="138" width="67" height="21"/>
+                                <rect key="frame" x="267" y="138" width="66.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CgV-pT-adm">
-                                <rect key="frame" x="16" y="213" width="568" height="162"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="162" id="2wD-6U-gwK"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="444352308.94659001">
-                                    <!--2015-01-30 23:11:48 +0000-->
-                                </date>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2wD-6U-gwK"/>
-                                    </mask>
-                                </variation>
-                            </datePicker>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gaD-ze-Izp">
-                                <rect key="frame" x="15.5" y="192" width="568" height="153"/>
+                                <rect key="frame" x="15" y="192" width="568" height="153"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="153" id="9Mv-DF-UBY"/>
                                 </constraints>
@@ -756,13 +741,43 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heg-p7-tvG">
-                                <rect key="frame" x="223" y="451" width="153" height="30"/>
+                                <rect key="frame" x="223" y="513" width="153" height="30"/>
                                 <state key="normal" title="Add Friends">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="d6R-vd-UZT" kind="presentation" identifier="inviteFriends" id="Wsk-5e-Iyg"/>
                                 </connections>
+                            </button>
+                            <datePicker hidden="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CgV-pT-adm">
+                                <rect key="frame" x="10" y="426" width="568" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="2wD-6U-gwK"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="444352308.94659001">
+                                    <!--2015-01-30 23:11:48 +0000-->
+                                </date>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2wD-6U-gwK"/>
+                                    </mask>
+                                </variation>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yw-WW-2Iw">
+                                <rect key="frame" x="52" y="353" width="494" height="30"/>
+                                <state key="normal" title="Start time:">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectTimePressed:" destination="fee-Fg-hc7" eventType="touchUpInside" id="gfq-M0-sYv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTw-SH-pPW">
+                                <rect key="frame" x="52" y="388" width="494" height="30"/>
+                                <state key="normal" title="End time:">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.72634761238553014" green="0.90799743923843979" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -827,8 +842,8 @@
                                 <exclude reference="ymh-Fe-6WO"/>
                                 <exclude reference="80Z-Ir-rUD"/>
                                 <exclude reference="mLH-SR-0yX"/>
-                                <exclude reference="BQ2-uE-Qz8"/>
                                 <exclude reference="KDj-ps-lK1"/>
+                                <exclude reference="BQ2-uE-Qz8"/>
                             </mask>
                         </variation>
                     </view>

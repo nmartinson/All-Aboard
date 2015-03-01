@@ -11,7 +11,7 @@ import Alamofire
 import MobileCoreServices
 
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate
+class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, CustomDatePickerDelegate
 {
     
     //the variable holding whether the event is a poll or regular event
@@ -27,6 +27,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     //the date picker object
     @IBOutlet weak var eventDate: UIDatePicker!
     
+    let dateView = DatePickerController()
     let locationManager = CLLocationManager()
     var location:CLLocationCoordinate2D?
     @IBOutlet weak var searchTableView: UITableView!
@@ -140,6 +141,20 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         revealViewController().revealToggle(sender)
     }
     
+    @IBAction func selectTimePressed(sender: UIButton)
+    {
+        self.tabBarController?.tabBar.hidden = true
+        dateView.delegate = self
+        view.addSubview(dateView)
+        view.bringSubviewToFront(dateView)
+    }
+    
+    func doneButtonPressed()
+    {
+        dateView.removeFromSuperview()
+        self.tabBarController?.tabBar.hidden = false
+
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
