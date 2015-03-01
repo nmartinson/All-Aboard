@@ -61,12 +61,21 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 61
     }
+    
     /******************************************************************************************
     *
     ******************************************************************************************/
     @IBAction func backButtonPressed(sender: AnyObject)
     {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    @IBAction func createEventButtonPressed(sender: UIBarButtonItem)
+    {
+        
     }
     
     /******************************************************************************************

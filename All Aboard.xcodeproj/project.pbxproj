@@ -50,6 +50,7 @@
 		2B971ED41AA00A92007FC1A5 /* cb_mono_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EC01AA00A92007FC1A5 /* cb_mono_off@2x.png */; };
 		2B971ED51AA00A92007FC1A5 /* cb_mono_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EC11AA00A92007FC1A5 /* cb_mono_on.png */; };
 		2B971ED61AA00A92007FC1A5 /* cb_mono_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EC21AA00A92007FC1A5 /* cb_mono_on@2x.png */; };
+		2B971EDE1AA3769B007FC1A5 /* SearchFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B971EDD1AA3769B007FC1A5 /* SearchFriendsTableViewCell.swift */; };
 		2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE282C1A84282000594E24 /* NewsFeedCell.xib */; };
 		2BC1C5F11A97FD6E000F14DA /* SwiftAddressBookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1C5F01A97FD6E000F14DA /* SwiftAddressBookWrapper.swift */; };
 		2BC1C5F71A9A6733000F14DA /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */; };
@@ -276,6 +277,7 @@
 		2B971EC01AA00A92007FC1A5 /* cb_mono_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cb_mono_off@2x.png"; sourceTree = "<group>"; };
 		2B971EC11AA00A92007FC1A5 /* cb_mono_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_mono_on.png; sourceTree = "<group>"; };
 		2B971EC21AA00A92007FC1A5 /* cb_mono_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cb_mono_on@2x.png"; sourceTree = "<group>"; };
+		2B971EDD1AA3769B007FC1A5 /* SearchFriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		2BBE282C1A84282000594E24 /* NewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
 		2BC1C5F01A97FD6E000F14DA /* SwiftAddressBookWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookWrapper.swift; sourceTree = "<group>"; };
 		2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFriendsViewController.swift; path = "All Aboard/AddFriendsViewController.swift"; sourceTree = "<group>"; };
@@ -744,18 +746,18 @@
 		2BE791E31A79700E00DE0E57 /* All Aboard */ = {
 			isa = PBXGroup;
 			children = (
+				2BE7920C1A79710400DE0E57 /* Frameworks */,
 				2B971EAE1AA00A92007FC1A5 /* Graphics */,
 				3C562EA11A9BB5C000CCD97B /* Events */,
 				3C562E9E1A9BB51D00CCD97B /* Friendslist */,
-				2BE7920C1A79710400DE0E57 /* Frameworks */,
 				2BE792171A79830100DE0E57 /* SWRevealControllers */,
 				2BC9C4121A9396E40044D886 /* Constants */,
 				2BC9C4131A9396F80044D886 /* User */,
 				2BC9C40E1A928CCB0044D886 /* NewsFeed */,
 				2BC9C4CD1A9587EC0044D886 /* Chat */,
+				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
 				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
-				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
@@ -866,6 +868,7 @@
 			children = (
 				2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */,
 				2BE604311A9FE5F8004685C0 /* InviteFriendsToEventController.swift */,
+				2B971EDD1AA3769B007FC1A5 /* SearchFriendsTableViewCell.swift */,
 				2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */,
 				3C562EA71A9BBCB200CCD97B /* ViewFriendsViewController.swift */,
 				3C562EAD1A9BCE6700CCD97B /* SearchFriendsViewController.swift */,
@@ -1135,6 +1138,7 @@
 				2BE792141A79822500DE0E57 /* SWRevealViewController.m in Sources */,
 				2BC9C4C21A956EB00044D886 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				2BC9C4A71A956EB00044D886 /* UIColor+JSQMessages.m in Sources */,
+				2B971EDE1AA3769B007FC1A5 /* SearchFriendsTableViewCell.swift in Sources */,
 				2BE792191A79832800DE0E57 /* RearViewController.swift in Sources */,
 				2BE6042A1A9FD726004685C0 /* ReturnCodes.swift in Sources */,
 				2BC9C4BC1A956EB00044D886 /* JSQMessagesInputToolbar.m in Sources */,

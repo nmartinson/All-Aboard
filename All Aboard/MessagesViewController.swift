@@ -27,7 +27,6 @@ class MessagesViewController: JSQMessagesViewController {
 
     func setupFirebase() {
         // *** STEP 2: SETUP FIREBASE
-        println(chatRoomName)
         messagesRef = Firebase(url: "https://shining-torch-5663.firebaseio.com/chatRooms/\(chatRoomName)")
 
         // *** STEP 4: RECEIVE MESSAGES FROM FIREBASE
@@ -39,7 +38,10 @@ class MessagesViewController: JSQMessagesViewController {
             if sender == nil {sender = ""}
             if imageUrl == nil {imageUrl = ""}
             
+            // get User profile picture image string
+            imageUrl = "http://graph.facebook.com/10203626718697502/picture?type=large"
             let message = Message(text: text, sender: sender, imageUrl: imageUrl)
+            
             self.messages.append(message)
             self.finishReceivingMessage()
         })

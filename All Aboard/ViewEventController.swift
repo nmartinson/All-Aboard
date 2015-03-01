@@ -14,6 +14,7 @@ import MobileCoreServices
 class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate
 {
     let locationManager  = CLLocationManager()
+    let imagePicker = UIImagePickerController()
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet var viewPanHandle: UIPanGestureRecognizer!
@@ -46,12 +47,13 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     {
         super.viewDidLoad()
         navBarTitle?.title = locationText
+        imagePicker.delegate = self
+
 
         // Test image
         photoCollection.append(UIImage(named: "testImage")!)
         
         imageScroll.delegate = self
-//        imageScroll.frame = self.view.frame
         imageScroll.frame = UIScreen.mainScreen().bounds
         blackView.frame = self.view.frame
         blackView.backgroundColor = UIColor.blackColor()
@@ -154,16 +156,51 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     ******************************************************************************************/
     @IBAction func cameraRollPressed(sender: AnyObject)
     {
+        var alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        var cameraAction = UIAlertAction(title: "Camera", style: .Default)
+        {
+            action in
+            self.openCamera()
+        }
+        var galleryAction = UIAlertAction(title: "Gallery", style: .Default)
+        {
+            action in
+            self.openGallery()
+        }
+        var cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        alertView.addAction(cameraAction)
+        alertView.addAction(galleryAction)
+        alertView.addAction(cancelAction)
+        
+        presentViewController(alertView, animated: true, completion: nil)
+    }
+    
+    /******************************************************************************************
+    *   Open camera
+    ******************************************************************************************/
+    func openCamera()
+    {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePicker.mediaTypes = [kUTTypeImage as NSString]
+            imagePicker.allowsEditing = false
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+    }
+  
+    /******************************************************************************************
+    *   Open camera roll
+    ******************************************************************************************/
+    func openGallery()
+    {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum)
         {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             imagePicker.mediaTypes = [kUTTypeImage as NSString]
             imagePicker.allowsEditing = false
-            self.presentViewController(imagePicker, animated: true, completion: { () -> Void in
-                
-            })
+            self.presentViewController(imagePicker, animated: true, completion: nil)
         }
     }
     

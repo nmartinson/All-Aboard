@@ -36,6 +36,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     var selectedIndex = 0   // index of selected segment
     var finishedGettingPlaceDetail = false  // used to block from creating event until place info has been received
     
+
     
     
     /******************************************************************************************
@@ -43,8 +44,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     ******************************************************************************************/
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         searchTableView.layer.cornerRadius = 5
-        clearView()
         locationManager.delegate = self
         
         locationManager.requestWhenInUseAuthorization()
@@ -54,7 +55,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
             location = locationManager.location.coordinate
         }
     }
-    
+
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
@@ -131,7 +132,13 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         searchTableView.reloadData()
     }
     
-    
+    /******************************************************************************************
+    *   Configure the swipe right for the hidden menu
+    ******************************************************************************************/
+    @IBAction func revealButtonPressed(sender: AnyObject)
+    {
+        revealViewController().revealToggle(sender)
+    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
