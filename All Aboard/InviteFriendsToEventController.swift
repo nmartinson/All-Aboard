@@ -13,8 +13,9 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
 {
     @IBOutlet weak var tableView: UITableView!
     
-    var people : [User] = []
-    var selectedFriends:[String] = []
+    var people : [User] = []    // holds friends list
+    var selectedFriends:[String] = []   // holds the 'checked friends'
+    var currentEvent:Event?
     
     /******************************************************************************************
     *
@@ -38,6 +39,7 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
         cell.delegate = self
         cell.nameLabel.text = people[indexPath.row].realname
         cell.userID = people[indexPath.row].userid
+        cell.indexPath = indexPath
         
         return cell
     }
@@ -47,7 +49,21 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as ContactTableViewCell
         
+        cell.addFriendButton.sendActionsForControlEvents(.TouchUpInside) // call button pressed method
+        
+//        if cell.checkBoxSelected == true
+//        {
+//            cell.highlighted = true
+////            cell.selected = true
+//        }
+//        else
+//        {
+//            cell.highlighted = false
+////            cell.selected = false
+//        }
+//        println("Selected")
     }
     
     /******************************************************************************************
@@ -81,8 +97,16 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     /******************************************************************************************
     *   Gets called when a checkbox is selected
     ******************************************************************************************/
-    func didSelectCheckbox(userID: String)
+    func didSelectCheckbox(userID: String, indexPath:NSIndexPath, selected:Bool)
     {
+        if selected
+        {
+            (tableView.cellForRowAtIndexPath(indexPath) as ContactTableViewCell).setHighlighted(true, animated: true)
+        }
+        else
+        {
+            (tableView.cellForRowAtIndexPath(indexPath) as ContactTableViewCell).setHighlighted(false, animated: true)
+        }
         if contains(selectedFriends, userID)
         {
             for(var i = 0; i < selectedFriends.count; i++)
@@ -99,7 +123,31 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
             selectedFriends.append(userID)
         }
     }
-
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    @IBAction func createButtonPressed(sender: AnyObject)
+    {
+        if selectedFriends.count > 0
+        {
+            var selectedFriendsString = selectedFriends[0]
+            for(var i = 1; i < selectedFriends.count; i++)
+            {
+                selectedFriendsString = selectedFriendsString + "," + selectedFriends[i]
+            }
+            let startDate = currentEvent!.EventStartDate!
+            let startTimeStamp = (startDate.timeIntervalSince1970) * 1000
+            let startTimeStampMS = Int(startTimeStamp)
+            let endDate = currentEvent!.EventEndDate!
+            let endTimeStamp = (endDate.timeIntervalSince1970) * 1000
+            let endTimeStampMS = Int(endTimeStamp)
+            
+            let params = ["action":ACTIONCODES.NEW_EVENT, "title":currentEvent!.EventName!, "host":currentEvent!.EventHostID!, "lat":currentEvent!.EventCoordinates!.latitude, "lon":currentEvent!.EventCoordinates!.longitude, "startTime": startTimeStampMS, "endTime": endTimeStampMS, "inviteList": selectedFriendsString]
+            BluemixCommunication().createEvent(params)
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
 
 
     

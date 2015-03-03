@@ -76,20 +76,23 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
-        
 
         mapView.camera = GMSCameraPosition(target: event!.EventCoordinates!, zoom: 15, bearing: 0, viewingAngle: 0)
         var marker = GMSMarker(position: event!.EventCoordinates!)
-        marker.title = "Here"
         marker.map = mapView
         
         // set event details
         profilePic.image = hostedByPic
-        hostedByLabel.text = "\(hostedByLabel.text!) \(hostedByText)"
-//        locationLabel.text = "\(locationLabel.text!) \(locationText)"
-        timeLabel.text = "\(timeLabel.text!) Tonight at 8pm"
         
-        
+        BluemixCommunication().getEvent(event!.EventID!)
+        {
+            event in
+            self.timeLabel.text = "\(event.EventStartDate!)"
+            self.locationLabel.text = event.EventLocation
+            self.hostedByLabel.text = "Host: \(event.EventHostName)"
+            marker.title = event.EventName
+
+        }
 //        BluemixCommunication().getImage()
 //        {
 //            (image: UIImage?) in

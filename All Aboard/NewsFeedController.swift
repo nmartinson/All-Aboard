@@ -149,7 +149,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     ******************************************************************************************/
     func tableView(tableView: UITableView, willDisplayCell cell: NewsFeedTableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        cell.postedBy.text = events[indexPath.section].eventHostName
+        cell.postedBy.text = events[indexPath.section].EventHostName
         cell.eventImage.image = UIImage(named: data[0][3])
         cell.locationLabel.text = events[indexPath.section].EventName
 //        cell.postedBy.text = data[indexPath.section][1]

@@ -20,14 +20,11 @@ class BluemixCommunication: NSObject
         var details:Dictionary<String,AnyObject>?
         details = ["error": "", "success": false, "name": ""]
         Alamofire.request(.POST, BackendConstants.userURL, parameters: params).responseString { (_, response, responseCode, _) -> Void in
-            println(responseCode)
             var responseArray = Array(responseCode!)
-
             let stringArray = responseCode!.componentsSeparatedByString(",")
             let code = stringArray[0]
             let GUID = stringArray[1]
             let name = stringArray[2]
-            println(stringArray)
             if code == RETURNCODES.LOGIN_SUCCESS // "1000" // successful login
             {
                 UserPreferences().setGUID(GUID)
@@ -58,17 +55,23 @@ class BluemixCommunication: NSObject
         let route = BackendConstants.eventURL
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, response, rawJSON, _) -> Void in
             var json = JSON(rawJSON!)
-            println("GET EVENT \n \(json)")
+//            println("GET EVENT \n \(json)")
             
-            let title = json[0]["title"].stringValue
-            let hostID = json[0]["hostId"].stringValue
-            let endTime = json[0]["endTime"].intValue
-            let id = json[0]["id"].stringValue
-            let long = CLLocationDegrees(json[0]["lon"].floatValue)
-            let lat = CLLocationDegrees(json[0]["lat"].floatValue)
-            let startTime = json[0]["startTime"].intValue
+            let title = json["event"]["title"].stringValue
+            let hostID = json["event"]["hostId"].stringValue
+            let endTime = json["event"]["endTime"].intValue
+            let id = json["event"]["id"].stringValue
+            let long = CLLocationDegrees(json["event"]["lon"].floatValue)
+            let lat = CLLocationDegrees(json["event"]["lat"].floatValue)
+            let startTime = json["event"]["startTime"].intValue
+            let inviteList = json["event"]["inviteList"].stringValue
+            let inviteListArray = inviteList.componentsSeparatedByString(",")
+            let username = json["user"]["username"].stringValue
+            let userID = json["user"]["id"].stringValue
+            let userRealName = json["user"]["name"].stringValue
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate(), eventID: id)
+            
+            let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, eventStartDate: NSDate(), eventID: id, hostName: userRealName, inviteList: inviteListArray)
         
             completion(result: event)
         }
@@ -88,7 +91,7 @@ class BluemixCommunication: NSObject
             if response != nil
             {
                 let json = JSON(response!)
-    //            println("GET RECENT EVENTS\n \(json)")
+                println("GET RECENT EVENTS\n \(json)")
                 var events:[Event] = []
                 for(var i = 0; i < json.count; i++)
                 {
@@ -99,9 +102,12 @@ class BluemixCommunication: NSObject
                     let long = CLLocationDegrees(json[i]["event"]["lon"].floatValue)
                     let lat = CLLocationDegrees(json[i]["event"]["lat"].floatValue)
                     let startTime = json[i]["event"]["startTime"].intValue
+                    let inviteList = json["event"]["inviteList"].stringValue
+                    let inviteListArray = inviteList.componentsSeparatedByString(",")
+                    
                     let userRealName = json[i]["user"]["name"].stringValue
                     let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                    let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, date: NSDate(), eventID: id, hostName: userRealName)
+                    let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, eventStartDate: NSDate(), eventID: id, hostName: userRealName, inviteList: inviteListArray)
                     
                     events.append(event)
                 }

@@ -26,17 +26,24 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     @IBOutlet weak var eventlocationTextField: UITextField!
     //the date picker object
     @IBOutlet weak var eventDate: UIDatePicker!
-    
-    let dateView = DatePickerController()
-    let locationManager = CLLocationManager()
-    var location:CLLocationCoordinate2D?
+
     @IBOutlet weak var searchTableView: UITableView!
+    @IBOutlet weak var startTime: UIButton!
+    @IBOutlet weak var endTime: UIButton!
+    
+    var startDate:NSDate?
+    var endDate:NSDate?
+    var currentEvent:Event?
+    var selectedButton:UIButton?  // used for storing whether the start or end time button was selected
     var places:[GooglePlace] = []
     var googleSearch = GoogleSearch()
     var searchString = ""
     var selectedIndex = 0   // index of selected segment
     var finishedGettingPlaceDetail = false  // used to block from creating event until place info has been received
-    
+    let dateView = DatePickerController()   // date picker that is presented in it's own view
+    let dateViewFrame = DatePickerController().frame    // initial size of the date picker
+    let locationManager = CLLocationManager()
+    var location:CLLocationCoordinate2D?
 
     
     
@@ -116,7 +123,14 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     ******************************************************************************************/
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        textField.resignFirstResponder()
+        if textField == eventNameTextField
+        {
+            eventlocationTextField.becomeFirstResponder()
+        }
+        else if textField == eventlocationTextField
+        {
+            textField.resignFirstResponder()
+        }
         return true
     }
     
@@ -131,6 +145,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         places = []
         searchTableView.hidden = true
         searchTableView.reloadData()
+        startTime.setTitle("Start time: ", forState: .Normal)
+        endTime.setTitle("End time: ", forState: .Normal)
+        startDate = nil
+        endDate = nil
     }
     
     /******************************************************************************************
@@ -141,26 +159,70 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         revealViewController().revealToggle(sender)
     }
     
+    /******************************************************************************************
+    *   Present the date picker with an animation. Hide the tab bar
+    ******************************************************************************************/
     @IBAction func selectTimePressed(sender: UIButton)
     {
-        self.tabBarController?.tabBar.hidden = true
         dateView.delegate = self
+        dateView.frame = CGRectMake(0, UIScreen.mainScreen().bounds.height + dateView.bounds.height, dateViewFrame.width, dateViewFrame.height)
         view.addSubview(dateView)
+        UIView.transitionWithView(self.view,
+            duration: 0.5,
+            options: UIViewAnimationOptions.AllowAnimatedContent,
+            animations: {
+                self.dateView.frame = self.dateViewFrame
+                self.tabBarController?.tabBar.hidden = true
+            },
+            completion: nil)
         view.bringSubviewToFront(dateView)
+        selectedButton = sender
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func doneButtonPressed()
     {
-        dateView.removeFromSuperview()
-        self.tabBarController?.tabBar.hidden = false
+        UIView.transitionWithView(self.view,
+            duration: 0.5,
+            options: UIViewAnimationOptions.AllowAnimatedContent,
+            animations: {
+                self.dateView.frame = CGRectMake(0, UIScreen.mainScreen().bounds.height + self.dateView.bounds.height, self.dateView.frame.width, self.dateView.frame.height)
+                self.tabBarController?.tabBar.hidden = false
+            }){ Void in self.dateView.removeFromSuperview()
+        }
 
+        self.tabBarController?.tabBar.hidden = false
+        if selectedButton == startTime
+        {
+            startDate = dateView.datePicker.date
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "MMMM d, yyyy h:mm a"
+            let date = formatter.stringFromDate(dateView.datePicker.date)
+            let title = "Start time:\t" + date
+            selectedButton!.setTitle(title, forState: .Normal)
+        }
+        else
+        {
+            endDate = dateView.datePicker.date
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "MMMM d, yyyy h:mm a"
+            let date = formatter.stringFromDate(dateView.datePicker.date)
+            let title = "End time:    " + date
+            selectedButton!.setTitle(title, forState: .Normal)
+        }
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == "inviteFreinds"
+        if segue.identifier == "inviteFriends"
         {
-            
+            let controller = segue.destinationViewController as InviteFriendsToEventController
+            controller.currentEvent = currentEvent!
         }
     }
     
@@ -228,14 +290,21 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     */
     @IBAction func onAddFriendsPress(sender: AnyObject)
     {
+        if !(eventlocationTextField.text == "" || eventNameTextField.text == "" || startDate == nil || endDate == nil)
+        {
+            
+            let hostId = UserPreferences().getGUID()
+            while( finishedGettingPlaceDetail == false){}
+            let coordinates = places[selectedIndex].coordinate
+            currentEvent = Event(name: eventNameTextField.text, location: eventlocationTextField.text, coordinates: coordinates!, hostID: hostId, eventStartDate: startDate!, eventEndDate: endDate!)
 
-//        let hostId = UserPreferences().getGUID()
+            performSegueWithIdentifier("inviteFriends", sender: self)
+        }
 //        let date = eventDate.date
 //        let timestamp = (date.timeIntervalSince1970) * 1000
 //        let timestampInMs = Int(timestamp)
 //        
-//        while( finishedGettingPlaceDetail == false){}
-//        
+//
 //        let long = "\(places[selectedIndex].coordinate!.longitude)"
 //        let lat = "\(places[selectedIndex].coordinate!.latitude)"
 //        

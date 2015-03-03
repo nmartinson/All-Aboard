@@ -10,7 +10,7 @@ import Foundation
 
 protocol checkBoxCellDelegate
 {
-    func didSelectCheckbox(userID: String)
+    func didSelectCheckbox(userID: String, indexPath:NSIndexPath, selected:Bool)
 }
 
 class ContactTableViewCell: UITableViewCell
@@ -20,6 +20,7 @@ class ContactTableViewCell: UITableViewCell
     var userID = ""
     var checkBoxSelected = false
     var delegate:checkBoxCellDelegate?
+    var indexPath:NSIndexPath?
     @IBOutlet weak var userPicture: UIImageView!
     
     
@@ -38,9 +39,9 @@ class ContactTableViewCell: UITableViewCell
     
     @IBAction func addFriendButtonPressed(sender: AnyObject)
     {
-        delegate?.didSelectCheckbox(userID)
-        
         checkBoxSelected = !checkBoxSelected
+        delegate?.didSelectCheckbox(userID, indexPath: indexPath!, selected: checkBoxSelected)
+        
         if checkBoxSelected
         {
             addFriendButton.setImage(UIImage(named: "cb_dark_on.png"), forState: .Normal)

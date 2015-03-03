@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         let eepupID = "10153524130878066"
         var imageStr = "http://graph.facebook.com/\(eepupID)/picture?type=large"
         getLabelImage(imageStr, newImage: profilePic)
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
     
     /******************************************************************************************
@@ -85,4 +86,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         return 2
     }
     
+    /******************************************************************************************
+    *   Configure the swipe right for the hidden menu
+    ******************************************************************************************/
+    @IBAction func menuButtonPressed(sender: AnyObject)
+    {
+        revealViewController().revealToggle(sender)
+    }
 }

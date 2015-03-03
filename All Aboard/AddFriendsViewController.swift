@@ -35,7 +35,7 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCellWithIdentifier("contactCell") as ContactTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("searchFriendsCell") as SearchFriendsTableViewCell
         cell.nameLabel.text = people![indexPath.row].compositeName
 //        cell.phoneNumberLabel.text = numbers![indexPath.row]?.first?
         
