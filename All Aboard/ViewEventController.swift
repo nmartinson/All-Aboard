@@ -49,7 +49,6 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         navBarTitle?.title = locationText
         imagePicker.delegate = self
 
-
         // Test image
         photoCollection.append(UIImage(named: "testImage")!)
         
@@ -83,16 +82,11 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         
         // set event details
         profilePic.image = hostedByPic
-        
-        BluemixCommunication().getEvent(event!.EventID!)
-        {
-            event in
-            self.timeLabel.text = "\(event.EventStartDate!)"
-            self.locationLabel.text = event.EventLocation
-            self.hostedByLabel.text = "Host: \(event.EventHostName)"
-            marker.title = event.EventName
-
-        }
+        timeLabel.text = Helper().formatDateString(event!.EventStartDate!)
+        locationLabel.text = event!.EventLocation!
+        hostedByLabel.text = "Host: \(event!.EventHostName!)"
+        marker.title = event!.EventName!
+    
 //        BluemixCommunication().getImage()
 //        {
 //            (image: UIImage?) in

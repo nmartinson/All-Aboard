@@ -20,19 +20,22 @@ class BluemixCommunication: NSObject
         var details:Dictionary<String,AnyObject>?
         details = ["error": "", "success": false, "name": ""]
         Alamofire.request(.POST, BackendConstants.userURL, parameters: params).responseString { (_, response, responseCode, _) -> Void in
-            var responseArray = Array(responseCode!)
+            
             let stringArray = responseCode!.componentsSeparatedByString(",")
             let code = stringArray[0]
-            let GUID = stringArray[1]
-            let name = stringArray[2]
+
             if code == RETURNCODES.LOGIN_SUCCESS // "1000" // successful login
             {
+                var responseArray = Array(responseCode!)
+
+                let GUID = stringArray[1]
+                let name = stringArray[2]
                 UserPreferences().setGUID(GUID)
                 UserPreferences().loggedIn(true)
                 details!["success"] = true
                 details!["name"] = name
             }
-            else if code == RETURNCODES.GET_USER_DOES_NOT_EXIST  //  "1001" // username doesnt exist
+            else if code == RETURNCODES.LOGIN_USERNAME_DOES_NOT_EXIST  //  "1001" // username doesnt exist
             {
                 details!["error"] = "Username doesn't exist"
             }
@@ -57,13 +60,18 @@ class BluemixCommunication: NSObject
             var json = JSON(rawJSON!)
 //            println("GET EVENT \n \(json)")
             
+            let location = json["event"]["locationTitle"].stringValue
             let title = json["event"]["title"].stringValue
             let hostID = json["event"]["hostId"].stringValue
             let endTime = json["event"]["endTime"].intValue
+            let endDate = NSDate(timeIntervalSince1970: NSTimeInterval(endTime)/1000)
+
             let id = json["event"]["id"].stringValue
             let long = CLLocationDegrees(json["event"]["lon"].floatValue)
             let lat = CLLocationDegrees(json["event"]["lat"].floatValue)
             let startTime = json["event"]["startTime"].intValue
+            let startDate = NSDate(timeIntervalSince1970: NSTimeInterval(startTime)/1000)
+
             let inviteList = json["event"]["inviteList"].stringValue
             let inviteListArray = inviteList.componentsSeparatedByString(",")
             let username = json["user"]["username"].stringValue
@@ -71,7 +79,7 @@ class BluemixCommunication: NSObject
             let userRealName = json["user"]["name"].stringValue
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
             
-            let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, eventStartDate: NSDate(), eventID: id, hostName: userRealName, inviteList: inviteListArray)
+            let event = Event(name: title, location: location, coordinates: coordinate, hostID: hostID, eventStartDate: startDate, eventEndDate: endDate, eventID: id, hostName: userRealName, inviteList: inviteListArray)
         
             completion(result: event)
         }
@@ -91,27 +99,77 @@ class BluemixCommunication: NSObject
             if response != nil
             {
                 let json = JSON(response!)
-                println("GET RECENT EVENTS\n \(json)")
                 var events:[Event] = []
                 for(var i = 0; i < json.count; i++)
                 {
                     let title = json[i]["event"]["title"].stringValue
                     let hostID = json[i]["event"]["hostId"].stringValue
                     let endTime = json[i]["event"]["endTime"].intValue
+                    let location = json[i]["event"]["locationTitle"].stringValue
+                    let endDate = NSDate(timeIntervalSince1970: NSTimeInterval(endTime)/1000)
+
                     let id = json[i]["event"]["id"].stringValue
                     let long = CLLocationDegrees(json[i]["event"]["lon"].floatValue)
                     let lat = CLLocationDegrees(json[i]["event"]["lat"].floatValue)
                     let startTime = json[i]["event"]["startTime"].intValue
+                    
+                    let startDate = NSDate(timeIntervalSince1970: NSTimeInterval(startTime)/1000)
+                    
                     let inviteList = json["event"]["inviteList"].stringValue
                     let inviteListArray = inviteList.componentsSeparatedByString(",")
                     
                     let userRealName = json[i]["user"]["name"].stringValue
                     let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                    let event = Event(name: title, location: "location", coordinates: coordinate, hostID: hostID, eventStartDate: NSDate(), eventID: id, hostName: userRealName, inviteList: inviteListArray)
+                    let event = Event(name: title, location: location, coordinates: coordinate, hostID: hostID, eventStartDate: startDate, eventEndDate: endDate, eventID: id, hostName: userRealName, inviteList: inviteListArray)
                     
                     events.append(event)
                 }
     
+                completion(result: events)
+            }
+        }
+    }
+    
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    func getUserInviteList(userID: String, completion:(result: [Event]) -> Void)
+    {
+        let params = ["action": ACTIONCODES.USER_EVENT_LIST, "userId": userID]
+        let route = BackendConstants.userURL
+        
+        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, stuff, response, _) -> Void in
+            
+            let code = JSON(response!).stringValue
+            
+            if code != "1241"
+            {
+                let json = JSON(response!)
+                var events:[Event] = []
+                for(var i = 0; i < json.count; i++)
+                {
+                    let title = json[i]["event"]["title"].stringValue
+                    let hostID = json[i]["event"]["hostId"].stringValue
+                    let endTime = json[i]["event"]["endTime"].intValue
+                    let location = json[i]["event"]["locationTitle"].stringValue
+                    let endDate = NSDate(timeIntervalSince1970: NSTimeInterval(endTime)/1000)
+                    
+                    let id = json[i]["event"]["id"].stringValue
+                    let long = CLLocationDegrees(json[i]["event"]["lon"].floatValue)
+                    let lat = CLLocationDegrees(json[i]["event"]["lat"].floatValue)
+                    let startTime = json[i]["event"]["startTime"].intValue
+                    
+                    let startDate = NSDate(timeIntervalSince1970: NSTimeInterval(startTime)/1000)
+                    
+                    let inviteList = json["event"]["inviteList"].stringValue
+                    let inviteListArray = inviteList.componentsSeparatedByString(",")
+                    
+                    let userRealName = json[i]["user"]["name"].stringValue
+                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    let event = Event(name: title, location: location, coordinates: coordinate, hostID: hostID, eventStartDate: startDate, eventEndDate: endDate, eventID: id, hostName: userRealName, inviteList: inviteListArray)
+                    events.append(event)
+                }
                 completion(result: events)
             }
         }
@@ -131,7 +189,7 @@ class BluemixCommunication: NSObject
             if response != nil
             {
                 let json = JSON(response!)
-    //            println("USER INFO\n \(json)")
+                println("USER INFO\n \(json)")
                 userInfo!["username"] = json["username"].stringValue
                 userInfo!["id"] = json["id"].stringValue
                 userInfo!["name"] = json["name"].stringValue

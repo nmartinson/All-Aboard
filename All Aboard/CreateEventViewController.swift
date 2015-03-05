@@ -68,6 +68,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
         clearView()
+        locationManager.stopUpdatingLocation()
     }
 
     
@@ -130,7 +131,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         else if textField == eventlocationTextField
         {
             textField.resignFirstResponder()
+            startTime.sendActionsForControlEvents(.TouchUpInside)
         }
+
         return true
     }
     
@@ -166,7 +169,17 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     {
         dateView.delegate = self
         dateView.frame = CGRectMake(0, UIScreen.mainScreen().bounds.height + dateView.bounds.height, dateViewFrame.width, dateViewFrame.height)
+        
+        if sender == startTime
+        {
+            dateView.setDescription("Start Time")
+        }
+        else
+        {
+            dateView.setDescription("End Time")
+        }
         view.addSubview(dateView)
+        
         UIView.transitionWithView(self.view,
             duration: 0.5,
             options: UIViewAnimationOptions.AllowAnimatedContent,

@@ -29,6 +29,10 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
     {
         var item = menuItems[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(item) as UITableViewCell
+        if item == "standardLogOut"
+        {
+            cell.textLabel?.text = "Log out \(UserPreferences().getName())"
+        }
         return cell
     }
     
@@ -43,10 +47,6 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
     ******************************************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-//        tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
-//        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
-//        tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.textColor = UIColor.lightGrayColor()
-//        tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.blackColor()
         let identifier = tableView.cellForRowAtIndexPath(indexPath)?.reuseIdentifier!
         if identifier == "standardLogOut"
         {

@@ -183,7 +183,14 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     ******************************************************************************************/
     func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
     {
-        textField.resignFirstResponder()
+        if textField == usernameField
+        {
+            passwordField.becomeFirstResponder()
+        }
+        else
+        {
+            textField.resignFirstResponder()
+        }
         return true;
     }
     

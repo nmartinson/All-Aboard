@@ -17,6 +17,7 @@ protocol CustomDatePickerDelegate
 class DatePickerController:UIView
 {
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     var delegate:CustomDatePickerDelegate?
     
@@ -28,6 +29,11 @@ class DatePickerController:UIView
  
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    
+    func setDescription(label:String)
+    {
+        descriptionLabel.text = label
     }
     
     override init()

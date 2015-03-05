@@ -137,13 +137,11 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
                 selectedFriendsString = selectedFriendsString + "," + selectedFriends[i]
             }
             let startDate = currentEvent!.EventStartDate!
-            let startTimeStamp = (startDate.timeIntervalSince1970) * 1000
-            let startTimeStampMS = Int(startTimeStamp)
+            let startTimeStamp = Int((startDate.timeIntervalSince1970) * 1000)
             let endDate = currentEvent!.EventEndDate!
-            let endTimeStamp = (endDate.timeIntervalSince1970) * 1000
-            let endTimeStampMS = Int(endTimeStamp)
+            let endTimeStamp = Int((endDate.timeIntervalSince1970) * 1000)
             
-            let params = ["action":ACTIONCODES.NEW_EVENT, "title":currentEvent!.EventName!, "host":currentEvent!.EventHostID!, "lat":currentEvent!.EventCoordinates!.latitude, "lon":currentEvent!.EventCoordinates!.longitude, "startTime": startTimeStampMS, "endTime": endTimeStampMS, "inviteList": selectedFriendsString]
+            let params = ["action":ACTIONCODES.NEW_EVENT, "title":currentEvent!.EventName!, "host":currentEvent!.EventHostID!, "lat":currentEvent!.EventCoordinates!.latitude, "lon":currentEvent!.EventCoordinates!.longitude, "startTime": startTimeStamp, "endTime": endTimeStamp, "inviteList": selectedFriendsString, "locationTitle": currentEvent!.EventLocation!]
             BluemixCommunication().createEvent(params)
             dismissViewControllerAnimated(true, completion: nil)
         }

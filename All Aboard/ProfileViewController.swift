@@ -8,22 +8,58 @@
 
 import UIKit
 import Alamofire
+import MobileCoreServices
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+{
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePic: UIImageView!
     var events:[[Event]] = [[],[]]
+    var selectedEvent:[String:AnyObject] = ["row":0, "section":0, "indexPath": NSIndexPath()]
     
     
     /******************************************************************************************
     *
     ******************************************************************************************/
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         let eepupID = "10153524130878066"
         var imageStr = "http://graph.facebook.com/\(eepupID)/picture?type=large"
         getLabelImage(imageStr, newImage: profilePic)
+        println(UserPreferences().getGUID())
+        BluemixCommunication().getUserInviteList(UserPreferences().getGUID())
+        {
+            (events: [Event]) in
+            let currentTime = NSDate()
+            for item in events
+            {
+                
+                if item.EventStartDate?.earlierDate(currentTime) == currentTime
+                {
+                    self.events[0].append(item)
+                }
+                else
+                {
+                    self.events[1].append(item)
+                }
+            }
+//            self.events[0] = events
+            self.tableView.reloadData()
+        }
+        
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
+    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(true)
+        tableView.deselectRowAtIndexPath(selectedEvent["indexPath"] as NSIndexPath, animated: true)
+    }
+    
     
     /******************************************************************************************
     *
@@ -37,13 +73,25 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         })
     }
     
-    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "profileToEvent"
+        {
+            let navController = segue.destinationViewController as UINavigationController
+            let controller = navController.viewControllers.first as ViewEventController
+            controller.event = events[selectedEvent["section"]! as Int][selectedEvent["row"]! as Int]
+        }
+    }
     /******************************************************************************************
     *
     ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let  cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as UITableViewCell
+        cell.textLabel?.text = events[indexPath.section][indexPath.row].EventName
         return cell
     }
     
@@ -52,7 +100,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        
+        selectedEvent = ["row": indexPath.row, "section": indexPath.section, "indexPath": indexPath]
+        performSegueWithIdentifier("profileToEvent", sender: self)
+//        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+//        tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
     }
     
     /******************************************************************************************
@@ -93,4 +144,39 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         revealViewController().revealToggle(sender)
     }
+    
+    @IBAction func profileSettingsPressed(sender: AnyObject)
+    {
+        var alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        var changePicture = UIAlertAction(title: "Change Picture", style: .Default)
+            {
+                action in
+                self.openGallery()
+        }
+
+        var cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        alertView.addAction(changePicture)
+        alertView.addAction(cancelAction)
+        
+        presentViewController(alertView, animated: true, completion: nil)
+    }
+    
+    /******************************************************************************************
+    *   Open camera roll
+    ******************************************************************************************/
+    func openGallery()
+    {
+        let imagePicker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum)
+        {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePicker.mediaTypes = [kUTTypeImage as NSString]
+            imagePicker.allowsEditing = false
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
 }

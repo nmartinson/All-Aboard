@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 
 /******************************************************************************************
-*
+*   
 ******************************************************************************************/
 extension Alamofire.Request
 {
@@ -58,6 +58,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         navBar.title = "The Station"
+        println("didAppear")
         BluemixCommunication().getRecentEvents(10)
         {
             (results: [Event]) in
@@ -80,10 +81,6 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         let navController = segue.destinationViewController as UINavigationController
         let controller = navController.viewControllers.first as ViewEventController
-//        controller.hostedByPic = imageOfSelectedCell
-//        controller.hostedByText = hostedByName
-//        controller.locationText = eventLocation
-//        controller.event = events[selectedCellIndex]
         controller.event = events[selectedCellIndex]
     }
     
@@ -161,7 +158,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.profilePicture.clipsToBounds = true
         let id = data[0][2]
         var imageStr = "http://graph.facebook.com/\(id)/picture?type=large"
-        getLabelImage(imageStr, newImage: cell.profilePicture)
+        Helper().getLabelImage(imageStr, newImage: cell.profilePicture)
     }
     
     /******************************************************************************************
@@ -179,18 +176,5 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func revealButtonPressed(sender: AnyObject)
     {
         revealViewController().revealToggle(sender)
-    }
-    
-    
-    /******************************************************************************************
-    * Allows for placing an image in a dynamically created imageview
-    ******************************************************************************************/
-    func getLabelImage(imageStr: String, newImage: UIImageView)
-    {
-        Alamofire.request(.GET,imageStr).responseImage({ (request, _, image, error) -> Void in
-            if error == nil && image != nil{
-                newImage.image = image
-            }
-        })
     }
 }

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerController" customModule="All_Aboard" customModuleProvider="target">
             <connections>
                 <outlet property="datePicker" destination="bkq-Os-ZYG" id="xYU-3o-TpU"/>
+                <outlet property="descriptionLabel" destination="xWz-Xs-Hii" id="rM0-t9-sld"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -39,10 +40,18 @@
                                 <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="BIM-NW-RXz"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWz-Xs-Hii">
+                            <rect key="frame" x="8" y="8" width="297" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="xWz-Xs-Hii" firstAttribute="top" secondItem="pvW-AL-m7E" secondAttribute="top" constant="8" id="5gM-vY-ByI"/>
                         <constraint firstItem="Tc7-Pc-4pW" firstAttribute="trailing" secondItem="pvW-AL-m7E" secondAttribute="trailingMargin" id="Ax9-qL-Qdw"/>
+                        <constraint firstItem="xWz-Xs-Hii" firstAttribute="leading" secondItem="pvW-AL-m7E" secondAttribute="leading" constant="8" id="KZO-A8-G5j"/>
                         <constraint firstItem="Tc7-Pc-4pW" firstAttribute="centerY" secondItem="pvW-AL-m7E" secondAttribute="centerY" id="Mhw-nu-p9E"/>
                     </constraints>
                 </view>

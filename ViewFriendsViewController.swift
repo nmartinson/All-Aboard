@@ -26,7 +26,6 @@ class ViewFriendsViewController: UIViewController {
             self.friendsTableView.reloadData()
         }
         
-        println(self.friendsL)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -42,7 +41,8 @@ class ViewFriendsViewController: UIViewController {
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
         
     }
     

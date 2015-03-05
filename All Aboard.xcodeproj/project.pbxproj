@@ -17,6 +17,10 @@
 		2B148B4C1A8C4794000E385F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */; };
 		2B148B5F1A8C4E6F000E385F /* BluemixCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */; };
 		2B3A3D8F1A8C43DC000AC892 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */; };
+		2B596F951AA8D8BE006CBEBA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F941AA8D8BE006CBEBA /* Helper.swift */; };
+		2B596F971AA8DF25006CBEBA /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */; };
+		2B596F991AA8ECAD006CBEBA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */; };
+		2B596F9C1AA8EE44006CBEBA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */; };
 		2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B79B90D1A88231B00544E78 /* ViewEventController.swift */; };
 		2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B9181A883BB900544E78 /* AVFoundation.framework */; };
 		2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B91A1A883BC100544E78 /* CoreData.framework */; };
@@ -246,6 +250,10 @@
 		2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluemixCommunication.swift; sourceTree = "<group>"; };
 		2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
 		2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		2B596F941AA8D8BE006CBEBA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
 		2B79B9181A883BB900544E78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2B79B91A1A883BC100544E78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -466,6 +474,16 @@
 				2B04BD081A80042000494335 /* RNEncryptor.m */,
 			);
 			path = RNCryptor;
+			sourceTree = "<group>";
+		};
+		2B596F9A1AA8EE28006CBEBA /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */,
+				2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */,
+				2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */,
+			);
+			name = Notification;
 			sourceTree = "<group>";
 		};
 		2B971EAE1AA00A92007FC1A5 /* Graphics */ = {
@@ -762,7 +780,9 @@
 				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
 				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
+				2B596F941AA8D8BE006CBEBA /* Helper.swift */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
+				2B596F9A1AA8EE28006CBEBA /* Notification */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
@@ -1081,6 +1101,7 @@
 				2BC9C4B81A956EB00044D886 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				2BC9C4BA1A956EB00044D886 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				2B971EC91AA00A92007FC1A5 /* cb_dark_on.png in Resources */,
+				2B596F991AA8ECAD006CBEBA /* NotificationCell.xib in Resources */,
 				2B971ED51AA00A92007FC1A5 /* cb_mono_on.png in Resources */,
 				2BC9C4931A956EB00044D886 /* bubble.png in Resources */,
 				2B971EC61AA00A92007FC1A5 /* cb_box_on@2x.png in Resources */,
@@ -1124,6 +1145,7 @@
 				2BC9C4AA1A956EB00044D886 /* JSQMessagesKeyboardController.m in Sources */,
 				2BE604321A9FE5F8004685C0 /* InviteFriendsToEventController.swift in Sources */,
 				2BC9C4BB1A956EB00044D886 /* JSQMessagesComposerTextView.m in Sources */,
+				2B596F9C1AA8EE44006CBEBA /* NotificationCell.swift in Sources */,
 				2BC9C4CB1A9587DD0044D886 /* MessagesViewController.swift in Sources */,
 				2BE791EC1A79700E00DE0E57 /* LoginViewController.swift in Sources */,
 				2BE604021A9ABEFB004685C0 /* GoogleSearch.swift in Sources */,
@@ -1166,6 +1188,8 @@
 				2BC9C4B51A956EB00044D886 /* JSQMessagesCollectionView.m in Sources */,
 				2BF988E41A8973EF00F9E327 /* ProfileViewController.swift in Sources */,
 				3C97C1191A7C5354006243A9 /* CreateEventViewController.swift in Sources */,
+				2B596F951AA8D8BE006CBEBA /* Helper.swift in Sources */,
+				2B596F971AA8DF25006CBEBA /* NotificationsViewController.swift in Sources */,
 				2B04BD101A801FC700494335 /* NewUserController.swift in Sources */,
 				2BC9C4B41A956EB00044D886 /* JSQMessage.m in Sources */,
 			);

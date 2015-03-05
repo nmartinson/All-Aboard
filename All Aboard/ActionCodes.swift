@@ -15,6 +15,7 @@ enum ACTIONCODES
     static let USER_LOGIN = "100"
     static let GET_USER_INFO = "111"
     static let NEW_EVENT = "120"
+    static let USER_EVENT_LIST = "124"
     
     static let GET_EVENT_INFO = "130"
     static let GET_RECENT_EVENTS = "131"

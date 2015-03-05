@@ -58,7 +58,22 @@ class NewUserController: UIViewController
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
     {
-        textField.resignFirstResponder()
+        if textField == usernameField
+        {
+            realName.becomeFirstResponder()
+        }
+        else if textField == realName
+        {
+            passwordField.becomeFirstResponder()
+        }
+        else if textField == passwordField
+        {
+            confirmPasswordField.becomeFirstResponder()
+        }
+        else if textField == confirmPasswordField
+        {
+            textField.resignFirstResponder()
+        }
         return true;
     }
     

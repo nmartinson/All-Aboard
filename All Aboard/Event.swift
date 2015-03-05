@@ -49,7 +49,7 @@ class Event {
         EventID = eventID
     }
  
-    init(name:NSString, location:NSString, coordinates:CLLocationCoordinate2D, hostID:NSString, eventStartDate: NSDate, eventID: NSString, hostName: String, inviteList:[String])
+    init(name:NSString, location:NSString, coordinates:CLLocationCoordinate2D, hostID:NSString, eventStartDate: NSDate, eventEndDate:NSDate, eventID: NSString, hostName: String, inviteList:[String])
     {
         EventName = name
         EventLocation = location
@@ -59,5 +59,6 @@ class Event {
         EventID = eventID
         EventHostName = hostName
         EventInviteList = inviteList
+        EventEndDate = eventEndDate
     }
 }

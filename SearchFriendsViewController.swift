@@ -28,11 +28,14 @@ class SearchFriendsViewController: UIViewController, UITextFieldDelegate {
         let params = ["action": "140", "username":self.searchTF.text]
         Alamofire.request(.GET, BackendConstants.userURL, parameters: params ).responseJSON { (_, _, response,_) -> Void in
             println("response:\(response)")
-            let json = JSON(response!)
-            let name = json["username"].stringValue
-            let userid = json["id"].stringValue
-            let personname = json["name"].stringValue
-            self.searchedUser = User(name:name,id:userid, real:personname)
+            if response != nil
+            {
+                let json = JSON(response!)
+                let name = json["username"].stringValue
+                let userid = json["id"].stringValue
+                let personname = json["name"].stringValue
+                self.searchedUser = User(name:name,id:userid, real:personname)
+            }
         }
         
     }
