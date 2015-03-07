@@ -21,6 +21,7 @@
 		2B596F971AA8DF25006CBEBA /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */; };
 		2B596F991AA8ECAD006CBEBA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */; };
 		2B596F9C1AA8EE44006CBEBA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */; };
+		2B596FA71AABB4B3006CBEBA /* OverlayScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596FA61AABB4B3006CBEBA /* OverlayScrollView.swift */; };
 		2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B79B90D1A88231B00544E78 /* ViewEventController.swift */; };
 		2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B9181A883BB900544E78 /* AVFoundation.framework */; };
 		2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B91A1A883BC100544E78 /* CoreData.framework */; };
@@ -254,6 +255,7 @@
 		2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		2B596FA61AABB4B3006CBEBA /* OverlayScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayScrollView.swift; sourceTree = "<group>"; };
 		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
 		2B79B9181A883BB900544E78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2B79B91A1A883BC100544E78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -910,6 +912,7 @@
 				2B971EDF1AA39051007FC1A5 /* DatePickerView.xib */,
 				2B971EE11AA390EC007FC1A5 /* DatePickerController.swift */,
 				3C97C1181A7C5354006243A9 /* CreateEventViewController.swift */,
+				2B596FA61AABB4B3006CBEBA /* OverlayScrollView.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -1143,6 +1146,7 @@
 				3C562EAE1A9BCE6700CCD97B /* SearchFriendsViewController.swift in Sources */,
 				2BC9C4BD1A956EB00044D886 /* JSQMessagesLabel.m in Sources */,
 				2BC9C4AA1A956EB00044D886 /* JSQMessagesKeyboardController.m in Sources */,
+				2B596FA71AABB4B3006CBEBA /* OverlayScrollView.swift in Sources */,
 				2BE604321A9FE5F8004685C0 /* InviteFriendsToEventController.swift in Sources */,
 				2BC9C4BB1A956EB00044D886 /* JSQMessagesComposerTextView.m in Sources */,
 				2B596F9C1AA8EE44006CBEBA /* NotificationCell.swift in Sources */,

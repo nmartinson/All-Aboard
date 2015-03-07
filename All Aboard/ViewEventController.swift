@@ -20,6 +20,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     @IBOutlet var viewPanHandle: UIPanGestureRecognizer!
     @IBOutlet weak var navBarTitle: UINavigationItem!
     
+    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var slideView: UIView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var hostedByLabel: UILabel!
@@ -38,6 +39,30 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var imageScroll:UIScrollView = UIScrollView()
     var blackView = UIView()
     
+    
+
+    
+    @IBAction func tapRecognized(sender: UITapGestureRecognizer)
+    {
+//        var location = sender.locationInView(slideView)
+//        var withinBounds = CGRectContainsPoint(slideView.bounds, location)
+//        if withinBounds == false
+//        {
+//            mainScrollView.userInteractionEnabled = false
+//        }
+//        else
+//        {
+//            mainScrollView.userInteractionEnabled = true
+//        }
+//        println(withinBounds)
+    }
+    
+    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!)
+    {
+//        mainScrollView.userInteractionEnabled = true
+        
+    }
+    
     /******************************************************************************************
     *   Configure map view and center at the event location
     *   Set navbar title to the event title
@@ -48,7 +73,9 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         super.viewDidLoad()
         navBarTitle?.title = locationText
         imagePicker.delegate = self
+    
 
+        mainScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, 2000)
         // Test image
         photoCollection.append(UIImage(named: "testImage")!)
         
