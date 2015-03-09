@@ -22,6 +22,8 @@
 		2B596F991AA8ECAD006CBEBA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */; };
 		2B596F9C1AA8EE44006CBEBA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */; };
 		2B596FA71AABB4B3006CBEBA /* OverlayScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596FA61AABB4B3006CBEBA /* OverlayScrollView.swift */; };
+		2B596FAD1AABF5FA006CBEBA /* EventDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B596FAC1AABF5FA006CBEBA /* EventDetailView.xib */; };
+		2B596FAF1AABF88C006CBEBA /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596FAE1AABF88C006CBEBA /* EventDetailViewController.swift */; };
 		2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B79B90D1A88231B00544E78 /* ViewEventController.swift */; };
 		2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B9181A883BB900544E78 /* AVFoundation.framework */; };
 		2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B91A1A883BC100544E78 /* CoreData.framework */; };
@@ -256,6 +258,8 @@
 		2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		2B596FA61AABB4B3006CBEBA /* OverlayScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayScrollView.swift; sourceTree = "<group>"; };
+		2B596FAC1AABF5FA006CBEBA /* EventDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailView.xib; sourceTree = "<group>"; };
+		2B596FAE1AABF88C006CBEBA /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
 		2B79B9181A883BB900544E78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2B79B91A1A883BC100544E78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -486,6 +490,15 @@
 				2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */,
 			);
 			name = Notification;
+			sourceTree = "<group>";
+		};
+		2B596FB01AABF899006CBEBA /* EventDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2B596FAC1AABF5FA006CBEBA /* EventDetailView.xib */,
+				2B596FAE1AABF88C006CBEBA /* EventDetailViewController.swift */,
+			);
+			name = EventDetail;
 			sourceTree = "<group>";
 		};
 		2B971EAE1AA00A92007FC1A5 /* Graphics */ = {
@@ -786,6 +799,7 @@
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
 				2B596F9A1AA8EE28006CBEBA /* Notification */,
 				2BE791ED1A79700E00DE0E57 /* Main.storyboard */,
+				2B596FB01AABF899006CBEBA /* EventDetail */,
 				2BE791F01A79700E00DE0E57 /* Images.xcassets */,
 				2BE791F21A79700E00DE0E57 /* LaunchScreen.xib */,
 				2BE791E81A79700E00DE0E57 /* All_Aboard.xcdatamodeld */,
@@ -1064,6 +1078,7 @@
 				2B971ED31AA00A92007FC1A5 /* cb_mono_off.png in Resources */,
 				2BC9C4981A956EB00044D886 /* bubble_min_tailless@2x.png in Resources */,
 				2BC9C49E1A956EB00044D886 /* bubble_tailless@2x.png in Resources */,
+				2B596FAD1AABF5FA006CBEBA /* EventDetailView.xib in Resources */,
 				2BC9C4A01A956EB00044D886 /* camera@2x.png in Resources */,
 				2B971ECE1AA00A92007FC1A5 /* cb_glossy_on@2x.png in Resources */,
 				2B971ECD1AA00A92007FC1A5 /* cb_glossy_on.png in Resources */,
@@ -1164,6 +1179,7 @@
 				2BC9C4AD1A956EB00044D886 /* JSQMessagesAvatarFactory.m in Sources */,
 				2BC9C4B11A956EB00044D886 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				2BE604101A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift in Sources */,
+				2B596FAF1AABF88C006CBEBA /* EventDetailViewController.swift in Sources */,
 				2BC9C4B31A956EB00044D886 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
 				2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */,

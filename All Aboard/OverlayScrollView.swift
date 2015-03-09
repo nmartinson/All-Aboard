@@ -12,21 +12,10 @@ import UIKit
 class OverlayScrollView: UIScrollView
 {
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView?
     {
-        if !self.dragging
-        {
-            self.nextResponder()?.touchesBegan(touches, withEvent: event)
-            println("not me")
-        }
-        println("Touches began override")
-    }
-    
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        if !self.dragging
-        {
-            self.nextResponder()?.touchesMoved(touches, withEvent: event)
-        }
+        var view2 = super.hitTest(point, withEvent: event)
+        return view2 == self ? nil : view2
     }
     
 }
