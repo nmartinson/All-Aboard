@@ -50,4 +50,13 @@ enum RETURNCODES
     
     // Search
     static let SEARCH_BY_USERNAME_FAILURE = "1401"
+    
+    // Invite
+    static let INVITE_USER_SUCCESS = "1230"
+    static let INVITE_USER_DUPLICATE = "1232"
+    static let USER_HAS_NO_INVITES = "1241"
+    static let INVITE_ACCEPT_SUCCESS = "1250"
+    static let INVITE_ACCEPT_FAILURE = "1251"
+    static let INVITE_DECLINE_SUCCES = "1260"
+    static let INVITE_DECLINE_FAILURE = "1261"
 }

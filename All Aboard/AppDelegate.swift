@@ -13,14 +13,20 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let cognitoIdentityPoolId = "us-east-1:9518f95d-d773-485e-9226-bcb8d872a5f4"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         FBLoginView.self
         FBProfilePictureView.self
         GMSServices.provideAPIKey(APIkeys.googleMapsKey)
-
+        
+        //Configure AWS
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSRegionType.USEast1, identityId: "615495442022", identityPoolId: cognitoIdentityPoolId, logins: nil)
+//
+        let defaultServiceConfiguration = AWSServiceConfiguration(region: AWSRegionType.USEast1, credentialsProvider: credentialsProvider)
+        AWSServiceManager.defaultServiceManager().setDefaultServiceConfiguration(defaultServiceConfiguration)
+        
         return true
     }
 

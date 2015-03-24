@@ -323,6 +323,14 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         centerScrollViewContents()
     }
 
+    func scrollViewDidScroll(scrollView: UIScrollView)
+    {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.frame.size.height
+        {
+            scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x, scrollView.contentSize.height - scrollView.frame.size.height), animated: false)
+        }
+    }
+    
     /******************************************************************************************
     *   Centers the image when zooming
     ******************************************************************************************/
