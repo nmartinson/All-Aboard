@@ -17,6 +17,8 @@
 		2B148B4C1A8C4794000E385F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */; };
 		2B148B5F1A8C4E6F000E385F /* BluemixCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */; };
 		2B3A3D8F1A8C43DC000AC892 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */; };
+		2B44916D1AC1C3690042A87A /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B44916C1AC1C3690042A87A /* AWSiOSSDKv2.framework */; };
+		2B44916F1AC1C8C40042A87A /* AWSCognitoSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B44916E1AC1C8C40042A87A /* AWSCognitoSync.framework */; };
 		2B596F951AA8D8BE006CBEBA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F941AA8D8BE006CBEBA /* Helper.swift */; };
 		2B596F971AA8DF25006CBEBA /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */; };
 		2B596F991AA8ECAD006CBEBA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */; };
@@ -61,6 +63,29 @@
 		2B971EE01AA39051007FC1A5 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EDF1AA39051007FC1A5 /* DatePickerView.xib */; };
 		2B971EE21AA390EC007FC1A5 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B971EE11AA390EC007FC1A5 /* DatePickerController.swift */; };
 		2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE282C1A84282000594E24 /* NewsFeedCell.xib */; };
+		2BBF76B01AC1B5A600C820FF /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76A91AC1B5A500C820FF /* FMDB.framework */; };
+		2BBF76B11AC1B5A600C820FF /* GZIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AA1AC1B5A500C820FF /* GZIP.framework */; };
+		2BBF76B21AC1B5A600C820FF /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AB1AC1B5A600C820FF /* Mantle.framework */; };
+		2BBF76B31AC1B5A600C820FF /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AC1AC1B5A600C820FF /* Reachability.framework */; };
+		2BBF76B41AC1B5A600C820FF /* TMCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AD1AC1B5A600C820FF /* TMCache.framework */; };
+		2BBF76B51AC1B5A600C820FF /* UICKeyChainStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AE1AC1B5A600C820FF /* UICKeyChainStore.framework */; };
+		2BBF76B61AC1B5A600C820FF /* XMLDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AF1AC1B5A600C820FF /* XMLDictionary.framework */; };
+		2BBF76C71AC1B5F600C820FF /* autoscaling-2011-01-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76B81AC1B5F600C820FF /* autoscaling-2011-01-01.json */; };
+		2BBF76C81AC1B5F600C820FF /* cognito-identity-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76B91AC1B5F600C820FF /* cognito-identity-2014-06-30.json */; };
+		2BBF76C91AC1B5F600C820FF /* css-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76BA1AC1B5F600C820FF /* css-2014-06-30.json */; };
+		2BBF76CA1AC1B5F600C820FF /* dynamodb-2012-08-10.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76BB1AC1B5F600C820FF /* dynamodb-2012-08-10.json */; };
+		2BBF76CB1AC1B5F600C820FF /* ec2-2014-09-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76BC1AC1B5F600C820FF /* ec2-2014-09-01.json */; };
+		2BBF76CC1AC1B5F600C820FF /* elasticloadbalancing-2012-06-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76BD1AC1B5F600C820FF /* elasticloadbalancing-2012-06-01.json */; };
+		2BBF76CD1AC1B5F600C820FF /* email-2010-12-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76BE1AC1B5F600C820FF /* email-2010-12-01.json */; };
+		2BBF76CE1AC1B5F600C820FF /* kinesis-2013-12-02.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76BF1AC1B5F600C820FF /* kinesis-2013-12-02.json */; };
+		2BBF76CF1AC1B5F600C820FF /* mobileanalytics-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76C01AC1B5F600C820FF /* mobileanalytics-2014-06-30.json */; };
+		2BBF76D01AC1B5F600C820FF /* monitoring-2010-08-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76C11AC1B5F600C820FF /* monitoring-2010-08-01.json */; };
+		2BBF76D11AC1B5F600C820FF /* s3-2006-03-01.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76C21AC1B5F600C820FF /* s3-2006-03-01.json */; };
+		2BBF76D21AC1B5F600C820FF /* sdb-2009-04-15.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76C31AC1B5F600C820FF /* sdb-2009-04-15.json */; };
+		2BBF76D31AC1B5F600C820FF /* sns-2010-03-31.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76C41AC1B5F600C820FF /* sns-2010-03-31.json */; };
+		2BBF76D41AC1B5F600C820FF /* sqs-2012-11-05.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76C51AC1B5F600C820FF /* sqs-2012-11-05.json */; };
+		2BBF76D51AC1B5F600C820FF /* sts-2011-06-15.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BBF76C61AC1B5F600C820FF /* sts-2011-06-15.json */; };
+		2BBF76D71AC1B62600C820FF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76D61AC1B62600C820FF /* libsqlite3.dylib */; };
 		2BC1C5F11A97FD6E000F14DA /* SwiftAddressBookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1C5F01A97FD6E000F14DA /* SwiftAddressBookWrapper.swift */; };
 		2BC1C5F71A9A6733000F14DA /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */; };
 		2BC1C5F91A9A6ABF000F14DA /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */; };
@@ -253,6 +278,8 @@
 		2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluemixCommunication.swift; sourceTree = "<group>"; };
 		2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
 		2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		2B44916C1AC1C3690042A87A /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
+		2B44916E1AC1C8C40042A87A /* AWSCognitoSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognitoSync.framework; sourceTree = "<group>"; };
 		2B596F941AA8D8BE006CBEBA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
@@ -297,6 +324,29 @@
 		2B971EDF1AA39051007FC1A5 /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		2B971EE11AA390EC007FC1A5 /* DatePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		2BBE282C1A84282000594E24 /* NewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
+		2BBF76A91AC1B5A500C820FF /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FMDB.framework; sourceTree = "<group>"; };
+		2BBF76AA1AC1B5A500C820FF /* GZIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GZIP.framework; sourceTree = "<group>"; };
+		2BBF76AB1AC1B5A600C820FF /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
+		2BBF76AC1AC1B5A600C820FF /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = "<group>"; };
+		2BBF76AD1AC1B5A600C820FF /* TMCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMCache.framework; sourceTree = "<group>"; };
+		2BBF76AE1AC1B5A600C820FF /* UICKeyChainStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UICKeyChainStore.framework; sourceTree = "<group>"; };
+		2BBF76AF1AC1B5A600C820FF /* XMLDictionary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XMLDictionary.framework; sourceTree = "<group>"; };
+		2BBF76B81AC1B5F600C820FF /* autoscaling-2011-01-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "autoscaling-2011-01-01.json"; sourceTree = "<group>"; };
+		2BBF76B91AC1B5F600C820FF /* cognito-identity-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cognito-identity-2014-06-30.json"; sourceTree = "<group>"; };
+		2BBF76BA1AC1B5F600C820FF /* css-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "css-2014-06-30.json"; sourceTree = "<group>"; };
+		2BBF76BB1AC1B5F600C820FF /* dynamodb-2012-08-10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "dynamodb-2012-08-10.json"; sourceTree = "<group>"; };
+		2BBF76BC1AC1B5F600C820FF /* ec2-2014-09-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ec2-2014-09-01.json"; sourceTree = "<group>"; };
+		2BBF76BD1AC1B5F600C820FF /* elasticloadbalancing-2012-06-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "elasticloadbalancing-2012-06-01.json"; sourceTree = "<group>"; };
+		2BBF76BE1AC1B5F600C820FF /* email-2010-12-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "email-2010-12-01.json"; sourceTree = "<group>"; };
+		2BBF76BF1AC1B5F600C820FF /* kinesis-2013-12-02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kinesis-2013-12-02.json"; sourceTree = "<group>"; };
+		2BBF76C01AC1B5F600C820FF /* mobileanalytics-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "mobileanalytics-2014-06-30.json"; sourceTree = "<group>"; };
+		2BBF76C11AC1B5F600C820FF /* monitoring-2010-08-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "monitoring-2010-08-01.json"; sourceTree = "<group>"; };
+		2BBF76C21AC1B5F600C820FF /* s3-2006-03-01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "s3-2006-03-01.json"; sourceTree = "<group>"; };
+		2BBF76C31AC1B5F600C820FF /* sdb-2009-04-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sdb-2009-04-15.json"; sourceTree = "<group>"; };
+		2BBF76C41AC1B5F600C820FF /* sns-2010-03-31.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sns-2010-03-31.json"; sourceTree = "<group>"; };
+		2BBF76C51AC1B5F600C820FF /* sqs-2012-11-05.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sqs-2012-11-05.json"; sourceTree = "<group>"; };
+		2BBF76C61AC1B5F600C820FF /* sts-2011-06-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sts-2011-06-15.json"; sourceTree = "<group>"; };
+		2BBF76D61AC1B62600C820FF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2BC1C5F01A97FD6E000F14DA /* SwiftAddressBookWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookWrapper.swift; sourceTree = "<group>"; };
 		2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFriendsViewController.swift; path = "All Aboard/AddFriendsViewController.swift"; sourceTree = "<group>"; };
 		2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactTableViewCell.swift; path = "All Aboard/ContactTableViewCell.swift"; sourceTree = "<group>"; };
@@ -429,6 +479,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BBF76D71AC1B62600C820FF /* libsqlite3.dylib in Frameworks */,
+				2BBF76B11AC1B5A600C820FF /* GZIP.framework in Frameworks */,
+				2B44916F1AC1C8C40042A87A /* AWSCognitoSync.framework in Frameworks */,
 				2BC9C4391A956D8A0044D886 /* Firebase.framework in Frameworks */,
 				2BC9C43A1A956DC40044D886 /* CryptoSwift.framework in Frameworks */,
 				2BC9C4371A956D6E0044D886 /* CFNetwork.framework in Frameworks */,
@@ -437,21 +490,28 @@
 				2B148B4C1A8C4794000E385F /* GoogleMaps.framework in Frameworks */,
 				2BF988D21A895ED300F9E327 /* Security.framework in Frameworks */,
 				2BEE981B1A969F17008FA1CC /* CryptoSwift.framework in Frameworks */,
+				2BBF76B61AC1B5A600C820FF /* XMLDictionary.framework in Frameworks */,
 				2B79B92F1A883C3400544E78 /* SystemConfiguration.framework in Frameworks */,
 				2B79B92D1A883C2700544E78 /* QuartzCore.framework in Frameworks */,
 				2B79B92B1A883C1000544E78 /* OpenGLES.framework in Frameworks */,
 				2B79B9291A883C0500544E78 /* libz.dylib in Frameworks */,
+				2BBF76B41AC1B5A600C820FF /* TMCache.framework in Frameworks */,
 				2B79B9271A883BFF00544E78 /* libicucore.dylib in Frameworks */,
+				2B44916D1AC1C3690042A87A /* AWSiOSSDKv2.framework in Frameworks */,
+				2BBF76B01AC1B5A600C820FF /* FMDB.framework in Frameworks */,
 				2B79B9251A883BF700544E78 /* libc++.dylib in Frameworks */,
 				2B79B9231A883BE100544E78 /* ImageIO.framework in Frameworks */,
+				2BBF76B51AC1B5A600C820FF /* UICKeyChainStore.framework in Frameworks */,
 				2B79B9211A883BDA00544E78 /* GLKit.framework in Frameworks */,
 				2B79B91F1A883BD000544E78 /* CoreText.framework in Frameworks */,
 				2BC9C43C1A956DF90044D886 /* Firebase.framework in Frameworks */,
 				2B79B91D1A883BC800544E78 /* CoreLocation.framework in Frameworks */,
 				2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */,
+				2BBF76B21AC1B5A600C820FF /* Mantle.framework in Frameworks */,
 				2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */,
 				2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */,
 				2BF988F61A89786C00F9E327 /* Alamofire.framework in Frameworks */,
+				2BBF76B31AC1B5A600C820FF /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +586,29 @@
 				2B971EC21AA00A92007FC1A5 /* cb_mono_on@2x.png */,
 			);
 			path = Graphics;
+			sourceTree = "<group>";
+		};
+		2BBF76B71AC1B5F600C820FF /* service-definitions */ = {
+			isa = PBXGroup;
+			children = (
+				2BBF76B81AC1B5F600C820FF /* autoscaling-2011-01-01.json */,
+				2BBF76B91AC1B5F600C820FF /* cognito-identity-2014-06-30.json */,
+				2BBF76BA1AC1B5F600C820FF /* css-2014-06-30.json */,
+				2BBF76BB1AC1B5F600C820FF /* dynamodb-2012-08-10.json */,
+				2BBF76BC1AC1B5F600C820FF /* ec2-2014-09-01.json */,
+				2BBF76BD1AC1B5F600C820FF /* elasticloadbalancing-2012-06-01.json */,
+				2BBF76BE1AC1B5F600C820FF /* email-2010-12-01.json */,
+				2BBF76BF1AC1B5F600C820FF /* kinesis-2013-12-02.json */,
+				2BBF76C01AC1B5F600C820FF /* mobileanalytics-2014-06-30.json */,
+				2BBF76C11AC1B5F600C820FF /* monitoring-2010-08-01.json */,
+				2BBF76C21AC1B5F600C820FF /* s3-2006-03-01.json */,
+				2BBF76C31AC1B5F600C820FF /* sdb-2009-04-15.json */,
+				2BBF76C41AC1B5F600C820FF /* sns-2010-03-31.json */,
+				2BBF76C51AC1B5F600C820FF /* sqs-2012-11-05.json */,
+				2BBF76C61AC1B5F600C820FF /* sts-2011-06-15.json */,
+			);
+			name = "service-definitions";
+			path = "../service-definitions";
 			sourceTree = "<group>";
 		};
 		2BC9C40E1A928CCB0044D886 /* NewsFeed */ = {
@@ -763,6 +846,7 @@
 		2BE791D81A79700E00DE0E57 = {
 			isa = PBXGroup;
 			children = (
+				2BBF76D61AC1B62600C820FF /* libsqlite3.dylib */,
 				2BC9C4271A956C050044D886 /* CryptoSwift.xcodeproj */,
 				2BF988ED1A89785F00F9E327 /* Alamofire.xcodeproj */,
 				2BE791E31A79700E00DE0E57 /* All Aboard */,
@@ -784,6 +868,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE7920C1A79710400DE0E57 /* Frameworks */,
+				2BBF76B71AC1B5F600C820FF /* service-definitions */,
 				2B971EAE1AA00A92007FC1A5 /* Graphics */,
 				3C562EA11A9BB5C000CCD97B /* Events */,
 				3C562E9E1A9BB51D00CCD97B /* Friendslist */,
@@ -837,6 +922,15 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B44916E1AC1C8C40042A87A /* AWSCognitoSync.framework */,
+				2B44916C1AC1C3690042A87A /* AWSiOSSDKv2.framework */,
+				2BBF76A91AC1B5A500C820FF /* FMDB.framework */,
+				2BBF76AA1AC1B5A500C820FF /* GZIP.framework */,
+				2BBF76AB1AC1B5A600C820FF /* Mantle.framework */,
+				2BBF76AC1AC1B5A600C820FF /* Reachability.framework */,
+				2BBF76AD1AC1B5A600C820FF /* TMCache.framework */,
+				2BBF76AE1AC1B5A600C820FF /* UICKeyChainStore.framework */,
+				2BBF76AF1AC1B5A600C820FF /* XMLDictionary.framework */,
 				2BC1C5F01A97FD6E000F14DA /* SwiftAddressBookWrapper.swift */,
 				2BC9C4C41A956EBA0044D886 /* JSQSystemSoundPlayer */,
 				2BC9C43D1A956EAF0044D886 /* JSQMessagesViewController */,
@@ -1084,11 +1178,16 @@
 				2B971ECD1AA00A92007FC1A5 /* cb_glossy_on.png in Resources */,
 				2BC9C4A21A956EB00044D886 /* typing@2x.png in Resources */,
 				2BC9C4A31A956EB00044D886 /* message_received.aiff in Resources */,
+				2BBF76C81AC1B5F600C820FF /* cognito-identity-2014-06-30.json in Resources */,
 				2BC9C49B1A956EB00044D886 /* bubble_stroked_tailless.png in Resources */,
 				2BC9C49D1A956EB00044D886 /* bubble_tailless.png in Resources */,
+				2BBF76C71AC1B5F600C820FF /* autoscaling-2011-01-01.json in Resources */,
 				2BC9C49F1A956EB00044D886 /* camera.png in Resources */,
+				2BBF76CC1AC1B5F600C820FF /* elasticloadbalancing-2012-06-01.json in Resources */,
+				2BBF76D21AC1B5F600C820FF /* sdb-2009-04-15.json in Resources */,
 				2B971ECC1AA00A92007FC1A5 /* cb_glossy_off@2x.png in Resources */,
 				2B971ED61AA00A92007FC1A5 /* cb_mono_on@2x.png in Resources */,
+				2BBF76C91AC1B5F600C820FF /* css-2014-06-30.json in Resources */,
 				2BC9C4BF1A956EB00044D886 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				2B971EC51AA00A92007FC1A5 /* cb_box_on.png in Resources */,
 				2B971ECF1AA00A92007FC1A5 /* cb_green_off.png in Resources */,
@@ -1097,27 +1196,37 @@
 				2BE791EF1A79700E00DE0E57 /* Main.storyboard in Resources */,
 				2BC9C4961A956EB00044D886 /* bubble_min@2x.png in Resources */,
 				2B971ED11AA00A92007FC1A5 /* cb_green_on.png in Resources */,
+				2BBF76D01AC1B5F600C820FF /* monitoring-2010-08-01.json in Resources */,
 				2B971EC31AA00A92007FC1A5 /* cb_box_off.png in Resources */,
+				2BBF76CA1AC1B5F600C820FF /* dynamodb-2012-08-10.json in Resources */,
 				2BC9C4AC1A956EB00044D886 /* JSQMessagesViewController.xib in Resources */,
 				2BC9C4991A956EB00044D886 /* bubble_stroked.png in Resources */,
 				2BC9C49C1A956EB00044D886 /* bubble_stroked_tailless@2x.png in Resources */,
 				2BC9C49A1A956EB00044D886 /* bubble_stroked@2x.png in Resources */,
 				2BC9C4A41A956EB00044D886 /* message_sent.aiff in Resources */,
 				2BE791F41A79700E00DE0E57 /* LaunchScreen.xib in Resources */,
+				2BBF76CB1AC1B5F600C820FF /* ec2-2014-09-01.json in Resources */,
 				2B971ED41AA00A92007FC1A5 /* cb_mono_off@2x.png in Resources */,
 				2BC9C4941A956EB00044D886 /* bubble@2x.png in Resources */,
+				2BBF76D31AC1B5F600C820FF /* sns-2010-03-31.json in Resources */,
 				2B971ED21AA00A92007FC1A5 /* cb_green_on@2x.png in Resources */,
 				2B971ED01AA00A92007FC1A5 /* cb_green_off@2x.png in Resources */,
 				2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */,
+				2BBF76D11AC1B5F600C820FF /* s3-2006-03-01.json in Resources */,
 				2BE791F11A79700E00DE0E57 /* Images.xcassets in Resources */,
 				2B971ECB1AA00A92007FC1A5 /* cb_glossy_off.png in Resources */,
+				2BBF76CD1AC1B5F600C820FF /* email-2010-12-01.json in Resources */,
+				2BBF76CF1AC1B5F600C820FF /* mobileanalytics-2014-06-30.json in Resources */,
 				2B971EC41AA00A92007FC1A5 /* cb_box_off@2x.png in Resources */,
 				2BC9C4C31A956EB00044D886 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				2BBF76D41AC1B5F600C820FF /* sqs-2012-11-05.json in Resources */,
 				2B971EE01AA39051007FC1A5 /* DatePickerView.xib in Resources */,
+				2BBF76CE1AC1B5F600C820FF /* kinesis-2013-12-02.json in Resources */,
 				2BC9C4A11A956EB00044D886 /* typing.png in Resources */,
 				2B3A3D8F1A8C43DC000AC892 /* GoogleMaps.bundle in Resources */,
 				2BC9C4B81A956EB00044D886 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				2BC9C4BA1A956EB00044D886 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				2BBF76D51AC1B5F600C820FF /* sts-2011-06-15.json in Resources */,
 				2B971EC91AA00A92007FC1A5 /* cb_dark_on.png in Resources */,
 				2B596F991AA8ECAD006CBEBA /* NotificationCell.xib in Resources */,
 				2B971ED51AA00A92007FC1A5 /* cb_mono_on.png in Resources */,
@@ -1365,6 +1474,11 @@
 					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"/Users/nickmartinson/Downloads/aws-ios-sdk-2.0.17/frameworks",
+					"$(PROJECT_DIR)/All",
+					Aboard,
 				);
 				INFOPLIST_FILE = "All Aboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1396,6 +1510,11 @@
 					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"/Users/nickmartinson/Downloads/aws-ios-sdk-2.0.17/frameworks",
 					"$(PROJECT_DIR)/All",
 					Aboard,
 				);
