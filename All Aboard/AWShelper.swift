@@ -20,9 +20,17 @@ class AWShelper
     {
         // DOWNLOADS AN IMAGE
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-        
+        var downloadFilePath = ""
         //creates a new path in the tmp folder to store the image. need to clear this folder later
-        let downloadFilePath = NSTemporaryDirectory().stringByAppendingPathComponent("downloaded-myImage\(photoNumber!).jpg")
+        if folder == "profilePictures"
+        {
+            downloadFilePath = NSTemporaryDirectory().stringByAppendingPathComponent("downloaded-myImage\(file).jpg")
+        }
+        else
+        {
+            downloadFilePath = NSTemporaryDirectory().stringByAppendingPathComponent("downloaded-myImage\(photoNumber!).jpg")
+        }
+
         let downloadingURL = NSURL(fileURLWithPath: downloadFilePath)
         let downloadRequest = AWSS3TransferManagerDownloadRequest()
     
