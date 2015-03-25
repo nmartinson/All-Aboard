@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         let GUID = UserPreferences().getGUID()
         
+        // dowload profile pic
         AWShelper().downloadImageFromS3("profilePictures", file: GUID, photoNumber: nil)
         {
             (image:UIImage?) in
@@ -54,6 +55,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 //            self.events[0] = events
             self.tableView.reloadData()
         }
+        
         imagePicker.delegate = self
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }

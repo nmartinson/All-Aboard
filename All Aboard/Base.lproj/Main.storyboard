@@ -1087,7 +1087,7 @@
                                     <action selector="profileSettingsPressed:" destination="sZW-Ch-1r7" eventType="touchUpInside" id="dae-Kq-jIH"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yvj-fq-uRp">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yvj-fq-uRp">
                                 <rect key="frame" x="16" y="74" width="400" height="163"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="163" id="NLm-sC-Szr"/>

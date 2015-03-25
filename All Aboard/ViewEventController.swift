@@ -100,6 +100,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                 if image != nil
                 {
                     self.photoCollection.append(image!)
+                    self.photoGalleryCollectionView.reloadData()
                 }
             }
         }
