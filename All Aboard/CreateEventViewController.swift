@@ -279,6 +279,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
             else
             {
                 
+                
                 googleSearch.fetchPlaces(searchString, coordinates: location!){
                     (newPlaces: [GooglePlace]) in
                     self.places = newPlaces
