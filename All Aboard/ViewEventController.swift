@@ -55,7 +55,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mainScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, 2000)
 //        slideView.frame = CGRectMake(0, 500, mainScrollView.bounds.width, slideView.bounds.height)
         // Test image
-        photoCollection.append(UIImage(named: "testImage")!)
+//        photoCollection.append(UIImage(named: "testImage")!)
         
         imageScroll.delegate = self
         imageScroll.frame = UIScreen.mainScreen().bounds
@@ -91,16 +91,18 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         locationLabel.text = event!.EventLocation!
         hostedByLabel.text = "Host: \(event!.EventHostName!)"
         marker.title = event!.EventName!
-    
-//        BluemixCommunication().getImage()
-//        {
-//            (image: UIImage?) in
-//            if image != nil
-//            {
-//                self.photoCollection.append(image!)
-//                self.photoGalleryCollectionView.reloadData()
-//            }
-//        }
+        
+        for(var i = 0; i < 2; i++)
+        {
+            AWShelper().downloadImageFromS3("test", file: nil, photoNumber: i)
+            {
+                (image: UIImage?) in
+                if image != nil
+                {
+                    self.photoCollection.append(image!)
+                }
+            }
+        }
     }
     
     /******************************************************************************************
@@ -212,8 +214,9 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!)
     {
         photoCollection.append(image)
-        AWShelper().uploadToS3(image)
-//        BluemixCommunication().sendImage(image)
+        let folder = event!.EventID!    // use the event id as the folder name since it is unique
+        AWShelper().uploadToS3(image, folder: folder, file: nil, photoNumber: photoCollection.count) // upload image
+        event!.EventPhotoNumber++
         self.dismissViewControllerAnimated(true, completion: nil)
         photoGalleryCollectionView.reloadData()
     }

@@ -7,51 +7,89 @@
 //
 
 import Foundation
+import CoreGraphics
+import ImageIO
+import MobileCoreServices
 
 class AWShelper
 {
-    func downloadFromS3(view: UIViewController)
+    /******************************************************************************************
+    *   Downloads a single image from AWS
+    ******************************************************************************************/
+    func downloadImageFromS3(folder: String, file:String?, photoNumber: Int?, completion: (image: UIImage?) -> Void)
     {
-    // DOWNLOADS AN IMAGE
-            let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-            let downloadFilePath = NSTemporaryDirectory().stringByAppendingPathComponent("downloaded-myImage.jpg")
-            let downloadingURL = NSURL(fileURLWithPath: downloadFilePath)
-            let downloadRequest = AWSS3TransferManagerDownloadRequest()
-            downloadRequest.bucket = "allaboardimages"
-            downloadRequest.key = "drinks.jpg"
-            downloadRequest.downloadingFileURL = downloadingURL
-            transferManager.download(downloadRequest).continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: { (task: BFTask!) -> AnyObject! in
+        // DOWNLOADS AN IMAGE
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        let downloadFilePath = NSTemporaryDirectory().stringByAppendingPathComponent("downloaded-myImage.jpg")
+        let downloadingURL = NSURL(fileURLWithPath: downloadFilePath)
+        let downloadRequest = AWSS3TransferManagerDownloadRequest()
     
-                if (task.error != nil)
-                {
-                    println("Error \(task.error)")
-                }
-                if (task.result != nil)
-                {
-                    let downloadOutput = task.result as AWSS3TransferManagerDownloadOutput
-                    let image = UIImage(contentsOfFile: downloadFilePath)!
-                    let imageView = UIImageView(image: image)
-                    view.view.addSubview(imageView)
-                    println(image)
-                }
-                println("block")
-                return nil
-            })
+        if file != nil
+        {
+            downloadRequest.key = "\(folder)/\(file!).jpeg"
+        }
+        else
+        {
+            downloadRequest.key = "\(folder)/image\(photoNumber!).jpeg"
+        }
+    
+        downloadRequest.bucket = "allaboardimages"
+        downloadRequest.downloadingFileURL = downloadingURL
+        transferManager.download(downloadRequest).continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: { (task: BFTask!) -> AnyObject! in
+
+            if (task.error != nil)
+            {
+                println("Error \(task.error)")
+                completion(image: nil)
+            }
+            if (task.result != nil)
+            {
+                let downloadOutput = task.result as AWSS3TransferManagerDownloadOutput
+                let image = UIImage(contentsOfFile: downloadFilePath)!
+                completion(image: image)
+            }
+            return nil
+        })
     }
     
-    func uploadToS3(image: UIImage)
+    
+    /******************************************************************************************
+    *   Compresses the image to a max width or height of 640px
+    *   return: NSURL which is a file path to where the image to send is stored
+    ******************************************************************************************/
+    func compressImage(image: UIImage) -> NSURL
     {
-
-        // get the image from a UIImageView that is displaying the selected Image
-        println("upload")
-        // create a local image that we can use to upload to s3
         var path:NSString = NSTemporaryDirectory().stringByAppendingPathComponent("image.jpeg")
-//        var imageData:NSData = UIImagePNGRepresentation(image)
+        //        var imageData:NSData = UIImagePNGRepresentation(image)
         var imageData = UIImageJPEGRepresentation(image, 0.5)
         imageData.writeToFile(path, atomically: true)
         
         // once the image is saved we can use the path to create a local fileurl
         var url:NSURL = NSURL(fileURLWithPath: path)!
+        let src = CGImageSourceCreateWithURL(url, nil)
+        
+        // thumbnail options
+        let thumbOptions:[String:AnyObject] = [kCGImageSourceShouldAllowFloat: kCFBooleanTrue,
+            kCGImageSourceCreateThumbnailWithTransform: kCFBooleanTrue,
+            kCGImageSourceCreateThumbnailFromImageAlways: kCFBooleanTrue,
+            kCGImageSourceThumbnailMaxPixelSize: Int(640)]
+        let thumbnail = CGImageSourceCreateThumbnailAtIndex(src, 0, thumbOptions)
+        
+        let destination = CGImageDestinationCreateWithURL(url, kUTTypeJPEG, 1, nil)
+        CGImageDestinationAddImage(destination, thumbnail, nil)
+        if !CGImageDestinationFinalize(destination)
+        {
+            println("failed")
+        }
+        return url
+    }
+    
+    /******************************************************************************************
+    *   Sends the image to AWS
+    ******************************************************************************************/
+    func uploadToS3(image: UIImage, folder: String, file: String?, photoNumber: Int?)
+    {
+        let url = compressImage(image)
         
         // next we set up the S3 upload request manager
         let uploadRequest = AWSS3TransferManagerUploadRequest()
@@ -60,7 +98,15 @@ class AWShelper
         // I want this image to be public to anyone to view it so I'm setting it to Public Read
         uploadRequest.ACL = AWSS3ObjectCannedACL.PublicRead
         // set the image's name that will be used on the s3 server. I am also creating a folder to place the image in
-        uploadRequest.key = "image.jpeg"
+        
+        if file != nil
+        {
+            uploadRequest.key = "\(folder)/\(file!).jpeg"
+        }
+        else
+        {
+            uploadRequest.key = "\(folder)/image\(photoNumber!).jpeg"
+        }
         // set the content type
         uploadRequest.contentType = "image/jpeg"
 
@@ -68,8 +114,6 @@ class AWShelper
         uploadRequest.body = url
 
         uploadRequest.ACL = AWSS3ObjectCannedACL.PublicRead
-        
-
         
         // we will track progress through an AWSNetworkingUploadProgressBlock
         uploadRequest?.uploadProgress = {[unowned self](bytesSent:Int64, totalBytesSent:Int64, totalBytesExpectedToSend:Int64) in
@@ -80,7 +124,6 @@ class AWShelper
                 println("upload %\(Float(amountUploaded) / Float(filesize) )")
             })
         }
-
         
         // now the upload request is set up we can creat the transfermanger, the credentials are already set up in the app delegate
         var transferManager:AWSS3TransferManager = AWSS3TransferManager.defaultS3TransferManager()
@@ -89,15 +132,12 @@ class AWShelper
             task -> AnyObject in
             
             // once the uploadmanager finishes check if there were any errors
-            if(task.error != nil){
-                NSLog("%@", task.error);
-            }else{ // if there aren't any then the image is uploaded!
-                // this is the url of the image we just uploaded
-                NSLog("https://s3.amazonaws.com/s3-demo-swift/foldername/image.png");
+            if(task.error != nil)
+            {
+                NSLog("%@", task.error)
             }
             
-//            self.removeLoadingView()
-            return "all done";
+            return "all done"
         })
     }
     

@@ -73,38 +73,8 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
             println(self.tabBarController?.tabBar.items?.count)
             (self.tabBarController!.tabBar.items![3] as UITabBarItem).badgeValue = "\(events.count)"
         }
-        
-//        AWShelper().downloadFromS3(self)
-        
-        // DOWNLOADS AN IMAGE
-//        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-//        let downloadFilePath = NSTemporaryDirectory().stringByAppendingPathComponent("downloaded-myImage.jpg")
-//        let downloadingURL = NSURL(fileURLWithPath: downloadFilePath)
-//        let downloadRequest = AWSS3TransferManagerDownloadRequest()
-//        downloadRequest.bucket = "allaboardimages"
-//        downloadRequest.key = "drinks.jpg"
-//        downloadRequest.downloadingFileURL = downloadingURL
-//        transferManager.download(downloadRequest).continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: { (task: BFTask!) -> AnyObject! in
-//            
-//            if (task.error != nil)
-//            {
-//                println("Error \(task.error)")
-//            }
-//            if (task.result != nil)
-//            {
-//                let downloadOutput = task.result as AWSS3TransferManagerDownloadOutput
-//                let image = UIImage(contentsOfFile: downloadFilePath)!
-//                let imageView = UIImageView(image: image)
-//                self.view.addSubview(imageView)
-//                println(image)
-//            }
-//            println("block")
-//            return nil
-//        })
-        
-        
-        
-        
+     
+
     }
 
     

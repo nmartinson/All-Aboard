@@ -10,24 +10,31 @@ import UIKit
 import Alamofire
 import MobileCoreServices
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePic: UIImageView!
     var events:[[Event]] = [[],[]]
     var selectedEvent:[String:AnyObject] = ["row":0, "section":0, "indexPath": NSIndexPath()]
-    
+    let imagePicker = UIImagePickerController()
     
     /******************************************************************************************
     *
     ******************************************************************************************/
     override func viewDidLoad()
     {
-        let eepupID = "10153524130878066"
-        var imageStr = "http://graph.facebook.com/\(eepupID)/picture?type=large"
-        getLabelImage(imageStr, newImage: profilePic)
-        println(UserPreferences().getGUID())
+        let GUID = UserPreferences().getGUID()
+        
+        AWShelper().downloadImageFromS3("profilePictures", file: GUID, photoNumber: nil)
+        {
+            (image:UIImage?) in
+            if image != nil
+            {
+                self.profilePic.image = image
+            }
+        }
+        
         BluemixCommunication().getUserInviteList(UserPreferences().getGUID())
         {
             (events: [Event]) in
@@ -47,7 +54,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 //            self.events[0] = events
             self.tableView.reloadData()
         }
-        
+        imagePicker.delegate = self
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
     
@@ -167,7 +174,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     ******************************************************************************************/
     func openGallery()
     {
-        let imagePicker = UIImagePickerController()
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum)
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
@@ -177,6 +183,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    
+    /******************************************************************************************
+    *   Save the picked image
+    ******************************************************************************************/
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!)
+    {
+        profilePic.image = image
+        let file = UserPreferences().getGUID()
+        self.dismissViewControllerAnimated(true)
+        {
+            AWShelper().uploadToS3(image, folder: "profilePictures", file: file, photoNumber: nil) // upload image
+        }
+    }
     
 }

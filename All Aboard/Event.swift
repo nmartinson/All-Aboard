@@ -21,6 +21,7 @@ class Event {
     var EventHostName:NSString?
     var EventEndDate:NSDate?
     var EventInviteList:[String]?
+    var EventPhotoNumber = 0
     
     init()
     {
