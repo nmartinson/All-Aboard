@@ -212,6 +212,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!)
     {
         photoCollection.append(image)
+        AWShelper().uploadToS3(image)
 //        BluemixCommunication().sendImage(image)
         self.dismissViewControllerAnimated(true, completion: nil)
         photoGalleryCollectionView.reloadData()

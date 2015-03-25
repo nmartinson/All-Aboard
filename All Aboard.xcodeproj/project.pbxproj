@@ -17,8 +17,9 @@
 		2B148B4C1A8C4794000E385F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */; };
 		2B148B5F1A8C4E6F000E385F /* BluemixCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */; };
 		2B3A3D8F1A8C43DC000AC892 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */; };
-		2B44916D1AC1C3690042A87A /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B44916C1AC1C3690042A87A /* AWSiOSSDKv2.framework */; };
 		2B44916F1AC1C8C40042A87A /* AWSCognitoSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B44916E1AC1C8C40042A87A /* AWSCognitoSync.framework */; };
+		2B4491811AC21B4D0042A87A /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4491801AC21B4D0042A87A /* AWSiOSSDKv2.framework */; };
+		2B4491831AC21CF40042A87A /* AWShelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4491821AC21CF40042A87A /* AWShelper.swift */; };
 		2B596F951AA8D8BE006CBEBA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F941AA8D8BE006CBEBA /* Helper.swift */; };
 		2B596F971AA8DF25006CBEBA /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */; };
 		2B596F991AA8ECAD006CBEBA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */; };
@@ -278,8 +279,9 @@
 		2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluemixCommunication.swift; sourceTree = "<group>"; };
 		2B3A3D8C1A8C43CB000AC892 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
 		2B3A3D8E1A8C43DC000AC892 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		2B44916C1AC1C3690042A87A /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
 		2B44916E1AC1C8C40042A87A /* AWSCognitoSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognitoSync.framework; sourceTree = "<group>"; };
+		2B4491801AC21B4D0042A87A /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
+		2B4491821AC21CF40042A87A /* AWShelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWShelper.swift; sourceTree = "<group>"; };
 		2B596F941AA8D8BE006CBEBA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		2B596F961AA8DF25006CBEBA /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
@@ -497,12 +499,12 @@
 				2B79B9291A883C0500544E78 /* libz.dylib in Frameworks */,
 				2BBF76B41AC1B5A600C820FF /* TMCache.framework in Frameworks */,
 				2B79B9271A883BFF00544E78 /* libicucore.dylib in Frameworks */,
-				2B44916D1AC1C3690042A87A /* AWSiOSSDKv2.framework in Frameworks */,
 				2BBF76B01AC1B5A600C820FF /* FMDB.framework in Frameworks */,
 				2B79B9251A883BF700544E78 /* libc++.dylib in Frameworks */,
 				2B79B9231A883BE100544E78 /* ImageIO.framework in Frameworks */,
 				2BBF76B51AC1B5A600C820FF /* UICKeyChainStore.framework in Frameworks */,
 				2B79B9211A883BDA00544E78 /* GLKit.framework in Frameworks */,
+				2B4491811AC21B4D0042A87A /* AWSiOSSDKv2.framework in Frameworks */,
 				2B79B91F1A883BD000544E78 /* CoreText.framework in Frameworks */,
 				2BC9C43C1A956DF90044D886 /* Firebase.framework in Frameworks */,
 				2B79B91D1A883BC800544E78 /* CoreLocation.framework in Frameworks */,
@@ -879,6 +881,7 @@
 				2BC9C4CD1A9587EC0044D886 /* Chat */,
 				2BE604051A9AC6D1004685C0 /* GoogleSearchAutocomplete */,
 				2B148B5E1A8C4E6F000E385F /* BluemixCommunication.swift */,
+				2B4491821AC21CF40042A87A /* AWShelper.swift */,
 				2BE791E61A79700E00DE0E57 /* AppDelegate.swift */,
 				2B596F941AA8D8BE006CBEBA /* Helper.swift */,
 				2BC7D80E1A87FCD600F21401 /* UserPreferences.swift */,
@@ -922,8 +925,8 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B4491801AC21B4D0042A87A /* AWSiOSSDKv2.framework */,
 				2B44916E1AC1C8C40042A87A /* AWSCognitoSync.framework */,
-				2B44916C1AC1C3690042A87A /* AWSiOSSDKv2.framework */,
 				2BBF76A91AC1B5A500C820FF /* FMDB.framework */,
 				2BBF76AA1AC1B5A500C820FF /* GZIP.framework */,
 				2BBF76AB1AC1B5A600C820FF /* Mantle.framework */,
@@ -1281,6 +1284,7 @@
 				2B04BCFB1A7C541400494335 /* SwiftyJSON.swift in Sources */,
 				2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */,
 				2BE7921B1A7985D100DE0E57 /* NewsFeedController.swift in Sources */,
+				2B4491831AC21CF40042A87A /* AWShelper.swift in Sources */,
 				2BE604241A9FD3AB004685C0 /* ActionCodes.swift in Sources */,
 				2BC9C4A81A956EB00044D886 /* UIImage+JSQMessages.m in Sources */,
 				2B04BD0B1A80042000494335 /* RNDecryptor.m in Sources */,
@@ -1479,6 +1483,8 @@
 					"/Users/nickmartinson/Downloads/aws-ios-sdk-2.0.17/frameworks",
 					"$(PROJECT_DIR)/All",
 					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
 				);
 				INFOPLIST_FILE = "All Aboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1515,6 +1521,8 @@
 					"$(PROJECT_DIR)/All",
 					Aboard,
 					"/Users/nickmartinson/Downloads/aws-ios-sdk-2.0.17/frameworks",
+					"$(PROJECT_DIR)/All",
+					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
 				);
