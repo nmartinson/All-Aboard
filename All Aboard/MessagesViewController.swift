@@ -37,9 +37,6 @@ class MessagesViewController: JSQMessagesViewController {
             if text == nil {text = ""}
             if sender == nil {sender = ""}
             if imageUrl == nil {imageUrl = ""}
-            
-            // get User profile picture image string
-            imageUrl = "http://graph.facebook.com/10203626718697502/picture?type=large"
             let message = Message(text: text, sender: sender, imageUrl: imageUrl)
             
             self.messages.append(message)
@@ -52,7 +49,7 @@ class MessagesViewController: JSQMessagesViewController {
         messagesRef.childByAutoId().setValue([
             "text":text,
             "sender":sender,
-            "imageUrl":senderImageUrl
+            "imageUrl":"https://s3.amazonaws.com/allaboardimages/profilePictures/\(UserPreferences().getGUID())thumbnail.jpeg" // set the profile pic
         ])
     }
     

@@ -12,7 +12,7 @@ import MobileCoreServices
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
-    
+    let AWS = AWShelper()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profilePic: UIImageView!
     var events:[[Event]] = [[],[]]
@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         let GUID = UserPreferences().getGUID()
         
         // dowload profile pic
-        AWShelper().downloadImageFromS3("profilePictures", file: GUID, photoNumber: nil)
+        AWShelper().downloadThumbnailImageFromS3("profilePictures", file: GUID, photoNumber: nil)
         {
             (image:UIImage?) in
             if image != nil
@@ -194,7 +194,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         let file = UserPreferences().getGUID()
         self.dismissViewControllerAnimated(true)
         {
-            AWShelper().uploadToS3(image, folder: "profilePictures", file: file, photoNumber: nil) // upload image
+            self.AWS.uploadThumbnailToS3(self.AWS.compressImageToThumbnail(image), folder: "profilePictures", file: file, photoNumber: nil)
+            self.AWS.uploadToS3(self.AWS.compressImage(image), folder: "profilePictures", file: file, photoNumber: nil) // upload image
         }
     }
     

@@ -40,6 +40,8 @@
 		2B79B92B1A883C1000544E78 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B92A1A883C1000544E78 /* OpenGLES.framework */; };
 		2B79B92D1A883C2700544E78 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B92C1A883C2700544E78 /* QuartzCore.framework */; };
 		2B79B92F1A883C3400544E78 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B92E1A883C3400544E78 /* SystemConfiguration.framework */; };
+		2B8951B31AC5F0F700301156 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8951B21AC5F0F700301156 /* Mantle.framework */; };
+		2B8951B71AC625B600301156 /* EventAttendeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8951B61AC625B600301156 /* EventAttendeeCell.swift */; };
 		2B971EC31AA00A92007FC1A5 /* cb_box_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EAF1AA00A92007FC1A5 /* cb_box_off.png */; };
 		2B971EC41AA00A92007FC1A5 /* cb_box_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EB01AA00A92007FC1A5 /* cb_box_off@2x.png */; };
 		2B971EC51AA00A92007FC1A5 /* cb_box_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EB11AA00A92007FC1A5 /* cb_box_on.png */; };
@@ -66,7 +68,6 @@
 		2BBE282D1A84282000594E24 /* NewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE282C1A84282000594E24 /* NewsFeedCell.xib */; };
 		2BBF76B01AC1B5A600C820FF /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76A91AC1B5A500C820FF /* FMDB.framework */; };
 		2BBF76B11AC1B5A600C820FF /* GZIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AA1AC1B5A500C820FF /* GZIP.framework */; };
-		2BBF76B21AC1B5A600C820FF /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AB1AC1B5A600C820FF /* Mantle.framework */; };
 		2BBF76B31AC1B5A600C820FF /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AC1AC1B5A600C820FF /* Reachability.framework */; };
 		2BBF76B41AC1B5A600C820FF /* TMCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AD1AC1B5A600C820FF /* TMCache.framework */; };
 		2BBF76B51AC1B5A600C820FF /* UICKeyChainStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBF76AE1AC1B5A600C820FF /* UICKeyChainStore.framework */; };
@@ -302,6 +303,8 @@
 		2B79B92A1A883C1000544E78 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		2B79B92C1A883C2700544E78 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2B79B92E1A883C3400544E78 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2B8951B21AC5F0F700301156 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
+		2B8951B61AC625B600301156 /* EventAttendeeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAttendeeCell.swift; sourceTree = "<group>"; };
 		2B971EAF1AA00A92007FC1A5 /* cb_box_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_box_off.png; sourceTree = "<group>"; };
 		2B971EB01AA00A92007FC1A5 /* cb_box_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cb_box_off@2x.png"; sourceTree = "<group>"; };
 		2B971EB11AA00A92007FC1A5 /* cb_box_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_box_on.png; sourceTree = "<group>"; };
@@ -328,7 +331,6 @@
 		2BBE282C1A84282000594E24 /* NewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
 		2BBF76A91AC1B5A500C820FF /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FMDB.framework; sourceTree = "<group>"; };
 		2BBF76AA1AC1B5A500C820FF /* GZIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GZIP.framework; sourceTree = "<group>"; };
-		2BBF76AB1AC1B5A600C820FF /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
 		2BBF76AC1AC1B5A600C820FF /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = "<group>"; };
 		2BBF76AD1AC1B5A600C820FF /* TMCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMCache.framework; sourceTree = "<group>"; };
 		2BBF76AE1AC1B5A600C820FF /* UICKeyChainStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UICKeyChainStore.framework; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				2B44916F1AC1C8C40042A87A /* AWSCognitoSync.framework in Frameworks */,
 				2BC9C4391A956D8A0044D886 /* Firebase.framework in Frameworks */,
 				2BC9C43A1A956DC40044D886 /* CryptoSwift.framework in Frameworks */,
+				2B8951B31AC5F0F700301156 /* Mantle.framework in Frameworks */,
 				2BC9C4371A956D6E0044D886 /* CFNetwork.framework in Frameworks */,
 				2BC9C4351A956D4F0044D886 /* AudioToolbox.framework in Frameworks */,
 				2BC9C4331A956CCB0044D886 /* Social.framework in Frameworks */,
@@ -509,7 +512,6 @@
 				2BC9C43C1A956DF90044D886 /* Firebase.framework in Frameworks */,
 				2B79B91D1A883BC800544E78 /* CoreLocation.framework in Frameworks */,
 				2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */,
-				2BBF76B21AC1B5A600C820FF /* Mantle.framework in Frameworks */,
 				2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */,
 				2BEC04901A7AEAB2003E77DD /* FacebookSDK.framework in Frameworks */,
 				2BF988F61A89786C00F9E327 /* Alamofire.framework in Frameworks */,
@@ -925,11 +927,11 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B8951B21AC5F0F700301156 /* Mantle.framework */,
 				2B4491801AC21B4D0042A87A /* AWSiOSSDKv2.framework */,
 				2B44916E1AC1C8C40042A87A /* AWSCognitoSync.framework */,
 				2BBF76A91AC1B5A500C820FF /* FMDB.framework */,
 				2BBF76AA1AC1B5A500C820FF /* GZIP.framework */,
-				2BBF76AB1AC1B5A600C820FF /* Mantle.framework */,
 				2BBF76AC1AC1B5A600C820FF /* Reachability.framework */,
 				2BBF76AD1AC1B5A600C820FF /* TMCache.framework */,
 				2BBF76AE1AC1B5A600C820FF /* UICKeyChainStore.framework */,
@@ -1018,6 +1020,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE6040F1A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift */,
+				2B8951B61AC625B600301156 /* EventAttendeeCell.swift */,
 				3C6FA85E1A9FE17100BCD602 /* Event.swift */,
 				2B79B90D1A88231B00544E78 /* ViewEventController.swift */,
 				2B971EDF1AA39051007FC1A5 /* DatePickerView.xib */,
@@ -1292,6 +1295,7 @@
 				2BC9C4AD1A956EB00044D886 /* JSQMessagesAvatarFactory.m in Sources */,
 				2BC9C4B11A956EB00044D886 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				2BE604101A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift in Sources */,
+				2B8951B71AC625B600301156 /* EventAttendeeCell.swift in Sources */,
 				2B596FAF1AABF88C006CBEBA /* EventDetailViewController.swift in Sources */,
 				2BC9C4B31A956EB00044D886 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
@@ -1485,6 +1489,14 @@
 					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
 				);
 				INFOPLIST_FILE = "All Aboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1521,6 +1533,14 @@
 					"$(PROJECT_DIR)/All",
 					Aboard,
 					"/Users/nickmartinson/Downloads/aws-ios-sdk-2.0.17/frameworks",
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
 					"$(PROJECT_DIR)/All",

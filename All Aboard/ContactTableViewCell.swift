@@ -26,11 +26,13 @@ class ContactTableViewCell: UITableViewCell
     
     override func awakeFromNib()
     {
-        var imageStr = "http://graph.facebook.com/10203626718697502/picture?type=large"
-
-        BluemixCommunication().getLabelImage(imageStr, newImage: userPicture)
+    }
+    
+    func setProfilePicture(GUID: String)
+    {
+        AWShelper().downloadImageFromS3("profilePictures", file: GUID, photoNumber: nil)
         {
-            (image: UIImage) in
+            (image: UIImage?) in
             self.userPicture.image = image
             self.userPicture.layer.cornerRadius = 23
             self.userPicture.clipsToBounds = true

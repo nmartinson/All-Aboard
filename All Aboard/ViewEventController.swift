@@ -13,6 +13,7 @@ import MobileCoreServices
 
 class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate
 {
+    let AWS = AWShelper()
     let locationManager  = CLLocationManager()
     let imagePicker = UIImagePickerController()
     @IBOutlet weak var mapView: GMSMapView!
@@ -25,12 +26,16 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var hostedByLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     var locationText = ""
     var hostedByPic:UIImage?
     var hostedByText = ""
+
     
+    @IBOutlet weak var attendeeCollectionView: UICollectionView!
     @IBOutlet weak var photoGalleryCollectionView: UICollectionView!
+    var cachedPhotos = [String:UIImage]()
     var photoCollection:[UIImage] = []
     var statusBarHidden = false
     var slideViewFrame:CGRect?
@@ -87,23 +92,48 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         
         // set event details
         profilePic.image = hostedByPic
-        timeLabel.text = Helper().formatDateString(event!.EventStartDate!)
-        locationLabel.text = event!.EventLocation!
+        profilePic.layer.borderColor = UIColor.blackColor().CGColor
+        profilePic.layer.borderWidth = 2
+        timeLabel.text = "Start: \(Helper().formatDateString(event!.EventStartDate!))"
+        endTimeLabel.text = "End: \(Helper().formatDateString(event!.EventEndDate!))"
+        timeLabel.font = UIFont(name: timeLabel.font.fontName, size: 12)
+        endTimeLabel.font = UIFont(name: endTimeLabel.font.fontName, size: 12)
+        locationLabel.text = "Location: \(event!.EventLocation!)"
         hostedByLabel.text = "Host: \(event!.EventHostName!)"
         marker.title = event!.EventName!
         
-        for(var i = 0; i < 2; i++)
+        // Check the number of images that are in the event folder
+        AWS.numberOfFilesInFolder(event!.EventID!)
         {
-            AWShelper().downloadImageFromS3("test", file: nil, photoNumber: i)
-            {
-                (image: UIImage?) in
-                if image != nil
-                {
-                    self.photoCollection.append(image!)
-                    self.photoGalleryCollectionView.reloadData()
-                }
-            }
+            (count: Int) in
+            self.event!.EventPhotoNumber = count
+            self.photoGalleryCollectionView.reloadData()
         }
+//
+//            // If there are images, get them and put them in the gallery
+//            for(var i = 1; i <= count; i++)
+//            {
+//                self.AWS.downloadThumbnailImageFromS3(folder, file: nil, photoNumber: i)
+//                {
+//                    (image: UIImage?) in
+//                    if image != nil
+//                    {
+//                        self.photoCollection.append(image!)
+//                        self.photoGalleryCollectionView.reloadData()
+//                    }
+//                }
+//            }
+//        }
+        
+        // download the profile picture
+        AWS.downloadThumbnailImageFromS3("profilePictures", file: event!.EventHostID!, photoNumber: nil)
+        {
+            (image:UIImage?) in
+            self.profilePic.image = image
+        }
+        
+        
+
     }
     
     /******************************************************************************************
@@ -214,9 +244,15 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     ******************************************************************************************/
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!)
     {
-        photoCollection.append(image)
         let folder = event!.EventID!    // use the event id as the folder name since it is unique
-        AWShelper().uploadToS3(image, folder: folder, file: nil, photoNumber: photoCollection.count) // upload image
+        
+        // upload thumbnail and real size
+        AWS.uploadThumbnailToS3(AWS.compressImageToThumbnail(image), folder: folder, file: nil, photoNumber: cachedPhotos.count)
+        AWS.uploadToS3(AWS.compressImage(image), folder: folder, file: nil, photoNumber: cachedPhotos.count) // upload image
+
+        let key = "Cell\(cachedPhotos.count)"
+        cachedPhotos[key] = image
+        
         event!.EventPhotoNumber++
         self.dismissViewControllerAnimated(true, completion: nil)
         photoGalleryCollectionView.reloadData()
@@ -227,10 +263,35 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     ******************************************************************************************/
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as PhotoGalleryCollectionViewCell
-        cell.image.image = photoCollection[indexPath.item]
-
-        return cell
+        if collectionView == photoGalleryCollectionView
+        {
+            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as PhotoGalleryCollectionViewCell
+            let key = "Cell\(indexPath.item)"
+            if cachedPhotos[key] != nil
+            {
+                cell.image.image = cachedPhotos[key]
+            }
+            else
+            {
+                self.AWS.downloadThumbnailImageFromS3(self.event!.EventID!, file: nil, photoNumber: indexPath.item)
+                {
+                    (image: UIImage?) in
+                    if image != nil
+                    {
+                        self.cachedPhotos[key] = image!
+                            (collectionView.cellForItemAtIndexPath(indexPath) as PhotoGalleryCollectionViewCell).image.image = image
+                    }
+                }
+            }
+            return cell
+        }
+        else
+        {
+            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("attendeeCell", forIndexPath: indexPath) as EventAttendeeCell
+            cell.attendeeName.text = "Nick Martinson"
+            cell.profilePicture.image = UIImage(named: "defaultProfilePicture")
+            return cell
+        }
     }
     
     /******************************************************************************************
@@ -238,36 +299,39 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     ******************************************************************************************/
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        let thumbnail = collectionView.cellForItemAtIndexPath(indexPath)?.contentView.subviews.last as UIImageView
-        imageView = UIImageView(image: photoCollection[indexPath.row])
-        imageView!.contentMode = thumbnail.contentMode
-        imageScroll.contentSize = imageView!.frame.size
-        
-        let scaleWidth = imageScroll.frame.size.width / imageScroll.contentSize.width
-        let scaleHeight = imageScroll.frame.size.height / imageScroll.contentSize.height
-        let minScale = min(scaleHeight, scaleWidth)
-        imageScroll.minimumZoomScale = minScale
-        imageScroll.maximumZoomScale = 1
-        imageScroll.zoomScale = minScale
-        imageScroll.frame = thumbnail.frame
-        imageScroll.addSubview(imageView!)
-        self.view.addSubview(self.blackView)
-        
-        // hide the status bar
-        self.statusBarHidden = true
-        self.prefersStatusBarHidden()
+        if collectionView == photoGalleryCollectionView
+        {
+            let thumbnail = collectionView.cellForItemAtIndexPath(indexPath)?.contentView.subviews.last as UIImageView
+            imageView = UIImageView(image: photoCollection[indexPath.row])
+            imageView!.contentMode = thumbnail.contentMode
+            imageScroll.contentSize = imageView!.frame.size
+            
+            let scaleWidth = imageScroll.frame.size.width / imageScroll.contentSize.width
+            let scaleHeight = imageScroll.frame.size.height / imageScroll.contentSize.height
+            let minScale = min(scaleHeight, scaleWidth)
+            imageScroll.minimumZoomScale = minScale
+            imageScroll.maximumZoomScale = 1
+            imageScroll.zoomScale = minScale
+            imageScroll.frame = thumbnail.frame
+            imageScroll.addSubview(imageView!)
+            self.view.addSubview(self.blackView)
+            
+            // hide the status bar
+            self.statusBarHidden = true
+            self.prefersStatusBarHidden()
 
-        // open the image
-        UIView.transitionWithView(self.view, duration: 1,
-            options: UIViewAnimationOptions.AllowAnimatedContent,
-            animations: {
-                self.navigationController?.navigationBar.alpha = 0 // hide navbar
-                self.blackView.alpha = 1    // show black background
-                self.view.addSubview(self.imageScroll)
-                self.imageScroll.frame = self.view.frame
-                self.imageView!.center = self.imageScroll.center
-                self.imageScroll.contentSize = self.imageView!.frame.size},
-            completion: nil)
+            // open the image
+            UIView.transitionWithView(self.view, duration: 1,
+                options: UIViewAnimationOptions.AllowAnimatedContent,
+                animations: {
+                    self.navigationController?.navigationBar.alpha = 0 // hide navbar
+                    self.blackView.alpha = 1    // show black background
+                    self.view.addSubview(self.imageScroll)
+                    self.imageScroll.frame = self.view.frame
+                    self.imageView!.center = self.imageScroll.center
+                    self.imageScroll.contentSize = self.imageView!.frame.size},
+                completion: nil)
+        }
     }
     
     
@@ -372,7 +436,14 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     ******************************************************************************************/
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return photoCollection.count
+        if collectionView == photoGalleryCollectionView
+        {
+            return event!.EventPhotoNumber
+        }
+        else
+        {
+            return 10
+        }
     }
     
     /******************************************************************************************

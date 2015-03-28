@@ -96,7 +96,7 @@ class BluemixCommunication: NSObject
         let route = BackendConstants.eventURL
         
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, stuff, response, _) -> Void in
-            println(response)
+//            println(response)
             if response != nil
             {
                 let json = JSON(response!)
@@ -139,11 +139,11 @@ class BluemixCommunication: NSObject
         let params = ["action": ACTIONCODES.GET_USER_INVITES, "userId": userID]
         let route = BackendConstants.userURL
         
-        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, stuff, response, _) -> Void in            
-            println(response)
+        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, stuff, response, _) -> Void in
             if response != nil
             {
                 let code = JSON(response!).stringValue
+
                 if code != "1241"
                 {
                     let json = JSON(response!)

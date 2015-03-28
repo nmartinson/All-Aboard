@@ -37,6 +37,7 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     {
         var cell = tableView.dequeueReusableCellWithIdentifier("contactCell") as ContactTableViewCell
         cell.delegate = self
+        cell.setProfilePicture(people[indexPath.row].userid)
         cell.nameLabel.text = people[indexPath.row].realname
         cell.userID = people[indexPath.row].userid
         cell.indexPath = indexPath

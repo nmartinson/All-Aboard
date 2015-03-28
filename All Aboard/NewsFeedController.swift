@@ -36,7 +36,6 @@ extension Alamofire.Request
 
 class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
-    let data = [["Go to TCBs!","Nick Martinson", "10203626718697502","billiards"],["Go to Short's","Ian Brauer", "10153524130878066","burger"]]
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
@@ -47,6 +46,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     var coordinates:CLLocationCoordinate2D?
     var selectedCellIndex = 0
     var events:[Event] = []
+    var cachedPhotos = [String:UIImage]()
 
     
     /******************************************************************************************
@@ -58,23 +58,19 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         navBar.title = "The Station"
-        println("didAppear")
         BluemixCommunication().getRecentEvents(10)
         {
             (results: [Event]) in
             self.events = results
-            println("count \(results.count)")
             self.tableView.reloadData()
         }
+        println(UserPreferences().getGUID())
         
         BluemixCommunication().getUserInviteList(UserPreferences().getGUID())
         {
             (events: [Event]) in
-            println(self.tabBarController?.tabBar.items?.count)
             (self.tabBarController!.tabBar.items![3] as UITabBarItem).badgeValue = "\(events.count)"
         }
-     
-
     }
 
     
@@ -150,19 +146,28 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     ******************************************************************************************/
     func tableView(tableView: UITableView, willDisplayCell cell: NewsFeedTableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
+        let key = "Cell\(indexPath.section)"
+        if cachedPhotos[key] != nil
+        {
+            cell.profilePicture.image = cachedPhotos[key]
+        }
+        else
+        {
+            AWShelper().downloadThumbnailImageFromS3("profilePictures", file: self.events[indexPath.section].EventHostID, photoNumber: nil)
+            {
+                (image: UIImage?) in
+                self.cachedPhotos[key] = image!
+                cell.profilePicture.image = image
+            }
+            
+        }
         cell.postedBy.text = events[indexPath.section].EventHostName
-        cell.eventImage.image = UIImage(named: data[0][3])
+        cell.eventImage.image = UIImage(named: "billiards")
         cell.locationLabel.text = events[indexPath.section].EventName
-//        cell.postedBy.text = data[indexPath.section][1]
-//        cell.eventImage.image = UIImage(named: data[indexPath.section][3])
-//        cell.locationLabel.text = data[indexPath.section][0]
         cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.width/2
         cell.profilePicture.layer.borderWidth = 2
         cell.profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
         cell.profilePicture.clipsToBounds = true
-        let id = data[0][2]
-        var imageStr = "http://graph.facebook.com/\(id)/picture?type=large"
-        Helper().getLabelImage(imageStr, newImage: cell.profilePicture)
     }
     
     /******************************************************************************************
