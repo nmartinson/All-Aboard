@@ -17,6 +17,9 @@ enum ACTIONCODES
     static let GET_USER_INFO = "111"
     static let GET_USER_INVITES = "124"
     static let UPDATE_PASSWORD = "105"
+    static let EVENT_ATTENDEES = "128"
+    static let ACCEPT_EVENT = "125"
+    static let DENY_EVENT = "126"
     
     // Event codes
     static let NEW_EVENT = "120"

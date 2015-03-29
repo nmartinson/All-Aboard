@@ -60,9 +60,24 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("viewEvent") as ViewEventController
+        vc.event = events[indexPath.row]
+        vc.acceptedInvite = false
+        let navBar = UINavigationBar(frame: CGRectMake(0, UIApplication.sharedApplication().statusBarFrame.height, UIScreen.mainScreen().bounds.width, 44))
+        let backButton = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "handleBack")
+        let barItem = UINavigationItem(title: "Event")
+        barItem.leftBarButtonItem = backButton
         
+        navBar.items = [barItem]
+        vc.view.addSubview(navBar)
+        
+        presentViewController(vc, animated: true, completion: nil)
     }
     
+    func handleBack()
+    {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     /******************************************************************************************
     *
     ******************************************************************************************/

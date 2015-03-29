@@ -236,8 +236,67 @@ class BluemixCommunication: NSObject
         }
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    func getEventAttendees(eventID:String, completion: (attendees: [User]) -> Void)
+    {
+        let params = ["action": ACTIONCODES.EVENT_ATTENDEES,"eventId": eventID]
+        let route = BackendConstants.userURL
+        
+        Alamofire.request(.GET, route, parameters: params).responseJSON { (_, _, response, _) -> Void in
+//             println(response)
+            if response != nil
+            {
+                let json = JSON(response!)
+                var attendeeArray:[User] = []
+
+                for(var i = 0; i < json.count; i++)
+                {
+                    let name = json[i]["username"].stringValue
+                    let id = json[i]["id"].stringValue
+                    let realName = json[i]["name"].stringValue
+                    
+                    attendeeArray.append(User(name: name, id: id, real: realName))
+                }
+                completion(attendees: attendeeArray)
+            }
+            else
+            {
+                completion(attendees: [])
+            }
+        }
+    }
+
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    func denyEventInvite(eventID:String, userID: String, completion: (attendees: [User]) -> Void)
+    {
+        let params = ["action": ACTIONCODES.DECLINE_INVITE,"eventId": eventID, "userId": userID]
+        let route = BackendConstants.userURL
+        
+        Alamofire.request(.GET, route, parameters: params).responseString { (_, _, response, _) -> Void in
+            //0 success
+            // 1 failure
+            println("DENY \(response)")
+        }
+    }
     
-    
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
+    func acceptEventInvite(eventID:String, userID: String, completion: (attendees: [User]) -> Void)
+    {
+        let params = ["action": ACTIONCODES.DECLINE_INVITE,"eventId": eventID, "userId": userID]
+        let route = BackendConstants.userURL
+        
+        Alamofire.request(.GET, route, parameters: params).responseString { (_, _, response, _) -> Void in
+            //0 success
+            // 1 failure
+            println("ACCEPT \(response)")
+        }
+    }
     
     /**
 

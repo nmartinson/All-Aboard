@@ -27,6 +27,9 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var eventPhotosLabel: UILabel!
+    @IBOutlet weak var uploadPhotoButton: UIButton!
+    @IBOutlet weak var acceptDenyView: UIView!
     var locationText = ""
     var hostedByPic:UIImage?
     var hostedByText = ""
@@ -37,6 +40,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var cachedThumbnails = [String:UIImage]()
     var cachedLargeImages = [String:UIImage]()
     var cachedAttendee = [String:UIImage]()
+    var attendeeList:[User] = []
     var photoCollection:[UIImage] = []
     var statusBarHidden = false
     var slideViewFrame:CGRect?
@@ -44,6 +48,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var imageView:UIImageView?
     var imageScroll:UIScrollView = UIScrollView()
     var blackView = UIView()
+    var acceptedInvite = true
     
         
     /******************************************************************************************
@@ -101,14 +106,26 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         hostedByLabel.text = "Host: \(event!.EventHostName!)"
         marker.title = event!.EventName!
         
-        // Check the number of images that are in the event folder
-        AWS.numberOfFilesInFolder(event!.EventID!)
+        if acceptedInvite
         {
-            (count: Int) in
-            self.event!.EventPhotoNumber = count
-            self.photoGalleryCollectionView.reloadData()
+            eventPhotosLabel.hidden = false
+            uploadPhotoButton.hidden = false
+            acceptDenyView.hidden = true
+            // Check the number of images that are in the event folder
+            AWS.numberOfFilesInFolder(event!.EventID!)
+            {
+                (count: Int) in
+                self.event!.EventPhotoNumber = count
+                self.photoGalleryCollectionView.reloadData()
+            }
         }
-        
+        else
+        {
+            acceptDenyView.hidden = false
+            eventPhotosLabel.hidden = true
+            uploadPhotoButton.hidden = true
+        }
+
         // download the profile picture
         AWS.downloadThumbnailImageFromS3("profilePictures", file: event!.EventHostID!, photoNumber: nil)
         {
@@ -116,8 +133,15 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             self.profilePic.image = image
         }
         
-        println("INVITE LISt \(event!.EventInviteList)")
-
+        BluemixCommunication().getEventAttendees(event!.EventID!)
+        {
+            (attendees: [User]) in
+            println(attendees)
+            self.attendeeList = attendees
+            self.attendeeCollectionView.reloadData()
+            
+        }
+        
     }
     
     /******************************************************************************************
@@ -231,8 +255,13 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         else
         {
             var cell = collectionView.dequeueReusableCellWithReuseIdentifier("attendeeCell", forIndexPath: indexPath) as EventAttendeeCell
-            cell.attendeeName.text = "Nick Martinson"
-            cell.profilePicture.image = UIImage(named: "defaultProfilePicture")
+            cell.attendeeName.text = attendeeList[indexPath.item].realname!
+            let file = attendeeList[indexPath.item].userid
+            AWS.downloadThumbnailImageFromS3("profilePictures", file: file, photoNumber: nil)
+            {
+                (image: UIImage?) in
+                cell.profilePicture.image = image
+            }
             return cell
         }
     }
@@ -248,7 +277,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             let key = "Cell\(indexPath.item)"
             if cachedLargeImages[key] != nil
             {
-                println("CACHED")
+                self.imageScroll.frame = self.view.frame
                 self.cachedLargeImages[key] = cachedLargeImages[key]
                 self.imageView = UIImageView(image: self.cachedLargeImages[key])
                 let imageSize = self.imageView!.frame.size
@@ -265,7 +294,6 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                 // hide the status bar
                 self.statusBarHidden = true
                 self.prefersStatusBarHidden()
-                self.imageScroll.frame = self.view.frame
                 
                 // open the image
                 UIView.transitionWithView(self.view, duration: 1,
@@ -279,6 +307,16 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             }
             else
             {
+                self.imageScroll.frame = self.view.frame
+
+                self.view.addSubview(self.blackView)
+                UIView.transitionWithView(self.view, duration: 1,
+                    options: UIViewAnimationOptions.AllowAnimatedContent,
+                    animations: {
+                        self.navigationController?.navigationBar.alpha = 0 // hide navbar
+                        self.blackView.alpha = 1},    // show black background
+                    completion: nil)
+
                 AWS.downloadImageFromS3(event!.EventID!, file: nil, photoNumber: indexPath.item)
                 {
                     (image: UIImage?) in
@@ -287,18 +325,16 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                     let imageSize = self.imageView!.frame.size
                     self.imageScroll.maximumZoomScale = 6.0
                     self.imageScroll.contentSize = imageSize
-                    let widthScale = self.imageScroll.bounds.size.width / imageSize.width
-                    let heightScale = self.imageScroll.bounds.size.height / imageSize.height
+                    var widthScale = self.imageScroll.bounds.size.width / imageSize.width
+                    var heightScale = self.imageScroll.bounds.size.height / imageSize.height
                     self.imageScroll.minimumZoomScale = min(widthScale, heightScale)
                     self.imageScroll.setZoomScale(max(widthScale, heightScale), animated: true )
                     
                     self.imageScroll.addSubview(self.imageView!)
-                    self.view.addSubview(self.blackView)
                     
                     // hide the status bar
                     self.statusBarHidden = true
                     self.prefersStatusBarHidden()
-                    self.imageScroll.frame = self.view.frame
                     
                     // open the image
                     UIView.transitionWithView(self.view, duration: 1,
@@ -414,7 +450,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         }
         else
         {
-            return 10
+            return attendeeList.count
         }
     }
     
