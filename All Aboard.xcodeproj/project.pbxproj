@@ -42,6 +42,7 @@
 		2B79B92F1A883C3400544E78 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B92E1A883C3400544E78 /* SystemConfiguration.framework */; };
 		2B8951B31AC5F0F700301156 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8951B21AC5F0F700301156 /* Mantle.framework */; };
 		2B8951B71AC625B600301156 /* EventAttendeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8951B61AC625B600301156 /* EventAttendeeCell.swift */; };
+		2B8951B91AC6FA0F00301156 /* ViewFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8951B81AC6FA0F00301156 /* ViewFriendsTableViewCell.swift */; };
 		2B971EC31AA00A92007FC1A5 /* cb_box_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EAF1AA00A92007FC1A5 /* cb_box_off.png */; };
 		2B971EC41AA00A92007FC1A5 /* cb_box_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EB01AA00A92007FC1A5 /* cb_box_off@2x.png */; };
 		2B971EC51AA00A92007FC1A5 /* cb_box_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B971EB11AA00A92007FC1A5 /* cb_box_on.png */; };
@@ -305,6 +306,7 @@
 		2B79B92E1A883C3400544E78 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2B8951B21AC5F0F700301156 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
 		2B8951B61AC625B600301156 /* EventAttendeeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAttendeeCell.swift; sourceTree = "<group>"; };
+		2B8951B81AC6FA0F00301156 /* ViewFriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		2B971EAF1AA00A92007FC1A5 /* cb_box_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_box_off.png; sourceTree = "<group>"; };
 		2B971EB01AA00A92007FC1A5 /* cb_box_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cb_box_off@2x.png"; sourceTree = "<group>"; };
 		2B971EB11AA00A92007FC1A5 /* cb_box_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_box_on.png; sourceTree = "<group>"; };
@@ -1006,6 +1008,7 @@
 			isa = PBXGroup;
 			children = (
 				2BC1C5F81A9A6ABF000F14DA /* ContactTableViewCell.swift */,
+				2B8951B81AC6FA0F00301156 /* ViewFriendsTableViewCell.swift */,
 				2BE604311A9FE5F8004685C0 /* InviteFriendsToEventController.swift */,
 				2B971EDD1AA3769B007FC1A5 /* SearchFriendsTableViewCell.swift */,
 				2BC1C5F61A9A6733000F14DA /* AddFriendsViewController.swift */,
@@ -1300,6 +1303,7 @@
 				2BC9C4B31A956EB00044D886 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
 				2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */,
+				2B8951B91AC6FA0F00301156 /* ViewFriendsTableViewCell.swift in Sources */,
 				2BC9C4B01A956EB00044D886 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				2BE792141A79822500DE0E57 /* SWRevealViewController.m in Sources */,
 				2BC9C4C21A956EB00044D886 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,

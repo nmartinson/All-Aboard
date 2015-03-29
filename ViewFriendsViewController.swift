@@ -31,11 +31,12 @@ class ViewFriendsViewController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         //creating cell for table view.
-        let cell = self.friendsTableView.dequeueReusableCellWithIdentifier("friendCell") as UITableViewCell
-        
+        let cell = self.friendsTableView.dequeueReusableCellWithIdentifier("friendCell") as ViewFriendsTableViewCell
+        cell.nameLabel.text = friendsL[indexPath.row].realname
+        cell.setProfilePicture(friendsL[indexPath.row].userid)
         
         //adds label to the cell
-        cell.textLabel?.text = friendsL[indexPath.row].realname
+//        cell.textLabel?.text = friendsL[indexPath.row].realname
 //        cell.textLabel!.text! = friend["username"]
         
         return cell
@@ -50,5 +51,7 @@ class ViewFriendsViewController: UIViewController {
         return friendsL.count
     }
 
-    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 61
+    }
 }

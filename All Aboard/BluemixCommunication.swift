@@ -58,7 +58,7 @@ class BluemixCommunication: NSObject
         let route = BackendConstants.eventURL
         Alamofire.request(.GET, route, parameters: params).responseJSON { (_, response, rawJSON, _) -> Void in
             var json = JSON(rawJSON!)
-//            println("GET EVENT \n \(json)")
+            println("GET EVENT \n \(json)")
             
             let location = json["event"]["locationTitle"].stringValue
             let title = json["event"]["title"].stringValue
@@ -78,6 +78,7 @@ class BluemixCommunication: NSObject
             let userID = json["user"]["id"].stringValue
             let userRealName = json["user"]["name"].stringValue
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            
             
             let event = Event(name: title, location: location, coordinates: coordinate, hostID: hostID, eventStartDate: startDate, eventEndDate: endDate, eventID: id, hostName: userRealName, inviteList: inviteListArray)
         
@@ -116,7 +117,7 @@ class BluemixCommunication: NSObject
                     
                     let startDate = NSDate(timeIntervalSince1970: NSTimeInterval(startTime)/1000)
                     
-                    let inviteList = json["event"]["inviteList"].stringValue
+                    let inviteList = json[i]["event"]["inviteList"].stringValue
                     let inviteListArray = inviteList.componentsSeparatedByString(",")
                     
                     let userRealName = json[i]["user"]["name"].stringValue
@@ -255,6 +256,30 @@ class BluemixCommunication: NSObject
 
 
     **/
+    func searchForUserByUsername(username: String, completion: (result: User?) -> Void)
+    {
+        let params = ["action": "140", "username":username]
+        Alamofire.request(.GET, BackendConstants.userURL, parameters: params ).responseJSON { (_, _, response,_) -> Void in
+            println("response:\(response)")
+            if response != nil
+            {
+                let json = JSON(response!)
+                let name = json["username"].stringValue
+                let userid = json["id"].stringValue
+                let personname = json["name"].stringValue
+                let user = User(name: name, id: userid, real: personname)
+                completion(result: user)
+            }
+            else
+            {
+                completion(result: nil)
+//                self.usernameL.text = "User not found"
+//                self.addButton.hidden = true
+            }
+        }
+   
+    }
+    
     
     
     

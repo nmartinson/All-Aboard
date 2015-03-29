@@ -73,6 +73,10 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
+    override func viewDidDisappear(animated: Bool)
+    {
+//        AWSS3TransferManager.defaultS3TransferManager().cancelAll()
+    }
     
     /******************************************************************************************
     *   This passes the previously retrieved event info to the next view controller

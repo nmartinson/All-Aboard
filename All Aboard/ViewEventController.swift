@@ -18,7 +18,6 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     let imagePicker = UIImagePickerController()
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet var viewPanHandle: UIPanGestureRecognizer!
     @IBOutlet weak var navBarTitle: UINavigationItem!
     
     @IBOutlet weak var mainScrollView: OverlayScrollView!
@@ -35,7 +34,9 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     
     @IBOutlet weak var attendeeCollectionView: UICollectionView!
     @IBOutlet weak var photoGalleryCollectionView: UICollectionView!
-    var cachedPhotos = [String:UIImage]()
+    var cachedThumbnails = [String:UIImage]()
+    var cachedLargeImages = [String:UIImage]()
+    var cachedAttendee = [String:UIImage]()
     var photoCollection:[UIImage] = []
     var statusBarHidden = false
     var slideViewFrame:CGRect?
@@ -55,15 +56,13 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         super.viewDidLoad()
         navBarTitle?.title = locationText
         imagePicker.delegate = self
-        mapView.bringSubviewToFront(mainScrollView)
-
-        mainScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, 2000)
-//        slideView.frame = CGRectMake(0, 500, mainScrollView.bounds.width, slideView.bounds.height)
-        // Test image
-//        photoCollection.append(UIImage(named: "testImage")!)
+        mainScrollView.contentSize = CGSizeMake(375, 1000)
+        mainScrollView.setContentOffset(CGPointMake(0, 300), animated: true)
         
+        imageScroll.showsHorizontalScrollIndicator = false
+        imageScroll.showsVerticalScrollIndicator = false
         imageScroll.delegate = self
-        imageScroll.frame = UIScreen.mainScreen().bounds
+        
         blackView.frame = self.view.frame
         blackView.backgroundColor = UIColor.blackColor()
         blackView.alpha = 0
@@ -109,21 +108,6 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             self.event!.EventPhotoNumber = count
             self.photoGalleryCollectionView.reloadData()
         }
-//
-//            // If there are images, get them and put them in the gallery
-//            for(var i = 1; i <= count; i++)
-//            {
-//                self.AWS.downloadThumbnailImageFromS3(folder, file: nil, photoNumber: i)
-//                {
-//                    (image: UIImage?) in
-//                    if image != nil
-//                    {
-//                        self.photoCollection.append(image!)
-//                        self.photoGalleryCollectionView.reloadData()
-//                    }
-//                }
-//            }
-//        }
         
         // download the profile picture
         AWS.downloadThumbnailImageFromS3("profilePictures", file: event!.EventHostID!, photoNumber: nil)
@@ -132,7 +116,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             self.profilePic.image = image
         }
         
-        
+        println("INVITE LISt \(event!.EventInviteList)")
 
     }
     
@@ -144,47 +128,6 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 //        slideView.frame = CGRectMake(0, UIScreen.mainScreen().bounds.height - 50, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
     }
     
-    /******************************************************************************************
-    *   Used to allow scrolling of the view
-    ******************************************************************************************/
-    @IBAction func handlePan(recognizer:UIPanGestureRecognizer)
-    {
-
-        let translation = recognizer.translationInView(self.view)
-        recognizer.view!.center = CGPoint(x:recognizer.view!.center.x, y:recognizer.view!.center.y + translation.y)
-
-        recognizer.setTranslation(CGPointZero, inView: self.view)
-        if recognizer.state == UIGestureRecognizerState.Changed
-        {
-//            println("CANCELED")
-//            slideViewFrame = slideView.frame
-//            recognizer.view?.layer.removeAllAnimations()
-//            if self.slideViewFrame != nil
-//            {
-//                recognizer.view!.frame = self.slideViewFrame!
-//            }
-//            println("COMPLETE")
-        }
-        if recognizer.state == UIGestureRecognizerState.Ended
-        {
-            let velocity = recognizer.velocityInView(self.view)
-            let magnitude = sqrt((velocity.y * velocity.y))
-            let slideMultiplier = magnitude / 200
-            
-            let slideFactor = 0.1 * slideMultiplier     //Increase for more of a slide
-            
-            var finalPoint = CGPoint(x:recognizer.view!.center.x, y:recognizer.view!.center.y + (velocity.y * slideFactor))
-            
-            finalPoint.y = min(max(finalPoint.y, 0), recognizer.view!.bounds.height + 100)
-            
-            UIView.animateWithDuration(Double(slideFactor*2), delay: 0,
-                options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.CurveLinear | UIViewAnimationOptions.BeginFromCurrentState,
-                animations: {recognizer.view!.center = finalPoint },
-                completion: nil)
-            
-        }
-
-    }
     
     /******************************************************************************************
     *   Open the camera roll
@@ -247,11 +190,11 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         let folder = event!.EventID!    // use the event id as the folder name since it is unique
         
         // upload thumbnail and real size
-        AWS.uploadThumbnailToS3(AWS.compressImageToThumbnail(image), folder: folder, file: nil, photoNumber: cachedPhotos.count)
-        AWS.uploadToS3(AWS.compressImage(image), folder: folder, file: nil, photoNumber: cachedPhotos.count) // upload image
+        AWS.uploadThumbnailToS3(AWS.compressImageToThumbnail(image), folder: folder, file: nil, photoNumber: cachedThumbnails.count)
+        AWS.uploadToS3(AWS.compressImage(image), folder: folder, file: nil, photoNumber: cachedThumbnails.count) // upload image
 
-        let key = "Cell\(cachedPhotos.count)"
-        cachedPhotos[key] = image
+        let key = "Cell\(cachedThumbnails.count)"
+        cachedThumbnails[key] = image
         
         event!.EventPhotoNumber++
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -267,9 +210,9 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         {
             var cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as PhotoGalleryCollectionViewCell
             let key = "Cell\(indexPath.item)"
-            if cachedPhotos[key] != nil
+            if cachedThumbnails[key] != nil
             {
-                cell.image.image = cachedPhotos[key]
+                cell.image.image = cachedThumbnails[key]
             }
             else
             {
@@ -278,7 +221,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                     (image: UIImage?) in
                     if image != nil
                     {
-                        self.cachedPhotos[key] = image!
+                        self.cachedThumbnails[key] = image!
                             (collectionView.cellForItemAtIndexPath(indexPath) as PhotoGalleryCollectionViewCell).image.image = image
                     }
                 }
@@ -302,35 +245,72 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         if collectionView == photoGalleryCollectionView
         {
             let thumbnail = collectionView.cellForItemAtIndexPath(indexPath)?.contentView.subviews.last as UIImageView
-            imageView = UIImageView(image: photoCollection[indexPath.row])
-            imageView!.contentMode = thumbnail.contentMode
-            imageScroll.contentSize = imageView!.frame.size
-            
-            let scaleWidth = imageScroll.frame.size.width / imageScroll.contentSize.width
-            let scaleHeight = imageScroll.frame.size.height / imageScroll.contentSize.height
-            let minScale = min(scaleHeight, scaleWidth)
-            imageScroll.minimumZoomScale = minScale
-            imageScroll.maximumZoomScale = 1
-            imageScroll.zoomScale = minScale
-            imageScroll.frame = thumbnail.frame
-            imageScroll.addSubview(imageView!)
-            self.view.addSubview(self.blackView)
-            
-            // hide the status bar
-            self.statusBarHidden = true
-            self.prefersStatusBarHidden()
-
-            // open the image
-            UIView.transitionWithView(self.view, duration: 1,
-                options: UIViewAnimationOptions.AllowAnimatedContent,
-                animations: {
-                    self.navigationController?.navigationBar.alpha = 0 // hide navbar
-                    self.blackView.alpha = 1    // show black background
-                    self.view.addSubview(self.imageScroll)
+            let key = "Cell\(indexPath.item)"
+            if cachedLargeImages[key] != nil
+            {
+                println("CACHED")
+                self.cachedLargeImages[key] = cachedLargeImages[key]
+                self.imageView = UIImageView(image: self.cachedLargeImages[key])
+                let imageSize = self.imageView!.frame.size
+                self.imageScroll.maximumZoomScale = 6.0
+                self.imageScroll.contentSize = imageSize
+                let widthScale = self.imageScroll.bounds.size.width / imageSize.width
+                let heightScale = self.imageScroll.bounds.size.height / imageSize.height
+                self.imageScroll.minimumZoomScale = min(widthScale, heightScale)
+                self.imageScroll.setZoomScale(max(widthScale, heightScale), animated: true )
+                
+                self.imageScroll.addSubview(self.imageView!)
+                self.view.addSubview(self.blackView)
+                
+                // hide the status bar
+                self.statusBarHidden = true
+                self.prefersStatusBarHidden()
+                self.imageScroll.frame = self.view.frame
+                
+                // open the image
+                UIView.transitionWithView(self.view, duration: 1,
+                    options: UIViewAnimationOptions.AllowAnimatedContent,
+                    animations: {
+                        self.navigationController?.navigationBar.alpha = 0 // hide navbar
+                        self.blackView.alpha = 1    // show black background
+                        self.view.addSubview(self.imageScroll)
+                        self.imageScroll.contentSize = self.imageView!.frame.size},
+                    completion: nil)
+            }
+            else
+            {
+                AWS.downloadImageFromS3(event!.EventID!, file: nil, photoNumber: indexPath.item)
+                {
+                    (image: UIImage?) in
+                    self.cachedLargeImages[key] = image
+                    self.imageView = UIImageView(image: self.cachedLargeImages[key])
+                    let imageSize = self.imageView!.frame.size
+                    self.imageScroll.maximumZoomScale = 6.0
+                    self.imageScroll.contentSize = imageSize
+                    let widthScale = self.imageScroll.bounds.size.width / imageSize.width
+                    let heightScale = self.imageScroll.bounds.size.height / imageSize.height
+                    self.imageScroll.minimumZoomScale = min(widthScale, heightScale)
+                    self.imageScroll.setZoomScale(max(widthScale, heightScale), animated: true )
+                    
+                    self.imageScroll.addSubview(self.imageView!)
+                    self.view.addSubview(self.blackView)
+                    
+                    // hide the status bar
+                    self.statusBarHidden = true
+                    self.prefersStatusBarHidden()
                     self.imageScroll.frame = self.view.frame
-                    self.imageView!.center = self.imageScroll.center
-                    self.imageScroll.contentSize = self.imageView!.frame.size},
-                completion: nil)
+                    
+                    // open the image
+                    UIView.transitionWithView(self.view, duration: 1,
+                        options: UIViewAnimationOptions.AllowAnimatedContent,
+                        animations: {
+                            self.navigationController?.navigationBar.alpha = 0 // hide navbar
+                            self.blackView.alpha = 1    // show black background
+                            self.view.addSubview(self.imageScroll)
+                            self.imageScroll.contentSize = self.imageView!.frame.size},
+                        completion: nil)
+                }
+            }
         }
     }
     
@@ -392,14 +372,6 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         centerScrollViewContents()
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView)
-    {
-        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.frame.size.height
-        {
-            scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x, scrollView.contentSize.height - scrollView.frame.size.height), animated: false)
-        }
-    }
-    
     /******************************************************************************************
     *   Centers the image when zooming
     ******************************************************************************************/
@@ -425,7 +397,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             contentsFrame.origin.y = 0.0
         }
         
-        UIView.transitionWithView(self.view, duration: 0.5,
+        UIView.transitionWithView(self.view, duration: 0.1,
             options: UIViewAnimationOptions.AllowAnimatedContent,
             animations: { self.imageView!.frame = contentsFrame},
             completion: nil)
