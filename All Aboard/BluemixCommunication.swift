@@ -271,12 +271,12 @@ class BluemixCommunication: NSObject
     /******************************************************************************************
     *
     ******************************************************************************************/
-    func denyEventInvite(eventID:String, userID: String, completion: (attendees: [User]) -> Void)
+    func denyEventInvite(eventID:String, userID: String, completion: (result: String) -> Void)
     {
         let params = ["action": ACTIONCODES.DECLINE_INVITE,"eventId": eventID, "userId": userID]
         let route = BackendConstants.userURL
         
-        Alamofire.request(.GET, route, parameters: params).responseString { (_, _, response, _) -> Void in
+        Alamofire.request(.POST, route, parameters: params).responseString { (_, _, response, _) -> Void in
             //0 success
             // 1 failure
             println("DENY \(response)")
@@ -286,15 +286,14 @@ class BluemixCommunication: NSObject
     /******************************************************************************************
     *
     ******************************************************************************************/
-    func acceptEventInvite(eventID:String, userID: String, completion: (attendees: [User]) -> Void)
+    func acceptEventInvite(eventID:String, userID: String, completion: (result: String) -> Void)
     {
-        let params = ["action": ACTIONCODES.DECLINE_INVITE,"eventId": eventID, "userId": userID]
+        let params = ["action": ACTIONCODES.ACCEPT_INVITE,"eventId": eventID, "userId": userID]
         let route = BackendConstants.userURL
         
-        Alamofire.request(.GET, route, parameters: params).responseString { (_, _, response, _) -> Void in
-            //0 success
-            // 1 failure
+        Alamofire.request(.POST, route, parameters: params).responseString { (_, _, response, _) -> Void in
             println("ACCEPT \(response)")
+            completion(result: response!)
         }
     }
     
@@ -319,8 +318,11 @@ class BluemixCommunication: NSObject
     {
         let params = ["action": "140", "username":username]
         Alamofire.request(.GET, BackendConstants.userURL, parameters: params ).responseJSON { (_, _, response,_) -> Void in
-            println("response:\(response)")
-            if response != nil
+            if response?.stringValue == RETURNCODES.SEARCH_BY_USERNAME_FAILURE
+            {
+                completion(result: nil)
+            }
+            else
             {
                 let json = JSON(response!)
                 let name = json["username"].stringValue
@@ -328,12 +330,6 @@ class BluemixCommunication: NSObject
                 let personname = json["name"].stringValue
                 let user = User(name: name, id: userid, real: personname)
                 completion(result: user)
-            }
-            else
-            {
-                completion(result: nil)
-//                self.usernameL.text = "User not found"
-//                self.addButton.hidden = true
             }
         }
    

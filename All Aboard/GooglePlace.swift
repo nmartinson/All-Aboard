@@ -21,7 +21,7 @@ class GooglePlace:NSObject
     
     func placeFromJSON(rawJSON: JSON) -> [GooglePlace]
     {
-        println(rawJSON)
+//        println(rawJSON)
         var places:[GooglePlace] = []
         for(var i = 0; i < rawJSON["predictions"].count; i++)
         {

@@ -33,12 +33,10 @@ class GoogleSearch:NSObject
             let data = JSON(rawJSON!)
             if data["status"].stringValue == "INVALID_REQUEST"
             {
-                println("NO RESULTS")
                 places = []
             }
             else if data["status"].stringValue == "OK"
             {
-                println("OK")
                 places = GooglePlace().placeFromJSON(data)
                 
             }

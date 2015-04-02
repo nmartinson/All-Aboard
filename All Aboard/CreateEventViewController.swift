@@ -30,6 +30,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var startTime: UIButton!
     @IBOutlet weak var endTime: UIButton!
+    @IBOutlet weak var errorField: UILabel!
     
     var startDate:NSDate?
     var endDate:NSDate?
@@ -115,7 +116,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
             println(place.coordinates?.longitude)
             self.finishedGettingPlaceDetail = true
         }
-        
+        eventlocationTextField.resignFirstResponder()
         tableView.hidden = true
     }
     
@@ -148,6 +149,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         places = []
         searchTableView.hidden = true
         searchTableView.reloadData()
+        errorField.text = ""
         startTime.setTitle("Start time: ", forState: .Normal)
         endTime.setTitle("End time: ", forState: .Normal)
         startDate = nil
@@ -269,7 +271,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         if textField.isEqual(eventlocationTextField)
         {
             let searchString = textField.text.stringByReplacingOccurrencesOfString(" ", withString: "_")
-            println("Text:\(searchString)")
+//            println("Text:\(searchString)")
 
             
             if range.location == 0
@@ -305,7 +307,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     {
         if !(eventlocationTextField.text == "" || eventNameTextField.text == "" || startDate == nil || endDate == nil)
         {
-            
             let hostId = UserPreferences().getGUID()
             while( finishedGettingPlaceDetail == false){}
             let coordinates = places[selectedIndex].coordinate
@@ -313,16 +314,11 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
 
             performSegueWithIdentifier("inviteFriends", sender: self)
         }
-//        let date = eventDate.date
-//        let timestamp = (date.timeIntervalSince1970) * 1000
-//        let timestampInMs = Int(timestamp)
-//        
-//
-//        let long = "\(places[selectedIndex].coordinate!.longitude)"
-//        let lat = "\(places[selectedIndex].coordinate!.latitude)"
-//        
-//        let params = ["action": ACTIONCODES.NEW_EVENT, "title":eventNameTextField.text, "host":hostId, "lat":lat, "lon":long, "startTime":timestampInMs as NSObject, "endTime":timestampInMs]
-//        
+        else
+        {
+            //must select location, name, and times
+            errorField.text = "Must set event name, location, and times."
+        }
     }
  
 }

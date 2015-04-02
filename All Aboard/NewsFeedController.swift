@@ -56,6 +56,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     ******************************************************************************************/
     override func viewWillAppear(animated: Bool)
     {
+        cachedPhotos.removeAll(keepCapacity: false)
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         navBar.title = "The Station"
         BluemixCommunication().getRecentEvents(10)

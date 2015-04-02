@@ -49,6 +49,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var imageScroll:UIScrollView = UIScrollView()
     var blackView = UIView()
     var acceptedInvite = true
+    var customNavigationBar = UINavigationBar()
     
         
     /******************************************************************************************
@@ -59,9 +60,12 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        println("\n\(event!.EventID!)\n")
+        
         navBarTitle?.title = locationText
         imagePicker.delegate = self
-        mainScrollView.contentSize = CGSizeMake(375, 1000)
+        mainScrollView.contentSize = CGSizeMake(375, 1100)
         mainScrollView.setContentOffset(CGPointMake(0, 300), animated: true)
         
         imageScroll.showsHorizontalScrollIndicator = false
@@ -212,16 +216,22 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!)
     {
         let folder = event!.EventID!    // use the event id as the folder name since it is unique
+        var alert = UIAlertController(title: "Uploading", message: "%", preferredStyle: .Alert)
+        self.presentViewController(alert, animated: true, nil)
         
         // upload thumbnail and real size
         AWS.uploadThumbnailToS3(AWS.compressImageToThumbnail(image), folder: folder, file: nil, photoNumber: cachedThumbnails.count)
-        AWS.uploadToS3(AWS.compressImage(image), folder: folder, file: nil, photoNumber: cachedThumbnails.count) // upload image
+        AWS.uploadToS3(AWS.compressImage(image), folder: folder, file: nil, photoNumber: cachedThumbnails.count, alertView: alert) // upload image
 
         let key = "Cell\(cachedThumbnails.count)"
         cachedThumbnails[key] = image
         
         event!.EventPhotoNumber++
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true)
+        {
+            Void in
+            
+        }
         photoGalleryCollectionView.reloadData()
     }
     
@@ -473,5 +483,66 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             controller.chatRoomName = event!.EventID!
         }
     }
+    
+    func chatPressed()
+    {
+        performSegueWithIdentifier("toChat", sender: self)
+    }
+    
+    /****************************************************************************************************
+    *   These two methods are connected to the event accept/deny buttons
+    *****************************************************************************************************/
+    @IBAction func denyInviteButtonPressed(sender: UIButton)
+    {
+        let userID = UserPreferences().getGUID()
+        BluemixCommunication().denyEventInvite(event!.EventID!, userID: userID)
+        {
+                (result: String) in
+                if result == RETURNCODES.INVITE_DECLINE_SUCCES
+                {
+                    self.acceptedInvite = false
+                    self.eventPhotosLabel.hidden = true
+                    self.uploadPhotoButton.hidden = true
+                    self.acceptDenyView.hidden = false
+                }
+        }
+
+    }
+    
+    @IBAction func acceptInviteButtonPressed(sender: UIButton)
+    {
+        let userID = UserPreferences().getGUID()
+        BluemixCommunication().acceptEventInvite(event!.EventID!, userID: userID)
+        {
+            (result: String) in
+            if result == RETURNCODES.INVITE_ACCEPT_SUCCESS
+            {
+                // Check the number of images that are in the event folder
+                self.AWS.numberOfFilesInFolder(self.event!.EventID!)
+                {
+                    (count: Int) in
+                    self.event!.EventPhotoNumber = count
+                    self.photoGalleryCollectionView.reloadData()
+                }
+                
+                let chatButton = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action: "chatPressed")
+                self.navigationItem.rightBarButtonItem = chatButton
+                self.acceptedInvite = true
+                self.eventPhotosLabel.hidden = false
+                self.uploadPhotoButton.hidden = false
+                self.acceptDenyView.hidden = true
+            }
+        }
+    }
+    
+    
+    
+    func showLoading()
+    {
+
+        
+    }
+
+    
     
 }

@@ -12,6 +12,7 @@ import UIKit
 class NotificationsViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     var events:[Event] = []
+    var cachedPhotos = [String:UIImage]()
 
     @IBOutlet weak var notificationTab: UITabBarItem!
     @IBOutlet weak var tableView: UITableView!
@@ -19,6 +20,7 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(true)
+        cachedPhotos.removeAll(keepCapacity: false)
         BluemixCommunication().getUserInviteList(UserPreferences().getGUID())
         {
             (events: [Event]) in
@@ -48,11 +50,29 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     ******************************************************************************************/
     func tableView(tableView: UITableView, willDisplayCell cell: NotificationCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
+        let key = "Cell\(indexPath.row)"
+        println(key)
         cell.descriptionText.text = "\(events[indexPath.row].EventHostName!) has invited you to \(events[indexPath.row].EventName!)"
         cell.dateText.text = Helper().formatDateString(events[indexPath.row].EventStartDate!)
-        let eepupID = "10153524130878066"
-        var imageStr = "http://graph.facebook.com/\(eepupID)/picture?type=normal"
-        Helper().getLabelImage(imageStr, newImage: cell.profilePicture)
+        
+        if cachedPhotos[key] != nil
+        {
+            cell.profilePicture.image = cachedPhotos[key]
+            println("Cached")
+        }
+        else
+        {
+            println("download")
+            AWShelper().downloadThumbnailImageFromS3("profilePictures", file: self.events[indexPath.row].EventHostID, photoNumber: nil)
+            {
+                (image: UIImage?) in
+                self.cachedPhotos[key] = image!
+                cell.profilePicture.image = image
+            }
+            
+        }
+        
+        
     }
     
     /******************************************************************************************
@@ -60,24 +80,14 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("viewEvent") as ViewEventController
-        vc.event = events[indexPath.row]
-        vc.acceptedInvite = false
-        let navBar = UINavigationBar(frame: CGRectMake(0, UIApplication.sharedApplication().statusBarFrame.height, UIScreen.mainScreen().bounds.width, 44))
-        let backButton = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "handleBack")
-        let barItem = UINavigationItem(title: "Event")
-        barItem.leftBarButtonItem = backButton
-        
-        navBar.items = [barItem]
-        vc.view.addSubview(navBar)
-        
-        presentViewController(vc, animated: true, completion: nil)
+        let navController = self.storyboard?.instantiateViewControllerWithIdentifier("EventNavController") as UINavigationController
+        let controller = navController.viewControllers.first as ViewEventController
+        controller.event = events[indexPath.row]
+        controller.acceptedInvite = false
+        controller.navigationItem.rightBarButtonItem = nil
+        presentViewController(navController, animated: true, completion: nil)
     }
     
-    func handleBack()
-    {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
     /******************************************************************************************
     *
     ******************************************************************************************/

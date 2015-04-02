@@ -163,9 +163,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.openGallery()
         }
 
+        var cameraAction = UIAlertAction(title: "Camera", style: .Default)
+            {
+                action in
+                self.openCamera()
+        }
+
         var cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
         alertView.addAction(changePicture)
+        alertView.addAction(cameraAction)
         alertView.addAction(cancelAction)
         
         presentViewController(alertView, animated: true, completion: nil)
@@ -186,6 +193,20 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     /******************************************************************************************
+    *   Open camera
+    ******************************************************************************************/
+    func openCamera()
+    {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePicker.mediaTypes = [kUTTypeImage as NSString]
+            imagePicker.allowsEditing = false
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    /******************************************************************************************
     *   Save the picked image
     ******************************************************************************************/
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!)
@@ -195,7 +216,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         self.dismissViewControllerAnimated(true)
         {
             self.AWS.uploadThumbnailToS3(self.AWS.compressImageToThumbnail(image), folder: "profilePictures", file: file, photoNumber: nil)
-            self.AWS.uploadToS3(self.AWS.compressImage(image), folder: "profilePictures", file: file, photoNumber: nil) // upload image
+            self.AWS.uploadToS3(self.AWS.compressImage(image), folder: "profilePictures", file: file, photoNumber: nil, alertView: nil) // upload image
         }
     }
     

@@ -175,7 +175,7 @@ class AWShelper
     /******************************************************************************************
     *   Sends the image to AWS
     ******************************************************************************************/
-    func uploadToS3(url: NSURL, folder: String, file: String?, photoNumber: Int?)
+    func uploadToS3(url: NSURL, folder: String, file: String?, photoNumber: Int?, alertView: UIAlertController?)
     {
         // next we set up the S3 upload request manager
         let uploadRequest = AWSS3TransferManagerUploadRequest()
@@ -201,22 +201,28 @@ class AWShelper
 
         uploadRequest.ACL = AWSS3ObjectCannedACL.PublicRead
         
-        // we will track progress through an AWSNetworkingUploadProgressBlock
-        uploadRequest?.uploadProgress = {[unowned self](bytesSent:Int64, totalBytesSent:Int64, totalBytesExpectedToSend:Int64) in
-        
-            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-                let amountUploaded = totalBytesSent
-                let filesize = totalBytesExpectedToSend;
-                println("upload %\(Float(amountUploaded) / Float(filesize) )")
-            })
-        }
+//        if alertView != nil
+//        {
+//            // we will track progress through an AWSNetworkingUploadProgressBlock
+//            uploadRequest?.uploadProgress = {[unowned self](bytesSent:Int64, totalBytesSent:Int64, totalBytesExpectedToSend:Int64) in
+//            
+//                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+//                    
+//                    let amountUploaded = totalBytesSent
+//                    let filesize = totalBytesExpectedToSend;
+//                    alertView!.message = "upload %\(Float(amountUploaded) / Float(filesize) )"
+//                    
+//                    println("upload %\(Float(amountUploaded) / Float(filesize) )")
+//                })
+//            }
+//        }
         
         // now the upload request is set up we can creat the transfermanger, the credentials are already set up in the app delegate
         var transferManager:AWSS3TransferManager = AWSS3TransferManager.defaultS3TransferManager()
         // start the upload
         transferManager.upload(uploadRequest!).continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock:{ [unowned self]
             task -> AnyObject in
-            
+            alertView?.dismissViewControllerAnimated(true, completion: nil)
             // once the uploadmanager finishes check if there were any errors
             if(task.error != nil)
             {
@@ -257,14 +263,14 @@ class AWShelper
         uploadRequest.ACL = AWSS3ObjectCannedACL.PublicRead
         
         // we will track progress through an AWSNetworkingUploadProgressBlock
-        uploadRequest?.uploadProgress = {[unowned self](bytesSent:Int64, totalBytesSent:Int64, totalBytesExpectedToSend:Int64) in
-            
-            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-                let amountUploaded = totalBytesSent
-                let filesize = totalBytesExpectedToSend;
-                println("upload %\(Float(amountUploaded) / Float(filesize) )")
-            })
-        }
+//        uploadRequest?.uploadProgress = {[unowned self](bytesSent:Int64, totalBytesSent:Int64, totalBytesExpectedToSend:Int64) in
+//            
+//            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+//                let amountUploaded = totalBytesSent
+//                let filesize = totalBytesExpectedToSend;
+//                println("upload %\(Float(amountUploaded) / Float(filesize) )")
+//            })
+//        }
         
         // now the upload request is set up we can creat the transfermanger, the credentials are already set up in the app delegate
         var transferManager:AWSS3TransferManager = AWSS3TransferManager.defaultS3TransferManager()
