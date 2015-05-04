@@ -78,7 +78,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as! UITableViewCell
         
         cell.textLabel?.text = places[indexPath.row].name
         return cell
@@ -236,7 +236,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     {
         if segue.identifier == "inviteFriends"
         {
-            let controller = segue.destinationViewController as InviteFriendsToEventController
+            let controller = segue.destinationViewController as! InviteFriendsToEventController
             controller.currentEvent = currentEvent!
         }
     }

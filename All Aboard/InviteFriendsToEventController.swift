@@ -35,11 +35,11 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCellWithIdentifier("contactCell") as ContactTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("contactCell") as! ContactTableViewCell
         cell.delegate = self
-        cell.setProfilePicture(people[indexPath.row].userid)
-        cell.nameLabel.text = people[indexPath.row].realname
-        cell.userID = people[indexPath.row].userid
+        cell.setProfilePicture(people[indexPath.row].userid as String)
+        cell.nameLabel.text = people[indexPath.row].realname as! String
+        cell.userID = people[indexPath.row].userid as String
         cell.indexPath = indexPath
         
         return cell
@@ -50,7 +50,7 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as ContactTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactTableViewCell
         
         cell.addFriendButton.sendActionsForControlEvents(.TouchUpInside) // call button pressed method
         
@@ -102,11 +102,11 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     {
         if selected
         {
-            (tableView.cellForRowAtIndexPath(indexPath) as ContactTableViewCell).setHighlighted(true, animated: true)
+            (tableView.cellForRowAtIndexPath(indexPath) as! ContactTableViewCell).setHighlighted(true, animated: true)
         }
         else
         {
-            (tableView.cellForRowAtIndexPath(indexPath) as ContactTableViewCell).setHighlighted(false, animated: true)
+            (tableView.cellForRowAtIndexPath(indexPath) as! ContactTableViewCell).setHighlighted(false, animated: true)
         }
         if contains(selectedFriends, userID)
         {

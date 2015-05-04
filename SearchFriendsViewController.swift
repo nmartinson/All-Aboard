@@ -51,10 +51,10 @@ class SearchFriendsViewController: UIViewController, UITextFieldDelegate
                 (user: User?) in
                 if user != nil
                 {
-                    self.usernameL.text = user!.realname
+                    self.usernameL.text = user!.realname as? String
                     self.addButton.hidden = false
                     self.searchedUser = user!
-                    AWShelper().downloadThumbnailImageFromS3("profilePictures", file: user!.userid, photoNumber: nil)
+                    AWShelper().downloadThumbnailImageFromS3("profilePictures", file: user!.userid as String, photoNumber: nil)
                     {
                         (image: UIImage?) in
                         self.profilePicture.image = image

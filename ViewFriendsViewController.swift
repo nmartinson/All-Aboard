@@ -31,9 +31,9 @@ class ViewFriendsViewController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         //creating cell for table view.
-        let cell = self.friendsTableView.dequeueReusableCellWithIdentifier("friendCell") as ViewFriendsTableViewCell
-        cell.nameLabel.text = friendsL[indexPath.row].realname
-        cell.setProfilePicture(friendsL[indexPath.row].userid)
+        let cell = self.friendsTableView.dequeueReusableCellWithIdentifier("friendCell") as! ViewFriendsTableViewCell
+        cell.nameLabel.text = friendsL[indexPath.row].realname as? String
+        cell.setProfilePicture(friendsL[indexPath.row].userid as String)
         
         //adds label to the cell
 //        cell.textLabel?.text = friendsL[indexPath.row].realname

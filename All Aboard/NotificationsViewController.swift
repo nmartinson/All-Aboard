@@ -48,26 +48,26 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     /******************************************************************************************
     *
     ******************************************************************************************/
-    func tableView(tableView: UITableView, willDisplayCell cell: NotificationCell, forRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
         let key = "Cell\(indexPath.row)"
         println(key)
-        cell.descriptionText.text = "\(events[indexPath.row].EventHostName!) has invited you to \(events[indexPath.row].EventName!)"
-        cell.dateText.text = Helper().formatDateString(events[indexPath.row].EventStartDate!)
+        (cell as! NotificationCell).descriptionText.text = "\(events[indexPath.row].EventHostName!) has invited you to \(events[indexPath.row].EventName!)"
+        (cell as! NotificationCell).dateText.text = Helper().formatDateString(events[indexPath.row].EventStartDate!)
         
         if cachedPhotos[key] != nil
         {
-            cell.profilePicture.image = cachedPhotos[key]
+            (cell as! NotificationCell).profilePicture.image = cachedPhotos[key]
             println("Cached")
         }
         else
         {
             println("download")
-            AWShelper().downloadThumbnailImageFromS3("profilePictures", file: self.events[indexPath.row].EventHostID, photoNumber: nil)
+            AWShelper().downloadThumbnailImageFromS3("profilePictures", file: self.events[indexPath.row].EventHostID as? String, photoNumber: nil)
             {
                 (image: UIImage?) in
                 self.cachedPhotos[key] = image!
-                cell.profilePicture.image = image
+                (cell as! NotificationCell).profilePicture.image = image
             }
             
         }
@@ -80,8 +80,8 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let navController = self.storyboard?.instantiateViewControllerWithIdentifier("EventNavController") as UINavigationController
-        let controller = navController.viewControllers.first as ViewEventController
+        let navController = self.storyboard?.instantiateViewControllerWithIdentifier("EventNavController") as! UINavigationController
+        let controller = navController.viewControllers.first as! ViewEventController
         controller.event = events[indexPath.row]
         controller.acceptedInvite = false
         controller.navigationItem.rightBarButtonItem = nil

@@ -59,7 +59,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         cachedPhotos.removeAll(keepCapacity: false)
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         navBar.title = "The Station"
-        BluemixCommunication().getRecentEvents(10)
+        BluemixCommunication().getRecentEvents(15)
         {
             (results: [Event]) in
             self.events = results
@@ -70,7 +70,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
         BluemixCommunication().getUserInviteList(UserPreferences().getGUID())
         {
             (events: [Event]) in
-            (self.tabBarController!.tabBar.items![3] as UITabBarItem).badgeValue = "\(events.count)"
+            (self.tabBarController!.tabBar.items![3] as! UITabBarItem).badgeValue = "\(events.count)"
         }
     }
 
@@ -84,8 +84,8 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     ******************************************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        let navController = segue.destinationViewController as UINavigationController
-        let controller = navController.viewControllers.first as ViewEventController
+        let navController = segue.destinationViewController as! UINavigationController
+        let controller = navController.viewControllers.first as! ViewEventController
         controller.event = events[selectedCellIndex]
     }
     
@@ -96,7 +96,7 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as NewsFeedTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewsFeedTableViewCell
         imageOfSelectedCell = cell.profilePicture.image
         hostedByName = cell.postedBy.text!
         eventLocation = cell.locationLabel.text!
@@ -149,30 +149,30 @@ class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDe
     /******************************************************************************************
     *   Configures the cell that is about to be displayed
     ******************************************************************************************/
-    func tableView(tableView: UITableView, willDisplayCell cell: NewsFeedTableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
         let key = "Cell\(indexPath.section)"
         if cachedPhotos[key] != nil
         {
-            cell.profilePicture.image = cachedPhotos[key]
+            (cell as! NewsFeedTableViewCell).profilePicture.image = cachedPhotos[key]
         }
         else
         {
-            AWShelper().downloadThumbnailImageFromS3("profilePictures", file: self.events[indexPath.section].EventHostID, photoNumber: nil)
+            AWShelper().downloadThumbnailImageFromS3("profilePictures", file: self.events[indexPath.section].EventHostID as? String, photoNumber: nil)
             {
                 (image: UIImage?) in
                 self.cachedPhotos[key] = image!
-                cell.profilePicture.image = image
+                (cell as! NewsFeedTableViewCell).profilePicture.image = image
             }
             
         }
-        cell.postedBy.text = events[indexPath.section].EventHostName
-        cell.eventImage.image = UIImage(named: "billiards")
-        cell.locationLabel.text = events[indexPath.section].EventName
-        cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.width/2
-        cell.profilePicture.layer.borderWidth = 2
-        cell.profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
-        cell.profilePicture.clipsToBounds = true
+        (cell as! NewsFeedTableViewCell).postedBy.text = events[indexPath.section].EventHostName as? String
+        (cell as! NewsFeedTableViewCell).eventImage.image = UIImage(named: "billiards")
+        (cell as! NewsFeedTableViewCell).locationLabel.text = events[indexPath.section].EventName as? String
+        (cell as! NewsFeedTableViewCell).profilePicture.layer.cornerRadius = (cell as! NewsFeedTableViewCell).profilePicture.frame.size.width/2
+        (cell as! NewsFeedTableViewCell).profilePicture.layer.borderWidth = 2
+        (cell as! NewsFeedTableViewCell).profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+        (cell as! NewsFeedTableViewCell).profilePicture.clipsToBounds = true
     }
     
     /******************************************************************************************

@@ -43,7 +43,7 @@ class UserPreferences
     ******************************************************************************************/
     func getGUID() -> String
     {
-        let id = defaults.objectForKey("GUID") as String
+        let id = defaults.objectForKey("GUID") as! String
         return id
     }
     
@@ -60,7 +60,7 @@ class UserPreferences
     ******************************************************************************************/
     func getName() -> String
     {
-        let name = defaults.objectForKey("name") as String
+        let name = defaults.objectForKey("name") as! String
         return name
     }
     

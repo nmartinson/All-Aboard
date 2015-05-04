@@ -36,17 +36,17 @@ class DatePickerController:UIView
         descriptionLabel.text = label
     }
     
-    override init()
+    init()
     {
-        super.init()
-        let datePickerView = NSBundle.mainBundle().loadNibNamed("DatePickerView", owner: self, options: nil).first as UIView
-        
         let height = UIScreen.mainScreen().applicationFrame.height
         let width = UIScreen.mainScreen().applicationFrame.width
         let statusHeight = UIApplication.sharedApplication().statusBarFrame.size.height
         let pickerHeight = height/3
         let size = CGRectMake(0, height-pickerHeight+statusHeight, width, pickerHeight)
-        super.frame = size
+        
+        super.init(frame: size)
+        let datePickerView = NSBundle.mainBundle().loadNibNamed("DatePickerView", owner: self, options: nil).first as! UIView
+//        super.frame = size
         datePickerView.frame = CGRectMake(0, 0, frame.width, frame.height)
         self.addSubview(datePickerView)
     }

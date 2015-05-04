@@ -59,7 +59,7 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     func setupAvatarImage(name: String, imageUrl: String?, incoming: Bool) {
-        if imageUrl == nil ||  countElements(imageUrl!) == 0 {
+        if imageUrl == nil ||  count(imageUrl!) == 0 {
             setupAvatarColor(name, incoming: incoming)
             return
         }
@@ -82,7 +82,7 @@ class MessagesViewController: JSQMessagesViewController {
         let b = CGFloat(Float(rgbValue & 0xFF)/255.0)
         let color = UIColor(red: r, green: g, blue: b, alpha: 0.5)
         
-        let nameLength = countElements(name)
+        let nameLength = count(name)
         let initials : String? = name.substringToIndex(advance(sender.startIndex, min(3, nameLength)))
         let userImage = JSQMessagesAvatarFactory.avatarWithUserInitials(initials, backgroundColor: color, textColor: UIColor.blackColor(), font: UIFont.systemFontOfSize(CGFloat(13)), diameter: diameter)
         
@@ -98,8 +98,8 @@ class MessagesViewController: JSQMessagesViewController {
         sender = (sender != nil) ? sender : "Anonymous"
         let profileImageUrl = user?.providerData["cachedUserProfile"]?["profile_image_url_https"] as? NSString
         if let urlString = profileImageUrl {
-            setupAvatarImage(sender, imageUrl: urlString, incoming: false)
-            senderImageUrl = urlString
+            setupAvatarImage(sender, imageUrl: urlString as String, incoming: false)
+            senderImageUrl = urlString as String
         } else {
             setupAvatarColor(sender, incoming: false)
             senderImageUrl = ""
@@ -170,7 +170,7 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
+        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
         
         let message = messages[indexPath.item]
         if message.sender() == sender {

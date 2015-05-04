@@ -54,7 +54,7 @@ class AWShelper
             }
             if (task.result != nil)
             {
-                let downloadOutput = task.result as AWSS3TransferManagerDownloadOutput
+                let downloadOutput = task.result as! AWSS3TransferManagerDownloadOutput
                 let image = UIImage(contentsOfFile: downloadFilePath)!
                 completion(image: image)
             }
@@ -105,7 +105,7 @@ class AWShelper
             }
             if (task.result != nil)
             {
-                let downloadOutput = task.result as AWSS3TransferManagerDownloadOutput
+                let downloadOutput = task.result as! AWSS3TransferManagerDownloadOutput
                 let image = UIImage(contentsOfFile: downloadFilePath)!
                 completion(image: image)
             }
@@ -117,17 +117,20 @@ class AWShelper
     {
         var path:NSString = NSTemporaryDirectory().stringByAppendingPathComponent("thumbnail.jpeg")
         var imageData = UIImageJPEGRepresentation(image, 1) // minimum compression
-        imageData.writeToFile(path, atomically: true)
+        imageData.writeToFile(path as String, atomically: true)
         
         // once the image is saved we can use the path to create a local fileurl
-        var url:NSURL = NSURL(fileURLWithPath: path)!
+        var url:NSURL = NSURL(fileURLWithPath: path as String)!
         let src = CGImageSourceCreateWithURL(url, nil)
         
+
+        
         // thumbnail options
-        let thumbOptions:[String:AnyObject] = [kCGImageSourceShouldAllowFloat: kCFBooleanTrue,
-            kCGImageSourceCreateThumbnailWithTransform: kCFBooleanTrue,
-            kCGImageSourceCreateThumbnailFromImageAlways: kCFBooleanTrue,
-            kCGImageSourceThumbnailMaxPixelSize: Int(200)]
+        let thumbOptions:[String:AnyObject] = [kCGImageSourceShouldAllowFloat as String: kCFBooleanTrue as Bool,
+            kCGImageSourceCreateThumbnailWithTransform as String: kCFBooleanTrue as Bool,
+            kCGImageSourceCreateThumbnailFromImageAlways as String: kCFBooleanTrue as Bool,
+            kCGImageSourceThumbnailMaxPixelSize as String: Int(200)]
+        
         let thumbnail = CGImageSourceCreateThumbnailAtIndex(src, 0, thumbOptions)
         
         let destination = CGImageDestinationCreateWithURL(url, kUTTypeJPEG, 1, nil)
@@ -150,17 +153,17 @@ class AWShelper
         var path:NSString = NSTemporaryDirectory().stringByAppendingPathComponent("image.jpeg")
         //        var imageData:NSData = UIImagePNGRepresentation(image)
         var imageData = UIImageJPEGRepresentation(image, 0.5)
-        imageData.writeToFile(path, atomically: true)
+        imageData.writeToFile(path as String, atomically: true)
         
         // once the image is saved we can use the path to create a local fileurl
-        var url:NSURL = NSURL(fileURLWithPath: path)!
+        var url:NSURL = NSURL(fileURLWithPath: path as String)!
         let src = CGImageSourceCreateWithURL(url, nil)
         
         // thumbnail options
-        let thumbOptions:[String:AnyObject] = [kCGImageSourceShouldAllowFloat: kCFBooleanTrue,
-            kCGImageSourceCreateThumbnailWithTransform: kCFBooleanTrue,
-            kCGImageSourceCreateThumbnailFromImageAlways: kCFBooleanTrue,
-            kCGImageSourceThumbnailMaxPixelSize: Int(640)]
+        let thumbOptions:[String:AnyObject] = [kCGImageSourceShouldAllowFloat as String: kCFBooleanTrue as Bool,
+            kCGImageSourceCreateThumbnailWithTransform as String: kCFBooleanTrue as Bool,
+            kCGImageSourceCreateThumbnailFromImageAlways as String: kCFBooleanTrue as Bool,
+            kCGImageSourceThumbnailMaxPixelSize as String: Int(640)]
         let thumbnail = CGImageSourceCreateThumbnailAtIndex(src, 0, thumbOptions)
         
         let destination = CGImageDestinationCreateWithURL(url, kUTTypeJPEG, 1, nil)
@@ -306,7 +309,7 @@ class AWShelper
             }
             else
             {
-                if let count = (response.result as AWSS3ListObjectsOutput).contents?.count
+                if let count = (response.result as! AWSS3ListObjectsOutput).contents?.count
                 {
                     let number = count/2
                     completion(count: number)

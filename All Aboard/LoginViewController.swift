@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
         
         var friendsRequest = FBRequest.requestForMyFriends()
         friendsRequest.startWithCompletionHandler { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
-            var resultDict = result as NSDictionary
+            var resultDict = result as! NSDictionary
             let jsonData = JSON(result)
             let data = jsonData["data"]
             for(var i = 0; i < data.count; i++)
@@ -119,14 +119,14 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
             BluemixCommunication().loginRequest(params){
                 (results: Dictionary<String,AnyObject>?) in
                 self.activityIndicator.stopAnimating()
-                if results!["success"] as Bool == true
+                if results!["success"] as! Bool == true
                 {
-                    let name = results!["name"] as String
+                    let name = results!["name"] as! String
                     println("NAME: \(name)")
                     UserPreferences().setName(name)
                     self.performSegueWithIdentifier("loggedIn", sender: self)
                 }
-                else if results!["success"] as Bool == false
+                else if results!["success"] as! Bool == false
                 {
                     self.errorField.text = results!["error"] as? String
                 }
@@ -173,7 +173,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     {
         if segue.identifier == "createAccountSegue"
         {
-            let controller = segue.destinationViewController as NewUserController
+            let controller = segue.destinationViewController as! NewUserController
         }
     }
     

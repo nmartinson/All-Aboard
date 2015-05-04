@@ -28,7 +28,7 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var item = menuItems[indexPath.row]
-        var cell = tableView.dequeueReusableCellWithIdentifier(item) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(item) as! UITableViewCell
         if item == "standardLogOut"
         {
             cell.textLabel?.text = "Log out \(UserPreferences().getName())"
@@ -51,7 +51,7 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
         if identifier == "standardLogOut"
         {
             var storyboard = UIStoryboard(name: "Main", bundle: nil)
-            var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+            var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
             UserPreferences().loggedIn(false)
             
             presentViewController(viewController, animated: true) { () -> Void in }
@@ -81,7 +81,7 @@ class RearViewController: UITableViewController, UITableViewDataSource, UITableV
         if !UserPreferences().loggedInState()
         {
             var storyboard = UIStoryboard(name: "Main", bundle: nil)
-            var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+            var viewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
             
             presentViewController(viewController, animated: true) { () -> Void in }
         }

@@ -66,7 +66,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(true)
-        tableView.deselectRowAtIndexPath(selectedEvent["indexPath"] as NSIndexPath, animated: true)
+        tableView.deselectRowAtIndexPath(selectedEvent["indexPath"] as! NSIndexPath, animated: true)
     }
     
     
@@ -89,9 +89,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         if segue.identifier == "profileToEvent"
         {
-            let navController = segue.destinationViewController as UINavigationController
-            let controller = navController.viewControllers.first as ViewEventController
-            controller.event = events[selectedEvent["section"]! as Int][selectedEvent["row"]! as Int]
+            let navController = segue.destinationViewController as! UINavigationController
+            let controller = navController.viewControllers.first as! ViewEventController
+            controller.event = events[selectedEvent["section"]! as! Int][selectedEvent["row"]! as! Int]
         }
     }
     /******************************************************************************************
@@ -99,8 +99,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let  cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as UITableViewCell
-        cell.textLabel?.text = events[indexPath.section][indexPath.row].EventName
+        let  cell = tableView.dequeueReusableCellWithIdentifier("eventCell") as! UITableViewCell
+        cell.textLabel?.text = events[indexPath.section][indexPath.row].EventName as? String
         return cell
     }
     

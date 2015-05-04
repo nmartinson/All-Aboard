@@ -108,7 +108,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         endTimeLabel.font = UIFont(name: endTimeLabel.font.fontName, size: 12)
         locationLabel.text = "Location: \(event!.EventLocation!)"
         hostedByLabel.text = "Host: \(event!.EventHostName!)"
-        marker.title = event!.EventName!
+        marker.title = event!.EventName! as String
         
         if acceptedInvite
         {
@@ -116,7 +116,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             uploadPhotoButton.hidden = false
             acceptDenyView.hidden = true
             // Check the number of images that are in the event folder
-            AWS.numberOfFilesInFolder(event!.EventID!)
+            AWS.numberOfFilesInFolder(event!.EventID! as String)
             {
                 (count: Int) in
                 self.event!.EventPhotoNumber = count
@@ -131,13 +131,13 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         }
 
         // download the profile picture
-        AWS.downloadThumbnailImageFromS3("profilePictures", file: event!.EventHostID!, photoNumber: nil)
+        AWS.downloadThumbnailImageFromS3("profilePictures", file: event!.EventHostID! as String, photoNumber: nil)
         {
             (image:UIImage?) in
             self.profilePic.image = image
         }
         
-        BluemixCommunication().getEventAttendees(event!.EventID!)
+        BluemixCommunication().getEventAttendees(event!.EventID! as String)
         {
             (attendees: [User]) in
             println(attendees)
@@ -217,11 +217,11 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     {
         let folder = event!.EventID!    // use the event id as the folder name since it is unique
         var alert = UIAlertController(title: "Uploading", message: "%", preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true, nil)
+        self.presentViewController(alert, animated: true, completion: nil)
         
         // upload thumbnail and real size
-        AWS.uploadThumbnailToS3(AWS.compressImageToThumbnail(image), folder: folder, file: nil, photoNumber: cachedThumbnails.count)
-        AWS.uploadToS3(AWS.compressImage(image), folder: folder, file: nil, photoNumber: cachedThumbnails.count, alertView: alert) // upload image
+        AWS.uploadThumbnailToS3(AWS.compressImageToThumbnail(image), folder: folder as String, file: nil, photoNumber: cachedThumbnails.count)
+        AWS.uploadToS3(AWS.compressImage(image), folder: folder as String, file: nil, photoNumber: cachedThumbnails.count, alertView: alert) // upload image
 
         let key = "Cell\(cachedThumbnails.count)"
         cachedThumbnails[key] = image
@@ -242,7 +242,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     {
         if collectionView == photoGalleryCollectionView
         {
-            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as PhotoGalleryCollectionViewCell
+            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as! PhotoGalleryCollectionViewCell
             let key = "Cell\(indexPath.item)"
             if cachedThumbnails[key] != nil
             {
@@ -250,13 +250,13 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             }
             else
             {
-                self.AWS.downloadThumbnailImageFromS3(self.event!.EventID!, file: nil, photoNumber: indexPath.item)
+                self.AWS.downloadThumbnailImageFromS3(self.event!.EventID! as String, file: nil, photoNumber: indexPath.item)
                 {
                     (image: UIImage?) in
                     if image != nil
                     {
                         self.cachedThumbnails[key] = image!
-                            (collectionView.cellForItemAtIndexPath(indexPath) as PhotoGalleryCollectionViewCell).image.image = image
+                            (collectionView.cellForItemAtIndexPath(indexPath) as! PhotoGalleryCollectionViewCell).image.image = image
                     }
                 }
             }
@@ -264,10 +264,10 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         }
         else
         {
-            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("attendeeCell", forIndexPath: indexPath) as EventAttendeeCell
-            cell.attendeeName.text = attendeeList[indexPath.item].realname!
+            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("attendeeCell", forIndexPath: indexPath) as! EventAttendeeCell
+            cell.attendeeName.text = attendeeList[indexPath.item].realname! as String
             let file = attendeeList[indexPath.item].userid
-            AWS.downloadThumbnailImageFromS3("profilePictures", file: file, photoNumber: nil)
+            AWS.downloadThumbnailImageFromS3("profilePictures", file: file as String, photoNumber: nil)
             {
                 (image: UIImage?) in
                 cell.profilePicture.image = image
@@ -283,7 +283,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     {
         if collectionView == photoGalleryCollectionView
         {
-            let thumbnail = collectionView.cellForItemAtIndexPath(indexPath)?.contentView.subviews.last as UIImageView
+            let thumbnail = collectionView.cellForItemAtIndexPath(indexPath)?.contentView.subviews.last as! UIImageView
             let key = "Cell\(indexPath.item)"
             if cachedLargeImages[key] != nil
             {
@@ -327,7 +327,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                         self.blackView.alpha = 1},    // show black background
                     completion: nil)
 
-                AWS.downloadImageFromS3(event!.EventID!, file: nil, photoNumber: indexPath.item)
+                AWS.downloadImageFromS3(event!.EventID! as String, file: nil, photoNumber: indexPath.item)
                 {
                     (image: UIImage?) in
                     self.cachedLargeImages[key] = image
@@ -479,8 +479,8 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     {
         if segue.identifier == "toChat"
         {
-            let controller = segue.destinationViewController as MessagesViewController
-            controller.chatRoomName = event!.EventID!
+            let controller = segue.destinationViewController as! MessagesViewController
+            controller.chatRoomName = event!.EventID! as String
         }
     }
     
@@ -495,7 +495,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     @IBAction func denyInviteButtonPressed(sender: UIButton)
     {
         let userID = UserPreferences().getGUID()
-        BluemixCommunication().denyEventInvite(event!.EventID!, userID: userID)
+        BluemixCommunication().denyEventInvite(event!.EventID! as String, userID: userID)
         {
                 (result: String) in
                 if result == RETURNCODES.INVITE_DECLINE_SUCCES
@@ -512,13 +512,13 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     @IBAction func acceptInviteButtonPressed(sender: UIButton)
     {
         let userID = UserPreferences().getGUID()
-        BluemixCommunication().acceptEventInvite(event!.EventID!, userID: userID)
+        BluemixCommunication().acceptEventInvite(event!.EventID! as String, userID: userID)
         {
             (result: String) in
             if result == RETURNCODES.INVITE_ACCEPT_SUCCESS
             {
                 // Check the number of images that are in the event folder
-                self.AWS.numberOfFilesInFolder(self.event!.EventID!)
+                self.AWS.numberOfFilesInFolder(self.event!.EventID! as String)
                 {
                     (count: Int) in
                     self.event!.EventPhotoNumber = count
