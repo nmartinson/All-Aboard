@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//Class for event cell
 class EventAttendeeCell: UICollectionViewCell
 {
     @IBOutlet weak var profilePicture: UIImageView!
