@@ -8,11 +8,16 @@
 
 import Foundation
 
+
 protocol checkBoxCellDelegate
 {
     func didSelectCheckbox(userID: String, indexPath:NSIndexPath, selected:Bool)
 }
 
+/******************************************************************************************
+*   This class is an extension of UITableViewCell to make a custom cell for presenting
+*   the contacts list
+******************************************************************************************/
 class ContactTableViewCell: UITableViewCell
 {
     @IBOutlet weak var nameLabel: UILabel!
@@ -28,6 +33,9 @@ class ContactTableViewCell: UITableViewCell
     {
     }
     
+    /******************************************************************************************
+    *   Downloads the users profile picture and puts it in the tableviewcell
+    ******************************************************************************************/
     func setProfilePicture(GUID: String)
     {
         AWShelper().downloadImageFromS3("profilePictures", file: GUID, photoNumber: nil)
@@ -39,6 +47,9 @@ class ContactTableViewCell: UITableViewCell
         }
     }
     
+    /******************************************************************************************
+    *   Highlights the cell and fills in the checkbox when a user is selected to be invited
+    ******************************************************************************************/
     @IBAction func addFriendButtonPressed(sender: AnyObject)
     {
         checkBoxSelected = !checkBoxSelected

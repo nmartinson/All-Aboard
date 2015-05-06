@@ -14,6 +14,9 @@ protocol CustomDatePickerDelegate
     func doneButtonPressed()
 }
 
+/******************************************************************************************
+*   This class is a custom View that puts a datepicker on the screen
+******************************************************************************************/
 class DatePickerController:UIView
 {
     

@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-//Class for event cell
+/******************************************************************************************
+*   This class is an extension of the UICollectionViewCell that is used to display the 
+*   event attendees with an image and a name.
+******************************************************************************************/
 class EventAttendeeCell: UICollectionViewCell
 {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var attendeeName: UILabel!
-    
-    
-    
 }

@@ -10,7 +10,9 @@ import UIKit
 import Alamofire
 import MobileCoreServices
 
-
+/******************************************************************************************
+*
+******************************************************************************************/
 class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, CustomDatePickerDelegate
 {
     
@@ -49,7 +51,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     
     
     /******************************************************************************************
-    *
+    *   Pulls in the users current location to user for location based search.
     ******************************************************************************************/
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
@@ -65,7 +67,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
         }
     }
 
-    
+    /******************************************************************************************
+    *   Clear the event creation page for the next time that it is loaded.
+    ******************************************************************************************/
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
         clearView()
@@ -74,7 +78,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
 
     
     /******************************************************************************************
-    *
+    *   Display the search results in the table view
     ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
@@ -85,7 +89,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     }
     
     /******************************************************************************************
-    *
+    *   This method hides and shows the search results based on whethere there are results or
+    *   not.
     ******************************************************************************************/
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -101,7 +106,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     }
 
     /******************************************************************************************
-    *
+    *   Gets called when a cell is selected. 
+    *   Gets place details from google about the specific location.
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
@@ -121,7 +127,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     }
     
     /******************************************************************************************
-    *
+    *   Moves the keyboard from one textbox to another
     ******************************************************************************************/
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
@@ -195,7 +201,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     }
     
     /******************************************************************************************
-    *
+    *   Removes the date picker from the screen and formats the dates for our purposes.
     ******************************************************************************************/
     func doneButtonPressed()
     {
@@ -230,7 +236,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UITableV
     }
     
     /******************************************************************************************
-    *
+    *   Moves to the next screen for the user to invite friends
     ******************************************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {

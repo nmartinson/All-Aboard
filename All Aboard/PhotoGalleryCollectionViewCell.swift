@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/******************************************************************************************
+*   This class is an extension of the UITableViewCell to make a custom cell for the News 
+*   Feed.
+******************************************************************************************/
 class PhotoGalleryCollectionViewCell: UICollectionViewCell
 {
     @IBOutlet weak var image: UIImageView!

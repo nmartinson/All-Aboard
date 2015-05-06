@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/******************************************************************************************
+*   This class is an extension of the UIScrollView that is used for placing a scrollview 
+*   over top of our Google Map.
+******************************************************************************************/
 class OverlayScrollView: UIScrollView
 {
     

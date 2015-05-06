@@ -11,6 +11,9 @@ import UIKit
 import Alamofire
 import MobileCoreServices
 
+/******************************************************************************************
+*   This class is the view for the View Event page.
+******************************************************************************************/
 class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate
 {
     let AWS = AWShelper()
@@ -137,6 +140,7 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             self.profilePic.image = image
         }
         
+        // get the event attendees
         BluemixCommunication().getEventAttendees(event!.EventID! as String)
         {
             (attendees: [User]) in
@@ -509,6 +513,10 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 
     }
     
+    /******************************************************************************************
+    *   Gets called when the user accepts the event to tell the backend database that they are 
+    *   attending. Then shows the event photos.
+    ******************************************************************************************/
     @IBAction func acceptInviteButtonPressed(sender: UIButton)
     {
         let userID = UserPreferences().getGUID()
@@ -533,14 +541,6 @@ class ViewEventController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                 self.acceptDenyView.hidden = true
             }
         }
-    }
-    
-    
-    
-    func showLoading()
-    {
-
-        
     }
 
     

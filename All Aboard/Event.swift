@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 
 
-
+/******************************************************************************************
+*   This is a model to represent an 'Event'
+*   It contains multiple initialization methods to make it easier for a user to create an
+*   event object for later use.
+******************************************************************************************/
 class Event {
     var EventName:NSString?
     var EventLocation:NSString?
@@ -23,10 +27,10 @@ class Event {
     var EventInviteList:[String]?
     var EventPhotoNumber = 0
     
-    init()
-    {
-        
-    }
+//    init()
+//    {
+//        
+//    }
     
     init(name:NSString, location:NSString, coordinates:CLLocationCoordinate2D, hostID:NSString, eventStartDate:NSDate, eventEndDate:NSDate)
     {

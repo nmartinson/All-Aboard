@@ -20,6 +20,9 @@ class ViewFriendsTableViewCell: UITableViewCell
     {
     }
     
+    /******************************************************************************************
+    *   Downloads the users profile pic and shows it
+    ******************************************************************************************/
     func setProfilePicture(GUID: String)
     {
         AWShelper().downloadImageFromS3("profilePictures", file: GUID, photoNumber: nil)
