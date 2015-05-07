@@ -8,6 +8,9 @@
 
 import Foundation
 
+/******************************************************************************************
+*   This class is used for storing and retrieving user information locally
+******************************************************************************************/
 class UserPreferences
 {
     let defaults = NSUserDefaults.standardUserDefaults()

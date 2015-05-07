@@ -11,6 +11,9 @@ import UIKit
 import Alamofire
 import CryptoSwift
 
+/******************************************************************************************
+*   This class is responsible for allowing a user to create a new account
+******************************************************************************************/
 class NewUserController: UIViewController
 {
     @IBOutlet weak var usernameField: UITextField!
@@ -20,6 +23,10 @@ class NewUserController: UIViewController
     @IBOutlet weak var errorField: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    /******************************************************************************************
+    *   This validates user input and then creates the account given that the username isn't 
+    *   already taken.
+    ******************************************************************************************/
     @IBAction func submitButtonPressed(sender: AnyObject)
     {
         if usernameField.text == "" || passwordField.text == "" || confirmPasswordField.text == ""
@@ -56,6 +63,9 @@ class NewUserController: UIViewController
         dismissViewControllerAnimated(true, completion: { () -> Void in })
     }
     
+    /******************************************************************************************
+    *   This moves the keyboard input from one texfield to another
+    ******************************************************************************************/
     func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
     {
         if textField == usernameField

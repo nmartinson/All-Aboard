@@ -10,6 +10,9 @@ import UIKit
 import Alamofire
 import CryptoSwift
 
+/******************************************************************************************
+*   This class is resonsible for allowing the user to login via either facebook or our login.
+******************************************************************************************/
 class LoginViewController: UIViewController, FBLoginViewDelegate
 {
     
@@ -34,7 +37,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     }
     
     /******************************************************************************************
-    *
+    *   Checks if the user is logged in so they don't have to log in each time
     ******************************************************************************************/
     override func viewDidAppear(animated: Bool)
     {
@@ -61,7 +64,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     }
     
     /******************************************************************************************
-    *
+    *   Gets called when a user logs in via facebook so we can get their profile information
     ******************************************************************************************/
     func loginViewShowingLoggedInUser(loginView: FBLoginView!)
     {
@@ -102,7 +105,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate
     
     
     /******************************************************************************************
-    *
+    *   Makes a call to the backend server to see if the user exists and if they have the right 
+    *   credentials. If they are authorized they will be logged in.
     ******************************************************************************************/
     @IBAction func loginButtonPressed(sender: AnyObject)
     {

@@ -10,19 +10,25 @@ import Foundation
 import UIKit
 import Alamofire
 
+/******************************************************************************************
+*   This class is used for communicating with the Google Places API
+******************************************************************************************/
 class GoogleSearch:NSObject
 {
-    
-    
+
+    /******************************************************************************************
+    *   Returns the google places route to make a network call to
+    ******************************************************************************************/
     func googleURLString()
     {
         var url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(APIkeys.googlePlacesKey)"
     }
     
+    /******************************************************************************************
+    *   This function makes a network call to Google Places to give autocomplete suggestions
+    ******************************************************************************************/
     func fetchPlaces(searchString: String, coordinates: CLLocationCoordinate2D, completion:(places: [GooglePlace]) -> Void)
     {
-        
-//        let location = "41.6667,91.5333"
         let location = "\(coordinates.latitude),\(coordinates.longitude)"
         var url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(APIkeys.googlePlacesKey)&input=\(searchString)&location=\(location)"
         
@@ -44,6 +50,9 @@ class GoogleSearch:NSObject
         }
     }
     
+    /******************************************************************************************
+    *   This function makes a network call to Google Places to get place details
+    ******************************************************************************************/
     func fetchPlaceDetails(placeID:String, completion:(place: GooglePlaceDetail) -> Void)
     {
         var url = "https://maps.googleapis.com/maps/api/place/details/json?key=\(APIkeys.googlePlacesKey)&placeid=\(placeID)"

@@ -8,6 +8,9 @@
 
 import Foundation
 
+/******************************************************************************************
+*   This class is a model for a Message that is displayed in the Chat page
+******************************************************************************************/
 class Message : NSObject, JSQMessageData {
     var text_: String
     var sender_: String

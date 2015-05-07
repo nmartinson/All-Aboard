@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 import Alamofire
 
+/******************************************************************************************
+*   This class is for letting a user search for and add new friends.
+******************************************************************************************/
 class SearchFriendsViewController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var addStatus: UILabel!
@@ -35,6 +38,11 @@ class SearchFriendsViewController: UIViewController, UITextFieldDelegate
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /******************************************************************************************
+    *   This function makes a call to the database checking if a user exists with the userID 
+    *   that the user entered. If one does, the users name and profile picture is displayed and
+    *   the user has the option to add the friend.
+    ******************************************************************************************/
     @IBAction func SearchButtonClicked(sender: AnyObject)
     {
         let searchText = searchTF.text.stringByReplacingOccurrencesOfString(" ", withString: "")
@@ -77,6 +85,10 @@ class SearchFriendsViewController: UIViewController, UITextFieldDelegate
         }
     }
     
+    /******************************************************************************************
+    *   When the user clicks the add friend button this makes a call to the database adding the 
+    *   selected friend to the users friends list
+    ******************************************************************************************/
     @IBAction func addButtonClicked(sender: AnyObject)
     {
         let hostId = UserPreferences().getGUID()

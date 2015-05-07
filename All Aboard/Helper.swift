@@ -9,9 +9,14 @@
 import Foundation
 import Alamofire
 
+/******************************************************************************************
+*   This class is a helper that performs a few common functions
+******************************************************************************************/
 class Helper
 {
-    
+    /******************************************************************************************
+    *   This function formats a date object into a string format that we want
+    ******************************************************************************************/
     func formatDateString(date: NSDate) -> String
     {
         let formatter = NSDateFormatter()

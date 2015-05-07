@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/******************************************************************************************
+*   This class is responsible for showing a users friends list
+******************************************************************************************/
 class ViewFriendsViewController: UIViewController {
     
     @IBOutlet weak var friendsTableView: UITableView!
@@ -18,6 +21,9 @@ class ViewFriendsViewController: UIViewController {
     }
     var friendsL:[User] = []
 
+    /******************************************************************************************
+    *   Gets the users friends list from the network.
+    ******************************************************************************************/
     override func viewDidLoad() {
         BluemixCommunication().getFriendsList(UserPreferences().getGUID() )
         {
@@ -28,6 +34,9 @@ class ViewFriendsViewController: UIViewController {
         
     }
     
+    /******************************************************************************************
+    *   Displays each friend in a table view cell
+    ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         //creating cell for table view.
@@ -51,6 +60,9 @@ class ViewFriendsViewController: UIViewController {
         return friendsL.count
     }
 
+    /******************************************************************************************
+    *   Sets the height of each table view cell
+    ******************************************************************************************/
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 61
     }

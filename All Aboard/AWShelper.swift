@@ -113,6 +113,9 @@ class AWShelper
         })
     }
     
+    /******************************************************************************************
+    *   Compresses the image to thumbnail size
+    ******************************************************************************************/
     func compressImageToThumbnail(image: UIImage) -> NSURL
     {
         var path:NSString = NSTemporaryDirectory().stringByAppendingPathComponent("thumbnail.jpeg")
@@ -291,7 +294,9 @@ class AWShelper
         })
     }
     
-    
+    /******************************************************************************************
+    *   Asks AWS how many files there are in the specified folder
+    ******************************************************************************************/
     func numberOfFilesInFolder(folder: String, completion: (count:Int) -> Void)
     {
         AWSS3Object()

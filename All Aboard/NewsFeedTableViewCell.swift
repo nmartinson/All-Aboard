@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/******************************************************************************************
+*   This class is an extension of UITableViewCell that is used for displaying information
+*   about an event in the news feed
+******************************************************************************************/
 class NewsFeedTableViewCell: UITableViewCell
 {
     

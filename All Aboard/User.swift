@@ -8,6 +8,9 @@
 
 import Foundation
 
+/******************************************************************************************
+*   This class is a model that represents a user.
+******************************************************************************************/
 class User {
     var username:NSString?
     var userid:NSString

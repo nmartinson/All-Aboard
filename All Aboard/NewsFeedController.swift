@@ -33,7 +33,9 @@ extension Alamofire.Request
     }
 }
 
-
+/******************************************************************************************
+*   This class is responsible for all the actions/presentation on the News Feed page
+******************************************************************************************/
 class NewsFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var navBar: UINavigationItem!

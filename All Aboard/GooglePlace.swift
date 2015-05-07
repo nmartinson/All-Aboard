@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/******************************************************************************************
+*   This represents a Google Place that is return from the autocomplete request
+******************************************************************************************/
 class GooglePlace:NSObject
 {
     var name:String?
@@ -21,7 +24,6 @@ class GooglePlace:NSObject
     
     func placeFromJSON(rawJSON: JSON) -> [GooglePlace]
     {
-//        println(rawJSON)
         var places:[GooglePlace] = []
         for(var i = 0; i < rawJSON["predictions"].count; i++)
         {

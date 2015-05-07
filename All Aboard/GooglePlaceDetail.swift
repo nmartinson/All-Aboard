@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/******************************************************************************************
+*   This class represents a Google Place object that contains details about a specific place.
+******************************************************************************************/
 class GooglePlaceDetail:NSObject
 {
     var name:String?

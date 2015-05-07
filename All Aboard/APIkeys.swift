@@ -8,6 +8,9 @@
 
 import Foundation
 
+/******************************************************************************************
+*   This class holds the API keys for using Google Maps and Google Places APIs
+******************************************************************************************/
 enum APIkeys
 {
     static let googleMapsKey = "AIzaSyDVeNeW-rV6FzDeEH9F4SwPKD0EDqm0780"

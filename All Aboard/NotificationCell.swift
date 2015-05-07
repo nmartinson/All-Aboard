@@ -8,12 +8,12 @@
 
 import Foundation
 
+/******************************************************************************************
+*   This class is an extension of UITableViewCell that is used to
+******************************************************************************************/
 class NotificationCell: UITableViewCell
 {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var dateText: UILabel!
-    
-    
-    
 }

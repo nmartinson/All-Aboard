@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let cognitoAuthRoleArn = "arn:aws:iam::615495442022:role/Cognito_AllAboardAuth_DefaultRole"
     let identityID = "615495442022"
 
+    /******************************************************************************************
+    *   This is the first function that gets called when the app runs. It sets up the FaceBook,
+    *   Google, and AWS APIs.
+    ******************************************************************************************/
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         FBLoginView.self
@@ -27,8 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Configure AWS
 
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSRegionType.USEast1, identityId: nil, accountId: nil, identityPoolId: cognitoIdentityPoolId, unauthRoleArn: cognitoUnauthRoleArn, authRoleArn: cognitoAuthRoleArn, logins: nil)
-//        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSRegionType.USEast1, identityId: "615495442022", identityPoolId: cognitoIdentityPoolId, logins: nil)
-//
         let defaultServiceConfiguration = AWSServiceConfiguration(region: AWSRegionType.USEast1, credentialsProvider: credentialsProvider)
         AWSServiceManager.defaultServiceManager().setDefaultServiceConfiguration(defaultServiceConfiguration)
         

@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/******************************************************************************************
+*   This class is used to control the view for displaying notifications
+******************************************************************************************/
 class NotificationsViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     var events:[Event] = []
@@ -32,7 +35,7 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     }
     
     /******************************************************************************************
-    *
+    *   This function prepares the cell that we want to display
     ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
@@ -46,7 +49,7 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     }
     
     /******************************************************************************************
-    *
+    *   Displays the information on the tableview cell
     ******************************************************************************************/
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
@@ -76,7 +79,7 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     }
     
     /******************************************************************************************
-    *
+    *   Displays event details page in a navigation controller
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
@@ -97,7 +100,7 @@ class NotificationsViewController:UIViewController, UITableViewDelegate, UITable
     }
     
     /******************************************************************************************
-    *
+    *   Sets the size of the table view cell
     ******************************************************************************************/
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {

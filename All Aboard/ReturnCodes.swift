@@ -8,6 +8,10 @@
 
 import Foundation
 
+/******************************************************************************************
+*   This class holds the return codes that are used for checking for success or failure
+*   upon getting results back from the database
+******************************************************************************************/
 enum RETURNCODES
 {
     // Login

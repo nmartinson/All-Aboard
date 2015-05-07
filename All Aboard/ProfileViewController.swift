@@ -10,6 +10,9 @@ import UIKit
 import Alamofire
 import MobileCoreServices
 
+/******************************************************************************************
+*   This class is responsible for all the actions on the Profile page
+******************************************************************************************/
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     let AWS = AWShelper()
@@ -20,7 +23,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     let imagePicker = UIImagePickerController()
     
     /******************************************************************************************
-    *
+    *   This downloads the users profile pic and displays it. It also downloads and presents the
+    *   events that the user has been invited to.
     ******************************************************************************************/
     override func viewDidLoad()
     {
@@ -83,7 +87,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     /******************************************************************************************
-    *
+    *   This will take the user to the particular event page when they select an event
     ******************************************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
@@ -95,7 +99,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     /******************************************************************************************
-    *
+    *   Displays the events in the tableview
     ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {

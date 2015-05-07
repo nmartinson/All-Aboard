@@ -18,7 +18,7 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     var currentEvent:Event?
     
     /******************************************************************************************
-    *
+    *   Gets the user's friends list from the database
     ******************************************************************************************/
     override func viewDidLoad()
     {
@@ -31,7 +31,8 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     }
     
     /******************************************************************************************
-    *
+    *   Displays each friend in a table view cell.
+    *   Displays the name and profile pic
     ******************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
@@ -46,7 +47,8 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     }
     
     /******************************************************************************************
-    *
+    *   When a cell is tapped, it adds that friend to a list of friends that are going to be 
+    *   invited
     ******************************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
@@ -126,7 +128,8 @@ class InviteFriendsToEventController: UIViewController, UITableViewDataSource, U
     }
     
     /******************************************************************************************
-    *
+    *   Makes a network call to the database to create an event in the database with the 
+    *   user input data.
     ******************************************************************************************/
     @IBAction func createButtonPressed(sender: AnyObject)
     {

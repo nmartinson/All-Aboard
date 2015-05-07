@@ -9,11 +9,13 @@
 import Foundation
 import Alamofire
 
+/******************************************************************************************
+*   This class is responsible for all communication with the bluemix backend database
+******************************************************************************************/
 class BluemixCommunication: NSObject
 {
-    
     /******************************************************************************************
-    *
+    *   This function performs the login and returns a success/failure message
     ******************************************************************************************/
     func loginRequest(params: [String:String!], completion:(result: Dictionary<String,AnyObject>?) -> Void)
     {
@@ -48,7 +50,7 @@ class BluemixCommunication: NSObject
     }
     
     /******************************************************************************************
-    *
+    *   This function gets the event information for an event with the specified ID
     ******************************************************************************************/
     func getEvent(eventID: String, completion:(result: Event) -> Void)
     {
@@ -88,7 +90,8 @@ class BluemixCommunication: NSObject
     
     
     /******************************************************************************************
-    *
+    *   This function gets Event details for the most recent events for number of events that
+    *   is passed in for the count.
     ******************************************************************************************/
     func getRecentEvents(count: Int, completion:(result: [Event]) -> Void)
     {
@@ -133,7 +136,7 @@ class BluemixCommunication: NSObject
     
     
     /******************************************************************************************
-    *
+    *   This function gets the list of events that the user has been invited to
     ******************************************************************************************/
     func getUserInviteList(userID: String, completion:(result: [Event]) -> Void)
     {
@@ -179,7 +182,7 @@ class BluemixCommunication: NSObject
     }
     
     /******************************************************************************************
-    *
+    *   This function gets information about a User for the userID that is passed in
     ******************************************************************************************/
     func getUserInfoByID(userID: String, completion: (user: Dictionary<String,AnyObject>?) -> Void)
     {
@@ -203,7 +206,7 @@ class BluemixCommunication: NSObject
     }
     
     /******************************************************************************************
-    *
+    *   This function gets the users friends list
     ******************************************************************************************/
     func getFriendsList(userID:String, completion: (result: [User]) -> Void)
     {
@@ -237,7 +240,7 @@ class BluemixCommunication: NSObject
     }
     
     /******************************************************************************************
-    *
+    *   This function gets the attendees for the event specified by the eventID
     ******************************************************************************************/
     func getEventAttendees(eventID:String, completion: (attendees: [User]) -> Void)
     {
@@ -269,7 +272,7 @@ class BluemixCommunication: NSObject
     }
 
     /******************************************************************************************
-    *
+    *   This function tells the backend that the user has denied the specified event
     ******************************************************************************************/
     func denyEventInvite(eventID:String, userID: String, completion: (result: String) -> Void)
     {
@@ -284,7 +287,7 @@ class BluemixCommunication: NSObject
     }
     
     /******************************************************************************************
-    *
+    *   This function tells the backend that the user has accepted the specified event
     ******************************************************************************************/
     func acceptEventInvite(eventID:String, userID: String, completion: (result: String) -> Void)
     {
@@ -297,23 +300,9 @@ class BluemixCommunication: NSObject
         }
     }
     
-    /**
-
-    Friends List Notes: 
-        Add: 112
-                params: userId, friendId
-        
-        Remove: 113
-                params: userId, friendId
-    
-        Get friends list: 114
-                params: userId
-    
-        Searching by Username: 140
-                params: username
-
-
-    **/
+    /******************************************************************************************
+    *   This function searches the database for a user with the specified username
+    ******************************************************************************************/
     func searchForUserByUsername(username: String, completion: (result: User?) -> Void)
     {
         let params = ["action": "140", "username":username]
@@ -337,10 +326,11 @@ class BluemixCommunication: NSObject
     
     
     
-    
+    /******************************************************************************************
+    *   This function creates an event in the database with the specified params
+    ******************************************************************************************/
     func createEvent(params: Dictionary<String,AnyObject>)
     {
-        
         Alamofire.request(.POST, BackendConstants.eventURL, parameters: params ).responseString { (_, response, string,_) -> Void in
             println("response:\(string)")
         }
@@ -360,38 +350,6 @@ class BluemixCommunication: NSObject
                 completion(result: image!)
             }
         })
-    }
-    
-    /******************************************************************************************
-    *
-    ******************************************************************************************/
-    func sendImage(image: UIImage)
-    {
-//        var imageData = UIImagePNGRepresentation(image)
-        var imageData = UIImageJPEGRepresentation(image, 0.5)
-        let base64image = imageData.base64EncodedStringWithOptions(.allZeros)
-        let params = ["encodedImage": base64image]
-        
-        Alamofire.request(.POST, BackendConstants.testURL, parameters: params).responseString { (_, response, responseCode, _) -> Void in
-            println(responseCode)
-        }
-        
-    }
-    
-    /******************************************************************************************
-    *
-    ******************************************************************************************/
-    func getImage(completion: (image: UIImage?) -> Void)
-    {
-        
-        Alamofire.request(.GET, BackendConstants.testURL, parameters: nil).responseString { (_, response, imageString, _) -> Void in
-            
-            let decodedData = NSData(base64EncodedString: imageString!, options: NSDataBase64DecodingOptions(rawValue: 0))
-            var decodedImage = UIImage(data: decodedData!)
-            completion(image: decodedImage)
-        }
-
-
     }
     
 }

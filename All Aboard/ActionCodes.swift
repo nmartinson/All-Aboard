@@ -8,6 +8,10 @@
 
 import Foundation
 
+/******************************************************************************************
+*  This class holds the action codes that are used when performing certain operations 
+*   on the database
+******************************************************************************************/
 enum ACTIONCODES
 {
     // user

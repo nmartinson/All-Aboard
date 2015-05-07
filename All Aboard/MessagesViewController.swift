@@ -9,6 +9,9 @@
 import UIKit
 import Foundation
 
+/******************************************************************************************
+*   This class is responsible for displaying and controller the Chat page
+******************************************************************************************/
 class MessagesViewController: JSQMessagesViewController {
     
     var user: FAuthData?
@@ -44,6 +47,9 @@ class MessagesViewController: JSQMessagesViewController {
         })
     }
     
+    /******************************************************************************************
+    *   Sends a message to the Firebase database
+    ******************************************************************************************/
     func sendMessage(text: String!, sender: String!) {
         // *** STEP 3: ADD A MESSAGE TO FIREBASE
         messagesRef.childByAutoId().setValue([
@@ -53,11 +59,17 @@ class MessagesViewController: JSQMessagesViewController {
         ])
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func tempSendMessage(text: String!, sender: String!) {
         let message = Message(text: text, sender: sender, imageUrl: senderImageUrl)
         messages.append(message)
     }
     
+    /******************************************************************************************
+    *   Configures the avatar image that is displayed for each user in the chat
+    ******************************************************************************************/
     func setupAvatarImage(name: String, imageUrl: String?, incoming: Bool) {
         if imageUrl == nil ||  count(imageUrl!) == 0 {
             setupAvatarColor(name, incoming: incoming)
@@ -73,6 +85,9 @@ class MessagesViewController: JSQMessagesViewController {
         avatars[name] = avatarImage
     }
     
+    /******************************************************************************************
+    *   Configures the avatar color of the user
+    ******************************************************************************************/
     func setupAvatarColor(name: String, incoming: Bool) {
         let diameter = incoming ? UInt(collectionView.collectionViewLayout.incomingAvatarViewSize.width) : UInt(collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
         
@@ -89,6 +104,9 @@ class MessagesViewController: JSQMessagesViewController {
         avatars[name] = userImage
     }
     
+    /******************************************************************************************
+    *   Configures the firebase connection and how the messages should be displayed
+    ******************************************************************************************/
     override func viewDidLoad() {
         super.viewDidLoad()
         inputToolbar.contentView.leftBarButtonItem = nil
@@ -108,6 +126,9 @@ class MessagesViewController: JSQMessagesViewController {
         setupFirebase()
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         collectionView.collectionViewLayout.springinessEnabled = true
@@ -123,12 +144,18 @@ class MessagesViewController: JSQMessagesViewController {
     
     // ACTIONS
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     func receivedMessagePressed(sender: UIBarButtonItem) {
         // Simulate reciving message
         showTypingIndicator = !showTypingIndicator
         scrollToBottomAnimated(true)
     }
     
+    /******************************************************************************************
+    *   Plays a sound for sending a message and tells the message to be sent
+    ******************************************************************************************/
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, date: NSDate!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         let senderName = UserPreferences().getName()
@@ -137,14 +164,23 @@ class MessagesViewController: JSQMessagesViewController {
         finishSendingMessage()
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func didPressAccessoryButton(sender: UIButton!) {
         println("Camera pressed!")
     }
     
+    /******************************************************************************************
+    *   Returns the message data that will be presented later
+    ******************************************************************************************/
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
     
+    /******************************************************************************************
+    *   Displays the text bubble on the screen
+    ******************************************************************************************/
     override func collectionView(collectionView: JSQMessagesCollectionView!, bubbleImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
         let message = messages[indexPath.item]
         
@@ -155,6 +191,9 @@ class MessagesViewController: JSQMessagesViewController {
         return UIImageView(image: incomingBubbleImageView.image, highlightedImage: incomingBubbleImageView.highlightedImage)
     }
     
+    /******************************************************************************************
+    *   Displays the avatar image on the screen
+    ******************************************************************************************/
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
         let message = messages[indexPath.item]
         if let avatar = avatars[message.sender()] {
@@ -165,10 +204,16 @@ class MessagesViewController: JSQMessagesViewController {
         }
     }
     
+    /******************************************************************************************
+    *
+    ******************************************************************************************/
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
     
+    /******************************************************************************************
+    *   Presents al the information to the screen
+    ******************************************************************************************/
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
         
@@ -186,7 +231,9 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     
-    // View  usernames above bubbles
+    /******************************************************************************************
+    *   Places the user name above the image bubble
+    ******************************************************************************************/
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         let message = messages[indexPath.item];
         
@@ -206,6 +253,9 @@ class MessagesViewController: JSQMessagesViewController {
         return NSAttributedString(string:message.sender())
     }
     
+    /******************************************************************************************
+    *   Sets the height for the message bubbles
+    ******************************************************************************************/
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         let message = messages[indexPath.item]
         
