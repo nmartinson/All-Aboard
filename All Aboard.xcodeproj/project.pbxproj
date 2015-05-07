@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B03482F1AF7BC1700888A04 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B03482E1AF7BC1700888A04 /* Mantle.framework */; };
 		2B03483F1AF7BC7400888A04 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2B0348381AF7BC5B00888A04 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B0348401AF7BC7400888A04 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2B03483A1AF7BC5B00888A04 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B0348421AF7BDD100888A04 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0348411AF7BDD100888A04 /* SwiftyJSON.swift */; };
+		2B0348501AFC0B6000888A04 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B03484F1AFC0B5F00888A04 /* Mantle.framework */; };
 		2B04BD091A80042000494335 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD021A80042000494335 /* RNCryptor.m */; };
 		2B04BD0A1A80042000494335 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD041A80042000494335 /* RNCryptorEngine.m */; };
 		2B04BD0B1A80042000494335 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B04BD061A80042000494335 /* RNDecryptor.m */; };
@@ -28,8 +28,6 @@
 		2B596F991AA8ECAD006CBEBA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */; };
 		2B596F9C1AA8EE44006CBEBA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */; };
 		2B596FA71AABB4B3006CBEBA /* OverlayScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596FA61AABB4B3006CBEBA /* OverlayScrollView.swift */; };
-		2B596FAD1AABF5FA006CBEBA /* EventDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B596FAC1AABF5FA006CBEBA /* EventDetailView.xib */; };
-		2B596FAF1AABF88C006CBEBA /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B596FAE1AABF88C006CBEBA /* EventDetailViewController.swift */; };
 		2B79B90E1A88231B00544E78 /* ViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B79B90D1A88231B00544E78 /* ViewEventController.swift */; };
 		2B79B9191A883BB900544E78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B9181A883BB900544E78 /* AVFoundation.framework */; };
 		2B79B91B1A883BC100544E78 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79B91A1A883BC100544E78 /* CoreData.framework */; };
@@ -271,9 +269,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2B03482E1AF7BC1700888A04 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
 		2B0348301AF7BC5B00888A04 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Libraries/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		2B0348411AF7BDD100888A04 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		2B03484F1AFC0B5F00888A04 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = "<group>"; };
 		2B04BCFF1A80042000494335 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		2B04BD001A80042000494335 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
 		2B04BD011A80042000494335 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
@@ -297,8 +295,6 @@
 		2B596F981AA8ECAD006CBEBA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		2B596F9B1AA8EE44006CBEBA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		2B596FA61AABB4B3006CBEBA /* OverlayScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayScrollView.swift; sourceTree = "<group>"; };
-		2B596FAC1AABF5FA006CBEBA /* EventDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailView.xib; sourceTree = "<group>"; };
-		2B596FAE1AABF88C006CBEBA /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2B79B90D1A88231B00544E78 /* ViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEventController.swift; sourceTree = "<group>"; };
 		2B79B9181A883BB900544E78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2B79B91A1A883BC100544E78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -496,7 +492,6 @@
 				2B44916F1AC1C8C40042A87A /* AWSCognitoSync.framework in Frameworks */,
 				2BC9C4391A956D8A0044D886 /* Firebase.framework in Frameworks */,
 				2BC9C43A1A956DC40044D886 /* CryptoSwift.framework in Frameworks */,
-				2B03482F1AF7BC1700888A04 /* Mantle.framework in Frameworks */,
 				2BC9C4371A956D6E0044D886 /* CFNetwork.framework in Frameworks */,
 				2BC9C4351A956D4F0044D886 /* AudioToolbox.framework in Frameworks */,
 				2BC9C4331A956CCB0044D886 /* Social.framework in Frameworks */,
@@ -505,6 +500,7 @@
 				2BEE981B1A969F17008FA1CC /* CryptoSwift.framework in Frameworks */,
 				2BBF76B61AC1B5A600C820FF /* XMLDictionary.framework in Frameworks */,
 				2B79B92F1A883C3400544E78 /* SystemConfiguration.framework in Frameworks */,
+				2B0348501AFC0B6000888A04 /* Mantle.framework in Frameworks */,
 				2B79B92D1A883C2700544E78 /* QuartzCore.framework in Frameworks */,
 				2B79B92B1A883C1000544E78 /* OpenGLES.framework in Frameworks */,
 				2B79B9291A883C0500544E78 /* libz.dylib in Frameworks */,
@@ -577,8 +573,6 @@
 		2B596FB01AABF899006CBEBA /* EventDetail */ = {
 			isa = PBXGroup;
 			children = (
-				2B596FAC1AABF5FA006CBEBA /* EventDetailView.xib */,
-				2B596FAE1AABF88C006CBEBA /* EventDetailViewController.swift */,
 			);
 			name = EventDetail;
 			sourceTree = "<group>";
@@ -945,8 +939,8 @@
 		2BE7920C1A79710400DE0E57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B03484F1AFC0B5F00888A04 /* Mantle.framework */,
 				2B0348411AF7BDD100888A04 /* SwiftyJSON.swift */,
-				2B03482E1AF7BC1700888A04 /* Mantle.framework */,
 				2B4491801AC21B4D0042A87A /* AWSiOSSDKv2.framework */,
 				2B44916E1AC1C8C40042A87A /* AWSCognitoSync.framework */,
 				2BBF76A91AC1B5A500C820FF /* FMDB.framework */,
@@ -1201,7 +1195,6 @@
 				2B971ED31AA00A92007FC1A5 /* cb_mono_off.png in Resources */,
 				2BC9C4981A956EB00044D886 /* bubble_min_tailless@2x.png in Resources */,
 				2BC9C49E1A956EB00044D886 /* bubble_tailless@2x.png in Resources */,
-				2B596FAD1AABF5FA006CBEBA /* EventDetailView.xib in Resources */,
 				2BC9C4A01A956EB00044D886 /* camera@2x.png in Resources */,
 				2B971ECE1AA00A92007FC1A5 /* cb_glossy_on@2x.png in Resources */,
 				2B971ECD1AA00A92007FC1A5 /* cb_glossy_on.png in Resources */,
@@ -1317,7 +1310,6 @@
 				2BC9C4B11A956EB00044D886 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				2BE604101A9BC6DD004685C0 /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				2B8951B71AC625B600301156 /* EventAttendeeCell.swift in Sources */,
-				2B596FAF1AABF88C006CBEBA /* EventDetailViewController.swift in Sources */,
 				2BC9C4B31A956EB00044D886 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				2BE791EA1A79700E00DE0E57 /* All_Aboard.xcdatamodeld in Sources */,
 				2BE791E71A79700E00DE0E57 /* AppDelegate.swift in Sources */,
@@ -1522,6 +1514,8 @@
 					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
+					"$(PROJECT_DIR)/All",
+					Aboard,
 				);
 				INFOPLIST_FILE = "All Aboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1558,6 +1552,8 @@
 					"$(PROJECT_DIR)/All",
 					Aboard,
 					"/Users/nickmartinson/Downloads/aws-ios-sdk-2.0.17/frameworks",
+					"$(PROJECT_DIR)/All",
+					Aboard,
 					"$(PROJECT_DIR)/All",
 					Aboard,
 					"$(PROJECT_DIR)/All",
